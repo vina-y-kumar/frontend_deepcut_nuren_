@@ -1,0 +1,399 @@
+.group {
+  width: 100%;
+}
+
+.group_paragraph {
+  font-size: 36px;
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+/* .sudent_form {} */
+
+.group_box_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.group_form_box {
+  display: flex;
+  flex-direction: column;
+}
+
+.group_label {
+  width: 23vw;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  font-size: 20px;
+}
+
+.group_input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  border: 1px solid #2F49D1;
+  color: #000000;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.group_input::-webkit-input-placeholder {
+  color: #000000;
+}
+
+.group_select {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  border: 1px solid #2F49D1;
+  color: #000000;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* .group_option {} */
+
+.group_btn {
+  width: 23vw;
+  border: 1px solid #2F49D1;
+  background-color: #2F49D1;
+  border-radius: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.group_input_extra {
+  padding: 5px 10px;
+}
+
+@media (max-width: 1004px) {
+  .group {
+    width: 100%;
+  }
+  
+  .group_paragraph {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+  
+  .group_box_wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .group_form_box {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .group_label {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  .group_input {
+    width: 22vw;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .group_select {
+    width: 22vw;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .group_btn {
+    width: 22vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 18px;
+  }
+  .group_input_extra {
+    padding: 5px 10px;
+  }
+}
+@media (max-width: 900px) {
+  .group {
+    width: 100%;
+  }
+  
+  .group_paragraph {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+  
+  .group_box_wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .group_form_box {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .group_label {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .group_input {
+    width: 28vw;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .group_select {
+    width: 28vw;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .group_btn {
+    width: 28vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+  }
+  .group_input_extra {
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 807px) {
+  .group {
+    width: 100%;
+  }
+  
+  .group_paragraph {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+  
+  .group_box_wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  .group_form_box {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+  }
+  
+  .group_label {
+    width: 45vw;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .group_input {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .group_select {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .group_btn {
+    position: absolute;
+    width: 28vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+    bottom: -30px;
+    left: 35%;
+  }
+  .group_input_extra {
+    padding: 7px 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .group {
+    width: 100%;
+  }
+  
+  .group_paragraph {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    padding-left: 20px;
+  }
+  
+  .group_box_wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .group_form_box {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+  }
+  
+  .group_label {
+    width: 40vw;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .group_input {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .group_select {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .group_btn {
+    position: absolute;
+    width: 28vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+    bottom: -30px;
+    left: 35%;
+  }
+  .group_input_extra {
+    padding: 7px 10px;
+  }
+}
+
+@media (max-width: 430px) {
+  .group_label {
+    width: 41vw;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .group {
+    width: 100%;
+  }
+  
+  .group_paragraph {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    padding-left: 20px;
+  }
+  
+  .group_box_wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .group_form_box {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  .group_label {
+    width: 90vw;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .group_input {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .group_select {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .group_btn {
+    position: absolute;
+    width: 28vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+    bottom: -30px;
+    left: 35%;
+  }
+  .group_input_extra {
+    padding: 7px 10px;
+  }
+}

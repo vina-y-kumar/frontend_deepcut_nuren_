@@ -1,0 +1,166 @@
+import "./group.css";
+// import Avatar from "../../assets/user.png";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+
+export const GroupList = () => {
+  const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4001/get_groups", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  ////////////////////////////// search
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    let { search } = e.target;
+    fetch(`http://localhost:4001/search_groups`, {
+      method: "GET",
+      headers: { 
+        search: search.value,
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+       },
+    })
+      .then((res) => res.json())
+      .then((data) => setSearchData(data))
+      .catch((err) => console.error(err));
+    search.value = "";
+  };
+
+  return (
+    <div className="group_list">
+      <div className="group_list_header">
+        <h3 className="group_list_header_paragraph">Available Groups</h3>
+        <form onSubmit={(e) => handleSearch(e)}>
+          <input
+            type="text"
+            className="group_list_input"
+            placeholder="Enter Group Name"
+            required
+            name="search"
+          />
+        </form>
+      </div>
+      <ul className="group_list_ul">
+        {searchData.length !== 0
+          ? searchData.map((element, idx) =>
+              element.length !== 0 ? (
+                <NavLink
+                  to={`/group_info/${element.id}`}
+                  className="group_list_item_link"
+                >
+                  <li key={idx} className="group_list_item">
+                    <h4 className="group_list_card_paragraph">
+                      {element.GroupYonalish}
+                    </h4>
+                    <div className="group_list_card_top">
+                      <img
+                        src={element.oqituvchiRasm}
+                        alt="avatar"
+                        className="group_list_card_img"
+                        width={80}
+                        height={80}
+                      />
+                      <span className="group_list_card_span">
+                        <ul className="group_list_card_top_list">
+                          <li className="group_list_card_top_item">
+                            <p className="group_list_card_top_p">Teacher:</p>
+                            <p className="group_list_card_top_text">
+                              {element.Oqituvchi}
+                            </p>
+                          </li>
+                          <li className="group_list_card_top_item">
+                            <p className="group_list_card_top_p">Phone number:</p>
+                            <p className="group_list_card_top_text">
+                              {element.OqituvchTelNomer}
+                            </p>
+                          </li>
+                        </ul>
+                      </span>
+                    </div>
+                    <ul className="group_list_card_bottom_list">
+                      <li className="group_list_card_bottom_item">
+                        <p className="group_list_card_bottom_p">Lesson days:</p>
+                        <p className="group_list_card_bottom_text">
+                          {element.DarsKunlari}
+                        </p>
+                      </li>
+                      <li className="group_list_card_bottom_item">
+                        <p className="group_list_card_bottom_p">Lesson time:</p>
+                        <p className="group_list_card_bottom_text">
+                          {element.DarsVaqti}
+                        </p>
+                      </li>
+                    </ul>
+                  </li>
+                </NavLink>
+              ) : null
+            )
+          : data.length &&
+            data.map((element, idx) => (
+              <NavLink
+                to={`/group_info/${element.id}`}
+                className="group_list_item_link"
+              >
+                <li key={idx} className="group_list_item">
+                  <h4 className="group_list_card_paragraph">
+                    {element.GroupYonalish}
+                  </h4>
+                  <div className="group_list_card_top">
+                    <img
+                      src={element.oqituvchiRasm}
+                      alt="avatar"
+                      className="group_list_card_img"
+                      width={80}
+                      height={80}
+                    />
+                    <span className="group_list_card_span">
+                      <ul className="group_list_card_top_list">
+                        <li className="group_list_card_top_item">
+                          <p className="group_list_card_top_p">Teacher:</p>
+                          <p className="group_list_card_top_text">
+                            {element.Oqituvchi}
+                          </p>
+                        </li>
+                        <li className="group_list_card_top_item">
+                          <p className="group_list_card_top_p">Phone number:</p>
+                          <p className="group_list_card_top_text">
+                            {element.OqituvchTelNomer}
+                          </p>
+                        </li>
+                      </ul>
+                    </span>
+                  </div>
+                  <ul className="group_list_card_bottom_list">
+                    <li className="group_list_card_bottom_item">
+                      <p className="group_list_card_bottom_p">Lesson days:</p>
+                      <p className="group_list_card_bottom_text">
+                        {element.DarsKunlari}
+                      </p>
+                    </li>
+                    <li className="group_list_card_bottom_item">
+                      <p className="group_list_card_bottom_p">Lesson time:</p>
+                      <p className="group_list_card_bottom_text">
+                        {element.DarsVaqti}
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+              </NavLink>
+            ))}
+      </ul>
+    </div>
+  );
+};
