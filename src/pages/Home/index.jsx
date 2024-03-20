@@ -33,8 +33,12 @@ export const Home = () => {
               <div className="home_layout">
                 <div className="deal_funnel_chart">
                   <div>
-                    <h1>hreveev</h1>
-                    <h1>Heyy</h1>
+                    <div>
+                h1
+                    </div>
+                    <div>
+h155
+                    </div>
                   </div>
                 </div>
                 <div className="opportunity_stage">
