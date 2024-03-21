@@ -49,6 +49,7 @@ display: inline-block;
   padding-left: 20px;
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 .main-text{
   margin-top: 1rem;
@@ -60,8 +61,14 @@ display: inline-block;
 
   .pay_right_box {
 
+
     display: flex;
     
+
+    width: 100vw;
+    padding-left: 0px;
+    padding-top: 0px;
+
     
   }
 
@@ -70,6 +77,8 @@ display: inline-block;
     padding-left: 0px;
     display: flex;
     flex-direction: column;
+    background-color: white;
+    
   }
 }
 .head{
