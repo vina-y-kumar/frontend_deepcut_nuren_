@@ -1,7 +1,7 @@
 .siadebar {
   height: 100%;
-  background-color: var(--secondary-color);
-  width: 253px;
+  background-color:whitesmoke;
+  width: 190px;
   position: relative;
 }
 
@@ -56,7 +56,7 @@ label #cancel {
 
 .sidebar_logo_text {
   font-size: 24px;
-  color: #ffffff;
+  color:black;
   font-weight: 600;
 }
 
@@ -81,7 +81,7 @@ label #cancel {
 
 .sidebar_link_text {
   font-size: 20px;
-  color: #ffffff;
+  color: black;
   margin-left: 20px;
 }
 
@@ -97,7 +97,7 @@ label #cancel {
 @media (max-width: 1130px) {
   .siadebar {
     height: 100%;
-    width: 203px;
+    width: 170px;
   }
 
   .sidebar_inner {
@@ -214,6 +214,7 @@ label #cancel {
     margin-left: 20px;
   }
   .sidebar_link_img {
+    color: #0000;
     margin-top: 10px;
   }
 }
