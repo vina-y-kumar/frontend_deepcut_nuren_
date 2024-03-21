@@ -28,7 +28,7 @@ export const Sidebar = () => {
               width={48}
               height={48}
             />
-            <p className="sidebar_logo_text">CRM Panel</p>
+            <p className="sidebar_logo_text">Nuren AI </p>
           </a>
           <hr className="hr" />
           <ul className="sidebar_list">

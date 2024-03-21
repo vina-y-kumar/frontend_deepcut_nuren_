@@ -5,21 +5,16 @@ import { Card } from "../../components/Card";
 import { BarChart } from "../../components/BarChart.js";
 import { useState, useEffect } from "react";
 import { Data } from "../../Data";
-
-
+import PyramidChart from "./oyramidchart.jsx" // Import the PyramidChart component
 
 export const Home = () => {
-
   const [userData, setUserData] = useState({
     labels: Data.map((data) => data.month),
     datasets: [
       {
         label: "students",
         data: Data.map((chain) => chain.students),
-        backgroundColor: [
-          "#2F49D1",
-          "#E13468"
-        ]
+        backgroundColor: ["#2F49D1", "#E13468"],
       },
     ],
   });
@@ -32,12 +27,29 @@ export const Home = () => {
             <Sidebar />
           </div>
           <div className="home_right_box">
-            <Header name="Report"/>
+            <Header name="Dashboard" />
             <div className="home_right_box_inner">
-              <Card/>
+              <Card />
+              <div className="home_layout">
+                <div className="deal_funnel_chart">
+                  <div>
+                    <div>
+                h1
+                    </div>
+                    <div>
+h155
+                    </div>
+                  </div>
+                </div>
+                <div className="opportunity_stage">
+                  <div>
+                    <h1>Heyy</h1>
+                  </div>
+                </div>
+              </div>
+              <PyramidChart /> {/* Use the PyramidChart component here */}
               <BarChart chartData={userData} />
             </div>
-          
           </div>
         </div>
       </div>

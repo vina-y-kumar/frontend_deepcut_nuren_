@@ -1,6 +1,6 @@
-.card {
+.card{
   width: 38.4vw;
-  background-color: #fff;
+  background-color: #F0F9FF;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 2px 6px 22px 0px rgba(0, 0, 0, 0.36);
@@ -8,13 +8,71 @@
   justify-content: space-between;
   color: #000;
 }
-
+.card_1{
+  width: 38.4vw;
+  background-color: #F0F9FF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 6px 22px 0px rgba(0, 0, 0, 0.36);
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+}
+.card_2{
+  width: 38.4vw;
+  background-color: #FFF0F7;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 6px 22px 0px rgba(0, 0, 0, 0.36);
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+}
+.card_3{
+  width: 38.4vw;
+  background-color: #FFFAE1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 6px 22px 0px rgba(0, 0, 0, 0.36);
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+}
+.card_4{
+  width: 38.4vw;
+  background-color: #F5F1FE;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 6px 22px 0px rgba(0, 0, 0, 0.36);
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+}
 .card_paragraph {
-  font-size: 26px;
+  font-size: 12px;
   font-weight: 500;
 }
 
-.card_text {
+.card_text_1{
+  color:#15ABFF;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.card_text_2{
+  color:#FF56A5;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.card_text_3{
+  color:#FFD317;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.card_text_4{
+  color:#6D31ED;
   font-size: 28px;
   font-weight: 700;
 }
