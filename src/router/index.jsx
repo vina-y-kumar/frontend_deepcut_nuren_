@@ -14,6 +14,8 @@ import { AllStudentsList } from "../pages/AllStudentsList";
 import { AllTeachersList } from "../pages/AllTeachersList";
 import { AllDeletedList } from "../pages/DeletedStudentsList";
 import Dashboard from "../pages/dashboard";
+import KanbanBoard from "../components/Kanban/Kanban";
+
 
 export const RouteWrapper = () => {
 
@@ -36,6 +38,7 @@ export const RouteWrapper = () => {
        <Route path="/apeal" element={<Apeal />} /> 
        <Route path="/dashboard" element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/kanban" element={<KanbanBoard />} />
     </Routes>
   );
 };

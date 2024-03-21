@@ -4,7 +4,7 @@ import { Sidebar } from "../../components/Sidebar";
 import { AddPayment } from "../../components/AddPayment";
 import { PaymentsList } from "../../components/PaymentList";
 import Kanban from "../../components/Kanban/Kanban";
-
+// import KanbanBoard from "../../components/Kanban/Kanban";
 
 export const Payment = () => {
   return (
@@ -16,7 +16,10 @@ export const Payment = () => {
           </div>
           <div className="pay_right_box">
             <Header name="Leads" />
+            
             <div className="pay_right_box_inner">
+              <h3>Total Leads: 25</h3>
+            <button className="btn">+ New</button>
               {/* <AddPayment/> */}
               {/* <KanbanBoard/> */}
               <Kanban/>

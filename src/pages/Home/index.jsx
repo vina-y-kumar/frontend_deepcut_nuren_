@@ -5,9 +5,22 @@ import { Card } from "../../components/Card";
 import { BarChart } from "../../components/BarChart.js";
 import { useState, useEffect } from "react";
 import { Data } from "../../Data";
+
+
+import Donut from "../../components/DonutChart/Donut";
+import Funnel from "../../components/FunnelChart/Funnel";
+import PieChart from "../../components/FunnelChart/Pie";
+
+
+
+export const Home = () => {
+
+  const randomData = Array.from({ length: 6 }, () => Math.floor(Math.random() * 100));
+
 import PyramidChart from "./oyramidchart.jsx" // Import the PyramidChart component
 
 export const Home = () => {
+
   const [userData, setUserData] = useState({
     labels: Data.map((data) => data.month),
     datasets: [
@@ -29,25 +42,19 @@ export const Home = () => {
           <div className="home_right_box">
             <Header name="Dashboard" />
             <div className="home_right_box_inner">
-              <Card />
-              <div className="home_layout">
-                <div className="deal_funnel_chart">
-                  <div>
-                    <div>
-                h1
-                    </div>
-                    <div>
-h155
-                    </div>
-                  </div>
-                </div>
-                <div className="opportunity_stage">
-                  <div>
-                    <h1>Heyy</h1>
-                  </div>
-                </div>
+
+              <Card/>
+              <br/>
+              <br/>
+              <div className="chart-container">
+              <div className="chart"><Funnel/></div>
+                <div className="chart"><Donut/></div>
+                
               </div>
-              <PyramidChart /> {/* Use the PyramidChart component here */}
+              
+              
+              
+
               <BarChart chartData={userData} />
             </div>
           </div>
