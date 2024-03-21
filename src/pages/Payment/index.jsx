@@ -3,6 +3,8 @@ import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { AddPayment } from "../../components/AddPayment";
 import { PaymentsList } from "../../components/PaymentList";
+import Kanban from "../../components/Kanban/Kanban";
+
 
 export const Payment = () => {
   return (
@@ -15,8 +17,10 @@ export const Payment = () => {
           <div className="pay_right_box">
             <Header name="Leads" />
             <div className="pay_right_box_inner">
-              <AddPayment/>
-              <PaymentsList/>
+              {/* <AddPayment/> */}
+              {/* <KanbanBoard/> */}
+              <Kanban/>
+              {/* <PaymentsList/> */}
             </div>
           </div>
         </div>
