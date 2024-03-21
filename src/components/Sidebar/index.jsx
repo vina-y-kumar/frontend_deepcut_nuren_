@@ -28,7 +28,7 @@ export const Sidebar = () => {
               width={48}
               height={48}
             />
-            <p className="sidebar_logo_text">Nuren AI </p>
+            <p className="sidebar_logo_text">CRM</p>
           </a>
           <hr className="hr" />
           <ul className="sidebar_list">
@@ -42,7 +42,7 @@ export const Sidebar = () => {
                     <img
                       src={Home}
                       alt="icon"
-                      className="sidebar_link_img"
+                      className="sidebar_link_img"            
                       width={20}
                       height={20}
                     />
