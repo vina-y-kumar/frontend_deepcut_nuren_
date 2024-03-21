@@ -6,9 +6,15 @@ import { BarChart } from "../../components/BarChart.js";
 import { useState, useEffect } from "react";
 import { Data } from "../../Data";
 
+import Donut from "../../components/DonutChart/Donut";
+import Funnel from "../../components/FunnelChart/Funnel";
+import PieChart from "../../components/FunnelChart/Pie";
+
 
 
 export const Home = () => {
+
+  const randomData = Array.from({ length: 6 }, () => Math.floor(Math.random() * 100));
 
   const [userData, setUserData] = useState({
     labels: Data.map((data) => data.month),
@@ -35,6 +41,16 @@ export const Home = () => {
             <Header name="Report"/>
             <div className="home_right_box_inner">
               <Card/>
+              <br/>
+              <br/>
+              <div className="chart-container">
+              <div className="chart"><Funnel/></div>
+                <div className="chart"><Donut/></div>
+                
+              </div>
+              
+              
+              
               <BarChart chartData={userData} />
             </div>
           

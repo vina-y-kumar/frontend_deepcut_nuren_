@@ -19,9 +19,9 @@
   font-weight: 700;
 }
 
-.card_two {
-  margin-top: 70px;
-}
+/* .card_two {
+  margin-top: 20px;
+} */
 
 .card_wrapper {
   display: grid;
@@ -76,7 +76,7 @@
   }
 
   .card_two {
-    margin-top: 70px;
+    margin-top: 20px;
   }
 
   .card_wrapper {
@@ -113,7 +113,7 @@
   }
 
   .card_two {
-    margin-top: 70px;
+    margin-top: 20px;
   }
 
   .card_wrapper {
