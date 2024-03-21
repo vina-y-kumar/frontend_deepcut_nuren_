@@ -25,8 +25,28 @@
   background-color: white;
 }
 
+
 .chart {
   width: 45%; /* Adjust the width of each chart */
+
+.home_layout{
+  margin-top: 20px;
+  display:flex;
+  flex-direction: row;
+  border: 1px solid lightgray;
+  justify-content: space-between;
+}
+.deal_funnel_chart{
+  width: 38.4vw;
+display: flex;
+border: 2px solid lightgray;
+flex-direction: column;
+}
+.opportunity_stage{
+  width: 38.4vw;
+display: flex;
+border: 1px solid lightgray;
+
 }
 @media (max-width: 1000px) {
   /* .home {} */

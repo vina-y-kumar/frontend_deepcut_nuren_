@@ -54,7 +54,9 @@
         font-weight: 700; 
         line-height: 20px; 
         color: #F5F1FEFF; /* primary-100 */
+
      margin-top: -30px;
+
   }
   .card_ {
     /* background-color: #ffffff;
@@ -122,6 +124,8 @@
 .btn{
   width: 77px;
 height: 36px;
+
+
 
 padding: 7px 11px 7px 12px;
 gap: 0px;

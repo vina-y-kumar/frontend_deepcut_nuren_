@@ -6,6 +6,7 @@ import { BarChart } from "../../components/BarChart.js";
 import { useState, useEffect } from "react";
 import { Data } from "../../Data";
 
+
 import Donut from "../../components/DonutChart/Donut";
 import Funnel from "../../components/FunnelChart/Funnel";
 import PieChart from "../../components/FunnelChart/Pie";
@@ -16,16 +17,17 @@ export const Home = () => {
 
   const randomData = Array.from({ length: 6 }, () => Math.floor(Math.random() * 100));
 
+import PyramidChart from "./oyramidchart.jsx" // Import the PyramidChart component
+
+export const Home = () => {
+
   const [userData, setUserData] = useState({
     labels: Data.map((data) => data.month),
     datasets: [
       {
         label: "students",
         data: Data.map((chain) => chain.students),
-        backgroundColor: [
-          "#2F49D1",
-          "#E13468"
-        ]
+        backgroundColor: ["#2F49D1", "#E13468"],
       },
     ],
   });
@@ -38,8 +40,9 @@ export const Home = () => {
             <Sidebar />
           </div>
           <div className="home_right_box">
-            <Header name="Report"/>
+            <Header name="Dashboard" />
             <div className="home_right_box_inner">
+
               <Card/>
               <br/>
               <br/>
@@ -51,9 +54,9 @@ export const Home = () => {
               
               
               
+
               <BarChart chartData={userData} />
             </div>
-          
           </div>
         </div>
       </div>
