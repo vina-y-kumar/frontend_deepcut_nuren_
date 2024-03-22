@@ -1,3 +1,11 @@
-.chart {
-  margin-top: 50px;
+.apexcharts-legend-text{
+
+  display: none;
+}
+.apexcharts-legend-marker{
+
+  display: none;
+}
+h1{
+     margin-top: 3rem;
 }

@@ -19,6 +19,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .chart-container {
   display: flex;
   justify-content: space-between; 
@@ -28,37 +29,31 @@
 .chart {
   width: 45%; /* Adjust the width of each chart */
 }
-@media (max-width: 1000px) {
-  /* .home {} */
 
-  .home_inner {
-    display: flex;
-  }
-
-  /* .home_left_box {} */
-
-  .home_right_box {
-    width: 100vw;
-    padding-left: 0px;
-    padding-top: 0px;
-  }
-
-  .home_right_box_inner {
-    width: 100%;
-    padding-left: 0px;
-    display: flex;
-  }
-
+.home_layout {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid lightgray;
+  justify-content: space-between;
 }
-@media (max-width: 520px) {
-  /* .home {} */
 
-  .home_inner {
-    display: flex;
-  }
+.deal_funnel_chart {
+  width: 38.4vw;
+  display: flex;
+  border: 2px solid lightgray;
+  flex-direction: column;
+}
 
-  /* .home_left_box {} */
+.opportunity_stage {
+  width: 38.4vw;
+  display: flex;
+  border: 1px solid lightgray;
+}
 
+/* Media Queries */
+
+@media (max-width: 1000px) {
   .home_right_box {
     width: 100vw;
     padding-left: 0px;
@@ -69,6 +64,33 @@
     width: 100%;
     padding-left: 0px;
     display: flex;
+    flex-wrap: wrap; /* Allow charts to wrap on smaller screens */
+    justify-content: center; /* Center charts on smaller screens */
   }
 
+  .chart {
+    width: 100%; /* Full width for charts on smaller screens */
+    margin-bottom: 20px; /* Add some space between charts */
+  }
+}
+
+@media (max-width: 520px) {
+  .home_right_box {
+    width: 100vw;
+    padding-left: 0px;
+    padding-top: 0px;
+  }
+
+  .home_right_box_inner {
+    width: 100%;
+    padding-left: 0px;
+    display: flex;
+    flex-wrap: wrap; /* Allow charts to wrap on smaller screens */
+    justify-content: center; /* Center charts on smaller screens */
+  }
+
+  .chart {
+    width: 100%; /* Full width for charts on smaller screens */
+    margin-bottom: 20px; /* Add some space between charts */
+  }
 }
