@@ -8,14 +8,7 @@
 .head-section{
   display: flex;
 }
-.pay_right_box {
 
-  display: flex;
-  gap: 980px;
-  
-  
-  
-}
 .button{
 
 color:#FFFFFFFF;
@@ -45,12 +38,7 @@ display: inline-block;
   margin-right: 7px;
  }
 
-.pay_right_box_inner {
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-}
+
 .main-text{
   margin-top: 1rem;
 }
@@ -59,27 +47,10 @@ display: inline-block;
     display: flex;
   }
 
-  .pay_right_box {
+  
 
 
-    display: flex;
-    
-
-    width: 100vw;
-    padding-left: 0px;
-    padding-top: 0px;
-
-    
-  }
-
-
-  .pay_right_box_inner {
-    padding-left: 0px;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    
-  }
+  
 }
 .head{
   /* position: absolute; */
