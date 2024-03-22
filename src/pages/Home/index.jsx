@@ -2,7 +2,7 @@ import "./home.css";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { Card } from "../../components/Card";
-import {  BarChart1 } from "../../components/BarChart.js";
+import {  BarChart1 } from "../../components/BarChart.js/index.jsx";
 import { useState, useEffect } from "react";
 import { Data } from "../../Data";
 
@@ -17,11 +17,6 @@ import PieChart from "../../components/FunnelChart/Pie";
 
 
 
-export const Home = () => {
-
-  const randomData = Array.from({ length: 6 }, () => Math.floor(Math.random() * 100));
-
-import PyramidChart from "./oyramidchart.jsx" // Import the PyramidChart component
 
 
 export const Home = () => {
@@ -58,7 +53,7 @@ export const Home = () => {
            
 
 
-              <Card/>
+           
               <br/>
               <br/>
               <div className="chart-container">
@@ -70,7 +65,6 @@ export const Home = () => {
               
               
 
-              <BarChart chartData={userData} />
 
             </div>
           

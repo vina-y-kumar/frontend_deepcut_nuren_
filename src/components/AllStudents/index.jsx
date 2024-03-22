@@ -89,12 +89,26 @@ export const AllStudents = () => {
     // Add logic to submit changes to the backend here if needed
   };
 
-  const handleSubmit = () => {
-    // Logic to submit changes to the backend
+  const handleSubmit = (updatedData) => {
+    axios.put(`http://localhost:8000/accounts/${updatedData.id}/`, updatedData, {
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+    })
+    .then((response) => {
+      console.log('Data updated successfully:', response.data);
+    })
+    .catch((error) => {
+      console.error('Error updating data:', error);
+    });
   };
 
   const toggleEditMode = () => {
     setIsEditing((prev) => !prev);
+  };
+  const handleSubmitRow = (updatedData) => {
+    handleSubmit(updatedData);
   };
 
   return (
@@ -115,19 +129,24 @@ export const AllStudents = () => {
         </thead>
       
         <tbody>
-          {studentData.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              <EditableRow
-                rowData={row}
-                rowIndex={rowIndex}
-                columns={columnsToDisplay}
-                onChange={(rowIndex, key, value) =>
-                  handleCellChange(rowIndex, key, value)
-                }
-                isEditing={isEditing}
-              />
-            </tr>
-          ))}
+        {studentData.map((row, rowIndex) => (
+  <tr key={rowIndex}>
+    <EditableRow
+      rowData={row}
+      rowIndex={rowIndex}
+      columns={columnsToDisplay}
+      onChange={(rowIndex, key, value) =>
+        handleCellChange(rowIndex, key, value)
+      }
+      isEditing={isEditing}
+    />
+    <td>
+      {isEditing && (
+        <button onClick={() => handleSubmitRow(row)}>Save</button>
+      )}
+    </td>
+  </tr>
+))}
         </tbody>
       </table>
       <button onClick={handleSubmit} style={{ marginTop: '10px' }}>
