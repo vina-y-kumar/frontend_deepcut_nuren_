@@ -36,7 +36,9 @@ export const Payment = () => {
             
           
               <h3>Total Leads: 25</h3>
+
             <NavLink to="/lead" id="btn">+ New</NavLink>
+            <br/>
               {/* <AddPayment/> */}
               {/* <KanbanBoard/> */}
               <Kanban/>
