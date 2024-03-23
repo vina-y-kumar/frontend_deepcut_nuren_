@@ -10,6 +10,7 @@ import "./payment.css";
 import { AddPayment } from "../../components/AddPayment";
 import { PaymentsList } from "../../components/PaymentList";
 import Kanban from "../../components/Kanban/Kanban";
+import { NavLink } from "react-router-dom";
 // import KanbanBoard from "../../components/Kanban/Kanban";
 
 export const Payment = () => {
@@ -35,7 +36,9 @@ export const Payment = () => {
             
           
               <h3>Total Leads: 25</h3>
-            <button className="btn">+ New</button>
+
+            <NavLink to="/lead" id="btn">+ New</NavLink>
+            <br/>
               {/* <AddPayment/> */}
               {/* <KanbanBoard/> */}
               <Kanban/>

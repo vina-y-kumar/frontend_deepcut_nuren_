@@ -1,0 +1,54 @@
+/* Header Menu 2 */
+.header-menu {
+    /* position: absolute; 
+    top: 0px; 
+    left: 0px;  */
+    width: 355px; 
+    height: 56px; 
+    display: flex; 
+    align-items: center; 
+    font-family: Manrope; /* Body */
+    font-size: 16px; 
+    font-weight: 400; 
+    line-height: 26px; 
+    opacity: 1; 
+  }
+  /* Header Menu 2 - Icon */
+  .header-menu svg.icon {
+    width: 28px; 
+    height: 28px; 
+    fill: currentColor; 
+  }
+  /* Header Menu 2 - Item */
+  .header-menu .header-item {
+    padding: 15px 39.33px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #565D6DFF; /* neutral-600 */
+    /* background: #000000FF; transparent */
+    border-radius: 0px; 
+    cursor: pointer; 
+    white-space: nowrap; 
+  }
+  /* Header Menu 2 - Selected item */
+  .header-menu .header-item:focus {
+    position: relative; 
+    font-weight: 700; 
+    color: #6D31EDFF; /* primary-500 */
+    /* background: #000000FF; transparent */
+  }
+  /* Header Menu 2 - Selected item */
+  .header-menu .header-item:hover{
+    color: #6D31EDFF; /* primary-500 */
+    
+  }
+  /* Header Menu 2 - Item with indicator */
+  .header-menu .header-item.selected .indicator {
+    /* position: absolute;  */
+    bottom: 0px; 
+    width: 100%; 
+    height: 4px; 
+    background: #6D31EDFF; /* primary-500 */
+    border-radius: 0px; 
+  }

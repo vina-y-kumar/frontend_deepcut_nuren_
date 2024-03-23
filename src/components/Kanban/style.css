@@ -121,10 +121,10 @@
     margin-right: 15px;
 }
 
-.btn{
+#btn{
   width: 77px;
 height: 36px;
-
+margin-left: 80%;
 
 
 padding: 7px 11px 7px 12px;
@@ -134,4 +134,8 @@ opacity: 0px;
 color: white;
 background: #6D31ED;
 font-weight: 600;
+}
+h3{
+  font-size: 18px;
+  font-weight: 600;
 }
