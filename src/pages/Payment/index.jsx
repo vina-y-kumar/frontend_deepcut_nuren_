@@ -35,7 +35,7 @@ export const Payment = () => {
             <Header name="Leads" />
             
           
-              <h3>Total Leads: 25</h3>
+              <h3 >Total Leads: 25</h3>
 
             <NavLink to="/lead" id="btn">+ New</NavLink>
             <br/>
