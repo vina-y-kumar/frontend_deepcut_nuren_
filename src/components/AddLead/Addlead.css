@@ -52,3 +52,7 @@
     background: #6D31EDFF; /* primary-500 */
     border-radius: 0px; 
   }
+  .form-control{
+    background-color: #F3F4F6FF;
+  }
+  

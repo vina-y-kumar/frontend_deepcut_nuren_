@@ -66,7 +66,7 @@ export const AllStudents = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/accounts/", {
+      .get("https://backendcrmnurenai.azurewebsites.net/accounts/", {
         headers: {
           "Content-Type": "application/json",
           token: localStorage.getItem("token"),
@@ -90,7 +90,7 @@ export const AllStudents = () => {
   };
 
   const handleSubmit = (updatedData) => {
-    axios.put(`http://localhost:8000/accounts/${updatedData.id}/`, updatedData, {
+    axios.put(`https://backendcrmnurenai.azurewebsites.net/accounts/${updatedData.id}/`, updatedData, {
       headers: {
         "Content-Type": "application/json",
         token: localStorage.getItem("token"),
