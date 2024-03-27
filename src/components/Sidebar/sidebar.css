@@ -19,6 +19,12 @@
   box-shadow: 2px 6px 22px 0px rgba(0, 0, 0, 0.36);
 
 }
+.sidebar_link:focus{
+  background-color: #01265F;
+  padding: 10px;
+  border-radius: 4px;
+  
+}
 .sidebar_link_text:hover{
   color: #fff;
 }

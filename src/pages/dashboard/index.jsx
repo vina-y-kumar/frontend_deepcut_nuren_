@@ -5,6 +5,7 @@ import { AllTeachers } from "../../components/AllTeachers/index";
 import { ApealList } from "../../components/ApealList/index"; // Import your components from different parts of your code
 import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/Header";
+import Tablee from "./Table";
 
 const Dashboard = () => {
   const [layout, setLayout] = useState([]);
@@ -48,7 +49,7 @@ const Dashboard = () => {
           <div className="atenndance_right_box">
             <Header name="Dashboard" />
             <div className="atenndance_right_box_inner">
-              <div className="dashboard">
+              {/* <div className="dashboard">
                 <button onClick={toggleVisibility}>
                   <h2>Add Dashlets</h2>
                 </button>
@@ -96,15 +97,16 @@ const Dashboard = () => {
                             )?.component
                           }
                         </div>
-                        {/* <div>
+                        <div>
                 <button style={{ position: 'absolute', top: 0, left: 0 }} onMouseDown={handleDragStart} onMouseUp={handleDragEnd}>Drag here</button>
               </div>
-              */}
+             
                       </div>
                     ))}
                   </GridLayout>
                 </div>
-              </div>
+              </div> */}
+              <Tablee/>
             </div>
           </div>
         </div>
