@@ -41,6 +41,7 @@ export const Payment = () => {
             <br/>
               {/* <AddPayment/> */}
               {/* <KanbanBoard/> */}
+              <br/>
               <Kanban/>
               {/* <PaymentsList/> */}
             

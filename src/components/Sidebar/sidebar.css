@@ -154,6 +154,7 @@ label #cancel {
 
   .sidebar_img {
     margin-right: 10px;
+    
   }
 
   .sidebar_logo_text {
@@ -215,7 +216,7 @@ label #cancel {
     height: 100vh;
     display: block;
     line-height: 40px;
-    background-color:var(--secondary-color);
+    /* background-color:var(--secondary-color); */
     z-index: 100;
     transition: 0.5s;
     padding-left: 20px;
@@ -297,7 +298,7 @@ label #cancel {
     height: 100vh;
     display: block;
     line-height: 40px;
-    background-color:var(--secondary-color);
+    /* background-color:var(--secondary-color); */
     z-index: 100;
     transition: 0.5s;
     padding-left: 20px;
