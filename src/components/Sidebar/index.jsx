@@ -6,9 +6,11 @@ import Pupils from '../../assets/pupils.png';
 import Davomat from '../../assets/davomat.png';
 import Group from '../../assets/group.png';
 import Messanger from '../../assets/messanger.png';
+import meet from '../../assets/meet.png';
 import Payment from '../../assets/payment.png';
 import Togo from '../../assets/logo.svg';
 import './sidebar.css';
+
 
 export const Sidebar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -88,6 +90,20 @@ export const Sidebar = () => {
                     height={20}
                   />
                   <p className="sidebar_link_text">Leads</p>
+                </span>
+              </NavLink>
+            </li>
+            <li className="sidebar_item">
+              <NavLink className="sidebar_link" to="/meetings">
+                <span style={{ display: 'flex' }}>
+                <img
+                    src={meet}
+                    alt="icon"
+                    className="sidebar_link_img"
+                    width={25}
+                    height={25}
+                  />
+                  <p className="sidebar_link_text">Meetings </p>
                 </span>
               </NavLink>
             </li>

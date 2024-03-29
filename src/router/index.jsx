@@ -17,6 +17,9 @@ import Dashboard from "../pages/dashboard";
 import KanbanBoard from "../components/Kanban/Kanban";
 import Lead from "../pages/AddLead/Lead";
 
+import Met from "../pages/Meetings/met";
+import CallPage from "../pages/CallPage/callpage";
+
 
 export const RouteWrapper = () => {
 
@@ -38,9 +41,12 @@ export const RouteWrapper = () => {
        <Route path="/davomat_info/:id" element={<InfoDavomat/>}/> 
        <Route path="/apeal" element={<Apeal />} /> 
        <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="*" element={<NotFound />} />
-      <Route path="/kanban" element={<KanbanBoard />} />
+       <Route path="/kanban" element={<KanbanBoard />} />
       <Route path="/lead" element={<Lead/>} />
+      <Route path="/meetings" element={<Met/>}  />
+      <Route path="/callpage" element={<CallPage/>}/>
+      <Route path="*" element={<NotFound />} />
+      
     </Routes>
   );
 };
