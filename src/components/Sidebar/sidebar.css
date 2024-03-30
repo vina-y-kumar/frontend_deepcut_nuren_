@@ -1,19 +1,32 @@
 .siadebar {
   height: 100%;
-  background-color: var(--secondary-color);
-  width: 253px;
+  background-color:whitesmoke;
+  width: 190px;
   position: relative;
 }
 
-.actives {
+.sidebar_link:hover{
   background-color: #01265F;
   padding: 5px;
   width: 100%;
-  border-right: 4px solid #fff;
+  /* color: #fff; */
+  /* border-right: 4px solid #fff; */
+  border-radius: 3px;
+  transition-duration: 0.3s;
   display: flex;
   align-items: center;
   transform: scale(1.19);
   box-shadow: 2px 6px 22px 0px rgba(0, 0, 0, 0.36);
+
+}
+.sidebar_link:focus{
+  background-color: #01265F;
+  padding: 10px;
+  border-radius: 4px;
+  
+}
+.sidebar_link_text:hover{
+  color: #fff;
 }
 
 #check {
@@ -52,11 +65,12 @@ label #cancel {
 
 .sidebar_img {
   margin-right: 20px;
+  
 }
 
 .sidebar_logo_text {
   font-size: 24px;
-  color: #ffffff;
+  color:black;
   font-weight: 600;
 }
 
@@ -77,11 +91,13 @@ label #cancel {
   align-items: center;
 }
 
-/* .sidebar_link_img {} */
+.sidebar_link_img {
+  color:"black";
+}
 
 .sidebar_link_text {
   font-size: 20px;
-  color: #ffffff;
+  color: black;
   margin-left: 20px;
 }
 
@@ -93,11 +109,38 @@ label #cancel {
   bottom: 30px;
   line-height: 20px;
 }
+.dropdown_list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  /* background-color: #2d3748; */
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.dropdown_item {
+  margin-bottom: 5px;
+}
+
+.dropdown_item a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s;
+  margin-left: 25px;
+}
+
+.dropdown_item a:hover {
+  background-color: #01265F;
+  color: #fff;
+
+}
 
 @media (max-width: 1130px) {
   .siadebar {
     height: 100%;
-    width: 203px;
+    width: 170px;
   }
 
   .sidebar_inner {
@@ -111,6 +154,7 @@ label #cancel {
 
   .sidebar_img {
     margin-right: 10px;
+    
   }
 
   .sidebar_logo_text {
@@ -137,6 +181,7 @@ label #cancel {
     font-size: 16px;
     margin-left: 20px;
   }
+
 }
 
 @media (max-width: 1000px) {
@@ -171,7 +216,7 @@ label #cancel {
     height: 100vh;
     display: block;
     line-height: 40px;
-    background-color:var(--secondary-color);
+    /* background-color:var(--secondary-color); */
     z-index: 100;
     transition: 0.5s;
     padding-left: 20px;
@@ -214,6 +259,7 @@ label #cancel {
     margin-left: 20px;
   }
   .sidebar_link_img {
+    color: #0000;
     margin-top: 10px;
   }
 }
@@ -230,7 +276,7 @@ label #cancel {
     background-color: #01265F;
     padding: 5px;
     width: 100.5%;
-    border-right: 4px solid #fff;
+    /* border-right: 4px solid #fff; */
     display: flex;
     align-items: center;
   }
@@ -243,7 +289,7 @@ label #cancel {
     margin-top: 8px;
     margin-left: -10px;
   }
-
+  
   .siadebar {
     position: fixed;
     top: 0;
@@ -252,7 +298,7 @@ label #cancel {
     height: 100vh;
     display: block;
     line-height: 40px;
-    background-color:var(--secondary-color);
+    /* background-color:var(--secondary-color); */
     z-index: 100;
     transition: 0.5s;
     padding-left: 20px;

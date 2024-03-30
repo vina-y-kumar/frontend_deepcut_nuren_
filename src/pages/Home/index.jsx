@@ -2,9 +2,20 @@ import "./home.css";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { Card } from "../../components/Card";
-import { BarChart } from "../../components/BarChart.js";
+import {  BarChart1 } from "../../components/BarChart.js/index.jsx";
 import { useState, useEffect } from "react";
 import { Data } from "../../Data";
+
+import { LineChart1 } from "../../components/LineChart.js"; 
+
+
+
+
+import Donut from "../../components/DonutChart/Donut";
+import Funnel from "../../components/FunnelChart/Funnel";
+import PieChart from "../../components/FunnelChart/Pie";
+
+
 
 
 
@@ -34,8 +45,27 @@ export const Home = () => {
           <div className="home_right_box">
             <Header name="Report"/>
             <div className="home_right_box_inner">
+
               <Card/>
-              <BarChart chartData={userData} />
+              <BarChart1/>
+              <LineChart1/>
+        
+           
+
+
+           
+              <br/>
+              <br/>
+              <div className="chart-container">
+              <div className="chart"><Funnel/></div>
+                <div className="chart"><Donut/></div>
+                
+              </div>
+              
+              
+              
+
+
             </div>
           
           </div>

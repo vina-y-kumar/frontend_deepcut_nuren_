@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Icon from "../../assets/icon.png";
+import Icon1 from "../../assets/image1dp.png";
+import Icon2 from "../../assets/image2dp.png";
+import Icon3 from "../../assets/image3dp.png";
+import Icon4 from "../../assets/image4dp.png";
 import "./card.css";
 
 export const Card = () => {
@@ -64,67 +67,75 @@ export const Card = () => {
   return (
     <div className="card_wrapper">
       <div className="card_wrapper_inner">
-        <NavLink to="/all_students" className="card">
-          <div className="card_one">
-            <h3 className="card_paragraph">Total number of Clients:</h3>
-            <p className="card_text">{studentData.length}</p>
-          </div>
-          <div className="card_two">
+        <NavLink to="/all_students" className="card_1 card">
+        <div className="card_one">
             <img
-              src={Icon}
+              src={Icon4}
               alt="icon"
               className="card_img"
               width={100}
               height={100}
             />
           </div>
+          <div className="card_two">
+          <p className="card_text_1">$5K{/*{studentData.length}*/}</p>
+            <p className="card_paragraph">Closed Deals</p>
+            
+          </div>
+        
         </NavLink>
-        <NavLink to="/all_teachers" className="card1 card">
-          <div className="card_one">
-            <h3 className="card_paragraph">Total number of Companies:</h3>
-            <p className="card_text">{teacherData.length}</p>
-          </div>
-          <div className="card_two">
+        <NavLink to="/all_teachers" className="card_2 card">
+        <div className="card_one">
             <img
-              src={Icon}
+              src={Icon3}
               alt="icon"
               className="card_img"
               width={100}
               height={100}
             />
           </div>
+          <div className="card_two">
+          <p className="card_text_2">20{/*{teacherData.length}*/}</p>
+            <p className="card_paragraph">New Deals</p>
+            
+          </div>
+        
         </NavLink>
-      </div>
-      <div className="card_wrapper_inner">
-        <NavLink to="/all_deleted_students" className="card">
-          <div className="card_one">
-            <h3 className="card_paragraph">Number of Leads:</h3>
-            <p className="card_text">{deletedStudents.length}</p>
-          </div>
-          <div className="card_two">
+     
+      
+        <NavLink to="/all_deleted_students" className="card_3 card">
+        <div className="card_one">
             <img
-              src={Icon}
+              src={Icon2}
               alt="icon"
               className="card_img"
               width={100}
               height={100}
             />
           </div>
+          <div className="card_two">
+          <p className="card_text_3">$10K{/*{deletedStudents.length}*/}</p>
+            <p className="card_paragraph">Estimated Revenue</p>
+            
+          </div>
+          
         </NavLink>
-        <div className="card1 card">
-          <div className="card_one">
-            <h3 className="card_paragraph">Total number of groups</h3>
-            <p className="card_text">{groups.length}</p>
-          </div>
-          <div className="card_two">
+        <div className="card_4 card">
+        <div className="card_one">
             <img
-              src={Icon}
+              src={Icon1}
               alt="icon"
               className="card_img"
               width={100}
               height={100}
             />
           </div>
+          <div className="card_two">
+          <p className="card_text_4">$10K{/*{groups.length}*/}</p>
+            <p className="card_paragraph">Estimated Profit</p>
+            
+          </div>
+          
         </div>
       </div>
     </div>
