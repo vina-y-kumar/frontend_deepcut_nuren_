@@ -53,6 +53,7 @@ const CallPage = () => {
     console.log("Contain records");
   
   };
+ 
 
   return (
     <div className='calls'>
@@ -60,13 +61,7 @@ const CallPage = () => {
         <Sidebar />
       </div>
       <div className="contain">
-        <div className="Addcalls">
-        <select onChange={handleAllCalls}>
-            <option value="">All Calls</option>
-            <option value="1">Log in</option>
-            <option value="2">Log out</option>
-          </select>  
-        </div>
+       
 
         
         <div className="meet">
@@ -77,13 +72,58 @@ const CallPage = () => {
             <option value="2">Log out</option>
           </select>  
         </div>
-          <select onChange={handlePlusClick}>
+        <div className="handle">
+        <select onChange={handlePlusClick}>
             <option value="">!!!</option>
             <option value="1">Log in</option>
             <option value="2">Log out</option>
           </select>
           <div className="create">
-            <button id="openModal">Client Meetings</button>
+            <button id="openModal">Create Call</button>
+            <dialog id="modal1" open={modalOpen}>
+              <div className="meeting-form-container">
+                <form action="#" method="post" id="meeting-form">
+                  <fieldset className="form-fieldset">
+                    <legend className="form-legend">Log a call</legend>
+                             
+
+                    <label className="form-label" htmlFor="location">
+        Call To:
+      </label>
+      <input type="text" name="location" id="location" className="form-input" required />
+      <label className="form-label" htmlFor="participants">
+        Related To:
+      </label>
+      <input type="text" name="participants" id="participants" className="form-input" required />
+      <label className="form-label" htmlFor="related-to" >
+        Call Type:
+      </label>
+      
+      <input type="text" name="related-to" id="related-to" className="form-input"  required />
+      <label className="form-label" htmlFor="repeat">
+       Outgoing Call Status:
+      </label>
+      <input type="text" name="repeat" id="repeat" className="form-input" required />
+      <label for="appt">Select a time:
+      </label>
+      <input type="time"  id="appt" className="form-input" required />
+      <label className="form-label" htmlFor="description">
+       Voice Recording
+      </label>
+      <textarea type="text" name="description" id="description" className="form-input" required/>
+      
+                  </fieldset>
+                  <div className="form-button-container">
+                    <button type="button" className="form-button cancel-button1" id="closeModal">
+                      Close
+                    </button>
+                    <button type="submit" className="form-button save-button1" onClick={handleCreateMeeting}>
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </dialog>
           
               
           </div>
@@ -93,6 +133,8 @@ const CallPage = () => {
             <option value="2">Option 2</option>
           </select>
         </div>
+        </div>
+          
         <div className="records">
           <select className="page" onChange={handleRecords}>
             <option value="">10 Records per page</option>
