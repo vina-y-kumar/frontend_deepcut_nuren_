@@ -6,6 +6,7 @@ import { ApealList } from "../../components/ApealList/index"; // Import your com
 import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/Header";
 import Tablee from "./Table";
+// import Kanban1 from "../../components/Kanban/Kanban1";
 
 const Dashboard = () => {
   const [layout, setLayout] = useState([]);
@@ -107,6 +108,7 @@ const Dashboard = () => {
                 </div>
               </div> */}
               <Tablee/>
+              {/* <Kanban1/> */}
             </div>
           </div>
         </div>

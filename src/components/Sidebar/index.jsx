@@ -48,9 +48,10 @@ export const Sidebar = () => {
                   <img
                     src={Home}
                     alt="icon"
+                    style={{color:"black"}}
                     className="sidebar_link_img"
                     width={20}
-                    height={20}
+                    height={10}
                   />
                   <p className="sidebar_link_text">Dashboard</p>
                 </span>
@@ -64,7 +65,7 @@ export const Sidebar = () => {
                     alt="icon"
                     className="sidebar_link_img"
                     width={22}
-                    height={22}
+                    height={10}
                   />
                   <p className="sidebar_link_text">Clients</p>
                   <i className={`bx ${dropdownOpen ? 'bx-chevron-up' : 'bx-chevron-down'}`}></i>
@@ -136,7 +137,7 @@ export const Sidebar = () => {
                     alt="icon"
                     className="sidebar_link_img"
                     width={20}
-                    height={20}
+                    height={10}
                   />
                   <p className="sidebar_link_text">Leads</p>
                 </span>

@@ -14,8 +14,9 @@ import { AllStudentsList } from "../pages/AllStudentsList";
 import { AllTeachersList } from "../pages/AllTeachersList";
 import { AllDeletedList } from "../pages/DeletedStudentsList";
 import Dashboard from "../pages/dashboard";
-import KanbanBoard from "../components/Kanban/Kanban";
+import KanbanBoard from "../components/Kanban/Kanban11";
 import Lead from "../pages/AddLead/Lead";
+// import Kanban1 from "../components/Kanban/Kanban1";
 
 import Met from "../pages/Meetings/met";
 import CallPage from "../pages/CallPage/callpage";
@@ -43,10 +44,13 @@ export const RouteWrapper = () => {
        <Route path="/dashboard" element={<Dashboard />} />
        <Route path="/kanban" element={<KanbanBoard />} />
       <Route path="/lead" element={<Lead/>} />
+
       <Route path="/meetings" element={<Met/>}  />
       <Route path="/callpage" element={<CallPage/>}/>
       <Route path="*" element={<NotFound />} />
       
+      {/* <Route path="/k1" element={<Kanban1/>} /> */}
+
     </Routes>
   );
 };
