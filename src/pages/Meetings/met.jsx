@@ -1,101 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import "./meetings.css";
+import axios from 'axios';
 import { Sidebar } from "../../components/Sidebar";
 
 const Met = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [meetings, setMeetings] = useState([
-    {
-      id: 1,
-      Title: "Demo",
-      From: "2024-03-28 09:00",
-      To: "2024-03-28 10:00",
-      RelatedTo: "Project A",
-      ContactName: "John Doe",
-      Host: "Alice"
-    },
-    {
-      id: 2,
-      Title: "Webinar",
-      From: "2024-03-28 10:30",
-      To: "2024-03-28 11:30",
-      RelatedTo: "Project B",
-      ContactName: "Jane Smith",
-      Host: "Bob"
-    },
-    {
-      id: 3,
-      Title: "TradeShow",
-      From: "2024-04-28 10:30",
-      To: "2024-04-28 11:30",
-      RelatedTo: "Project c",
-      ContactName: "Ashley",
-      Host: "Bob"
-    },
-    {
-      id: 4,
-      Title: "Webinar",
-      From: "2024-05-28 10:30",
-      To: "2024-05-28 11:30",
-      RelatedTo: "Project d",
-      ContactName: "Bobby",
-      Host: "Bob"
-    },
-    {
-      id: 5,
-      Title: "Seminar",
-      From: "2024-06-28 10:30",
-      To: "2024-06-28 11:30",
-      RelatedTo: "Project d",
-      ContactName: "Bobby",
-      Host: "Bob"
-    },
-    {
-      id: 6,
-      Title: "Attend Customer conference",
-      From: "2024-07-28 10:30",
-      To: "2024-07-28 11:30",
-      RelatedTo: "Project E",
-      ContactName: "Sam",
-      Host: "Bob"
-    },
-    {
-      id: 7,
-      Title: "Webinar",
-      From: "2024-07-29 10:30",
-      To: "2024-07-29 11:30",
-      RelatedTo: "Project F",
-      ContactName: "Sujoy",
-      Host: "Bob"
-    },
-    {
-      id: 8,
-      Title: "Webinar",
-      From: "2024-07-29 10:30",
-      To: "2024-07-29 11:30",
-      RelatedTo: "Project F",
-      ContactName: "Sujoy",
-      Host: "Bob"
-    },
-    {
-      id: 9,
-      Title: "Webinar",
-      From: "2024-07-29 10:30",
-      To: "2024-07-29 11:30",
-      RelatedTo: "Project F",
-      ContactName: "Sujoy",
-      Host: "Bob"
-    },
-    {
-      id: 10,
-      Title: "Webinar",
-      From: "2024-07-29 10:30",
-      To: "2024-07-29 11:30",
-      RelatedTo: "Project F",
-      ContactName: "Sujoy",
-      Host: "Bob"
-    },
+    
   ]);
+  useEffect(() => {
+    axios
+      .get("https://backendcrmnurenai.azurewebsites.net/meetings/", {
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        setMeetings(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching meetings data:', error);
+      });
+  }, []);
 
   useEffect(() => {
     const modal = document.querySelector("#modal");
@@ -115,7 +42,28 @@ const Met = () => {
     };
   }, []);
 
+  const createLead = () => {
+    const leadData = {
+      title: "h3",
+      location: "delhoo",
+      from_time: "2024-01-01T22:01",
+      to_time: "2024-01-01T22:10",
+      related_to: "sale",
+      createdBy: "2",
+    };
+
+    axios.post('https://backendcrmnurenai.azurewebsites.net/meetings/', leadData)
+      .then(response => {
+        console.log('Lead created successfully:', response.data);
+    
+      })
+      .catch(error => {
+        console.error('Error creating lead:', error);
+      });
+  };
+
   const handleCreateMeeting = () => {
+    createLead();
     console.log("Create Meeting clicked");
   };
 
