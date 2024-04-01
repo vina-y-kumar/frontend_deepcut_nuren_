@@ -23,7 +23,7 @@ const EditableCell = ({ value, onChange, isEditing }) => {
 
   const handleClick = () => {
     if (isEditing) {
-      setInputValue(value); // Reset input value on click
+      setInputValue(value); 
     }
   };
 
@@ -80,13 +80,13 @@ export const AllStudents = () => {
       });
   }, []);
 
-  const columnsToDisplay = ['Name', 'phone', 'industry','company','email']; // Add the columns you want to display here
+  const columnsToDisplay = ['Name', 'phone', 'industry','company','email']; 
 
   const handleCellChange = (rowIndex, key, value) => {
     const newData = [...studentData];
     newData[rowIndex][key] = value;
     setStudentData(newData);
-    // Add logic to submit changes to the backend here if needed
+    
   };
 
   const handleSubmit = (updatedData) => {
