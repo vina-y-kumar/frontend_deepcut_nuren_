@@ -6,9 +6,13 @@ import Pupils from '../../assets/pupils.png';
 import Davomat from '../../assets/davomat.png';
 import Group from '../../assets/group.png';
 import Messanger from '../../assets/messanger.png';
+import task from '../../assets/task.png';
+import meet from '../../assets/meet.png';
+import call from '../../assets/call.jpg';
 import Payment from '../../assets/payment.png';
 import Togo from '../../assets/logo.svg';
 import './sidebar.css';
+
 
 export const Sidebar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -79,6 +83,53 @@ export const Sidebar = () => {
               )}
             </li>
             <li className="sidebar_item">
+              <div className="sidebar_link" onClick={toggleDropdown}>
+                <span style={{ display: 'flex' }}>
+                  <img
+                    src={task}
+                    alt="icon"
+                    className="sidebar_link_img"
+                    width={25}
+                    height={10}
+                  />
+                  <p className="sidebar_link_text">Task Management</p>
+                  <i className={`bx ${dropdownOpen ? 'bx-chevron-up' : 'bx-chevron-down'}`}></i>
+                </span>
+              </div>
+              {dropdownOpen && (
+                <ul className="dropdown_list">
+                  <li className="sidebar_item">
+              <NavLink className="sidebar_link" to="/meetings">
+                <span style={{ display: 'flex' }}>
+                <img
+                    src={meet}
+                    alt="icon"
+                    className="sidebar_link_img"
+                    width={25}
+                    height={25}
+                  />
+                  <p className="sidebar_link_text">Meetings </p>
+                </span>
+              </NavLink>
+            </li>
+            <li className="sidebar_item">
+              <NavLink className="sidebar_link" to="/callpage">
+                <span style={{ display: 'flex' }}>
+                <img
+                    src={call}
+                    alt="icon"
+                    className="sidebar_link_img"
+                    width={25}
+                    height={25}
+                  />
+                  <p className="sidebar_link_text">CallPage </p>
+                </span>
+              </NavLink>
+            </li>
+                </ul>
+              )}
+            </li>
+            <li className="sidebar_item">
               <NavLink className="sidebar_link" to="/payment">
                 <span style={{ display: 'flex' }}>
                   <img
@@ -92,6 +143,8 @@ export const Sidebar = () => {
                 </span>
               </NavLink>
             </li>
+          
+           
             <li className="sidebar_item">
               <NavLink className="sidebar_link" to="/davomat">
                 <span style={{ display: 'flex' }}>

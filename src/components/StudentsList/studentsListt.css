@@ -24,7 +24,7 @@ table {
   border-collapse: collapse;
 }
 td, th {
-  border: #0061F7 1px solid;
+  border: lightgrey 1px solid;
   border-collapse: collapse !important;
   text-align: center;
 }
