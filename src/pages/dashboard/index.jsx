@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import GridLayout from "react-grid-layout";
-import { AllStudents } from "../../components/AllStudents/index";
-import { AllTeachers } from "../../components/AllTeachers/index";
-import { ApealList } from "../../components/ApealList/index"; // Import your components from different parts of your code
+import './dashboard.css';
+
+// Import your components from different parts of your code
 import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/Header";
 import Tablee from "./Table";
@@ -13,11 +13,11 @@ const Dashboard = () => {
   const [isDraggable, setIsDraggable] = useState(false);
   const gridLayoutRef = useRef(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  const DraggableComponents = [
+ /* const DraggableComponents = [
     { id: "Client List", name: "Client List", component: <AllStudents /> },
     { id: "Company List", name: "Company List", component: <AllTeachers /> },
     { id: "Appeals", name: "Appeals", component: <ApealList /> },
-  ];
+  ];*/
   const handleAddComponent = (componentId) => {
     const newItem = {
       i: `new-item-${layout.length}`,
@@ -41,13 +41,13 @@ const Dashboard = () => {
     setIsExpanded((prevState) => !prevState);
   };
   return (
-    <div className="atenndance">
-      <div className="container">
-        <div className="atenndance_inner">
+    <div className="attendance">
+     
+        
           <div className="atenndance_left_box">
             <Sidebar />
           </div>
-          <div className="atenndance_right_box">
+          <div className="attendance_right_box">
             <Header name="Dashboard" />
             <div className="atenndance_right_box_inner">
               {/* <div className="dashboard">
@@ -112,8 +112,8 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+  
+   
   );
 };
 

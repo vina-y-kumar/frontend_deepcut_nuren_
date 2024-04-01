@@ -1,0 +1,35 @@
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+  background-color: #e2e2e2; /* Adjust hover color as needed */
+}
+.excel-like-table {
+  overflow: auto; /* Enable scrolling if the table exceeds the container */
+}
+
+.excel-like-table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.excel-like-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  cursor: pointer;
+  max-width: 350px; /* Set a maximum width for cells */
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Show ellipsis for overflowing content */
+}
+
+.excel-like-table td.expanded {
+  white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word; /* Break long words */
+  max-width: none; /* Remove max-width for expanded cell */
+}
+.excel-like-table td:hover {
+  background-color: #e2e2e2; /* Adjust hover color as needed */
+}

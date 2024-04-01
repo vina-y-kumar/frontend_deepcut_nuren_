@@ -1,0 +1,145 @@
+ .calls{
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin:0px;
+} 
+.meet{
+    margin:20px;
+    padding:10px;
+    display:flex;
+    flex-direction: row;
+    gap:20px;
+    justify-content: flex-end;
+
+}  
+.records{
+    margin:10px;
+    padding:10px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: gainsboro;
+    border-radius: 3px;
+}
+
+.page{
+    border-radius: 4px;
+}
+.table1{
+    padding: 10px;
+     width: 1350px; 
+   
+}
+.create{
+    background-color: lightblue;
+    width:110px;
+    border-radius: 6px;
+    text-align: center;
+}
+ #modal {
+    width: 50%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: cadetblue;
+  } 
+  .meeting-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .form-legend {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .form-label {
+    display: block;
+    margin: 7px;
+    font-weight: bold;
+  }
+  #reminder{
+    
+      width: 175px;
+      height: 34px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .form-input[type="textarea"] {
+    height: 100px; 
+  }
+  
+  .form-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px
+  }
+  
+  .form-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancel-button {
+    background-color: #ccc;
+    color: #fff;
+  }
+  
+  .cancel-button:hover {
+    background-color: #999;
+  }
+  
+  .save-button {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  
+  .save-button:hover {
+    background-color: #45a049;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
