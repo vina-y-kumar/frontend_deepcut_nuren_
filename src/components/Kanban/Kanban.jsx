@@ -1,46 +1,61 @@
-import React, { useState } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-// import './App.css'; // Assuming you have a CSS file for styling
-
+import React, { useState, useEffect } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import "./style.css";
+import axios from "axios";
+import { NavLink } from "react-router-dom";
 function Kanban() {
   const [columns, setColumns] = useState({
     new: {
-      title: 'New',
-      
-      cards: [
-        { id: '1', content: 'Card 1' },
-        { id: '2', content: 'Card 2' },
-        // Add more cards as needed
-      ],
+      title: "New",
+      cards: [],
+      bg:"#15ABFFFF"
     },
     proposals: {
-      title: 'Proposals',
-      bg:'#15ABFFFF',
-      cards: [
-        { id: '3', content: 'Card 3' },
-        { id: '4', content: 'Card 4' },
-        // Add more cards as needed
-      ],
+      title: "Proposals",
+      cards: [],
+      
     },
     negotiations: {
-      title: 'Negotiations',
-      bg:'#FF56A5FF',
-      cards: [
-        { id: '5', content: 'Card 5' },
-        { id: '6', content: 'Card 6' },
-        // Add more cards as needed
-      ],
+      title: "Negotiations",
+      cards: [],
+      
     },
     contractsSent: {
-      title: 'Contracts Sent',
-      bg:'#FFD317FF',
-      cards: [
-        { id: '7', content: 'Card 7' },
-        { id: '8', content: 'Card 8' },
-        // Add more cards as needed
-      ],
+      title: "Contracts Sent",
+      cards: [],
+      bg:"#FFD317FF"
     },
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://backendcrmnurenai.azurewebsites.net/leads/"
+        );
+        const leads = response.data;
+
+        const newCards = leads.map((lead) => ({
+          id: lead.id.toString(),
+          name: lead.first_name + " " + lead.last_name,
+          email: lead.email,
+          address: lead.address,
+          website: lead.website,
+          status: "New",
+        }));
+        setColumns({
+          new: { title: "New", cards: newCards },
+          proposals: { title: "Proposals",bg:"#15ABFFFF", cards: [] },
+          negotiations: { title: "Negotiations",bg:"#FF56A5FF", cards: [] },
+          contractsSent: { title: "Contracts Sent",bg:"#FFD317FF", cards: [] },
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
@@ -64,7 +79,10 @@ function Kanban() {
       const startCards = Array.from(startColumn.cards);
       const endCards = Array.from(endColumn.cards);
       const [movedCard] = startCards.splice(source.index, 1);
-      endCards.splice(destination.index, 0, movedCard);
+      endCards.splice(destination.index, 0, {
+        ...movedCard,
+        status: endColumn.title,
+      });
       const newColumns = {
         ...columns,
         [source.droppableId]: { ...startColumn, cards: startCards },
@@ -75,59 +93,81 @@ function Kanban() {
   };
 
   return (
-    <div className="Kanban">
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className="kanban-board">
-          {Object.keys(columns).map((columnId) => {
-            const column = columns[columnId];
-            return (
-              <div className="column" key={columnId}>
-                <div className="title htext1"
-                style={{backgroundColor:column.bg}}>{column.title}</div>
-                <Droppable droppableId={columnId}>
-                  {(provided) => (
-                    <div ref={provided.innerRef} {...provided.droppableProps} className="card-list">
-                      {column.cards.map((card, index) => (
-                        <Draggable key={card.id} draggableId={card.id} index={index}>
-                          {(provided) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              className="card_"
-                            >
-                              {/* {card.content} */}
-                              <div className="license">50 licenses
-            <div className="status">New</div></div>
-          <div className="content"></div>
-                              <div className="content">
-            <div className="c1">Lorem ipsum</div>
-            <div className="c2">
-              $ Est.revenue
-              <div className="r1">$1,000</div>
-            </div>
+    <>
+      {/* <h3>Total Leads:25</h3>
 
-            <div className="c2">
-              Next Meeting
-              <div className="r1">-</div>
-            </div>
-            <div className="c2">Customer</div>
+      <NavLink to="/lead" id="btn">
+        + New
+      </NavLink> */}
+    
+     <br/> 
+      <div className="Kanban">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className="kanban-board">
+            {Object.keys(columns).map((columnId) => {
+              const column = columns[columnId];
+              return (
+                <div className="column" key={columnId}>
+                  <div
+                    className="title htext1"
+                    style={{ backgroundColor: column.bg }}
+                  >
+                    {column.title}
+                  </div>
+                  <Droppable droppableId={columnId}>
+                    {(provided) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                        className="card-list"
+                      >
+                        {column.cards.map((card, index) => (
+                          <Draggable
+                            key={card.id}
+                            draggableId={card.id}
+                            index={index}
+                          >
+                            {(provided) => (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                className="card_"
+                              >
+                                {/* {card.content} */}
+                                <div className="license">
+                                  50 licenses
+                                  <div className="status">{card.status}</div>
+                                </div>
+                                {/* <div className="content_"></div> */}
+                                <div className="content_">
+                                  <div className="c1">{card.name}</div>
+                                  <div className="c2">
+                                    {card.address}
+                                    <div className="r1">$1,000</div>
+                                  </div>
+
+                                  <div className="c2">
+                                    {card.email}
+                                    <div className="r1">-</div>
+                                  </div>
+                                  <div className="c2">{card.website}</div>
+                                </div>
+                              </div>
+                            )}
+                          </Draggable>
+                        ))}
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                </div>
+              );
+            })}
           </div>
-                            </div>
-                            
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              </div>
-            );
-          })}
-        </div>
-      </DragDropContext>
-    </div>
+        </DragDropContext>
+      </div>
+    </>
   );
 }
 
