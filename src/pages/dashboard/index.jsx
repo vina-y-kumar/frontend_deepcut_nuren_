@@ -6,6 +6,7 @@ import './dashboard.css';
 import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/Header";
 import Tablee from "./Table";
+import Tables from "./Table";
 // import Kanban1 from "../../components/Kanban/Kanban1";
 
 const Dashboard = () => {
@@ -50,65 +51,9 @@ const Dashboard = () => {
           <div className="attendance_right_box">
             <Header name="Dashboard" />
             <div className="atenndance_right_box_inner">
-              {/* <div className="dashboard">
-                <button onClick={toggleVisibility}>
-                  <h2>Add Dashlets</h2>
-                </button>
-                {isExpanded && (
-                  <div className="draggable-components">
-                    <ul>
-                      {DraggableComponents.map((component) => (
-                        <li
-                          key={component.id}
-                          onClick={() => handleAddComponent(component.id)}
-                        >
-                          {component.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                <div className="dashboard-canvas">
-                  <h2>Dashboard Canvas</h2>
-                  <GridLayout
-                    ref={gridLayoutRef}
-                    className="layout"
-                    layout={layout}
-                    cols={12}
-                    rowHeight={(window.innerHeight - 64) / 6}
-                    width={window.innerWidth}
-                    margin={[16, 16]}
-                    isResizable={true}
-                    isDraggable={isDraggable}
-                  >
-                    {layout.map((item) => (
-                      <div key={item.i} style={{ position: "relative" }}>
-                        <div
-                          style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            width: "100%",
-                            height: "100%",
-                          }}
-                        >
-                          {
-                            DraggableComponents.find(
-                              (c) => c.id === item.componentId
-                            )?.component
-                          }
-                        </div>
-                        <div>
-                <button style={{ position: 'absolute', top: 0, left: 0 }} onMouseDown={handleDragStart} onMouseUp={handleDragEnd}>Drag here</button>
-              </div>
              
-                      </div>
-                    ))}
-                  </GridLayout>
-                </div>
-              </div> */}
-              <Tablee/>
-              {/* <Kanban1/> */}
+              <Tables/>
+              
             </div>
           </div>
         </div>
