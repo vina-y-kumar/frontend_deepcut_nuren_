@@ -1,116 +1,129 @@
-import React from 'react';
-import Draggable from 'react-draggable';
-import  { useState } from 'react';
-// import './table.css';
+import React, { useState } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import './table.css';
+const initialTables = [
+  {
+    id: 'clientList',
+    title: 'Client List',
+    columns: [
+      { id: 'sno', title: 'S.No' },
+      { id: 'clientName', title: 'Client Name' },
+      { id: 'phoneNumber', title: 'Phone Number' },
+      { id: 'industryName', title: 'Industry Name' },
+      { id: 'companyName', title: 'Company Name' },
+      { id: 'companyEmail', title: 'Company Email' },
+    ],
+    data: [
+      { sno: 1, clientName: 'Client A', phoneNumber: '123-456-7890', industryName: 'Tech', companyName: 'Company A', companyEmail: 'clienta@example.com' },
+      { sno: 2, clientName: 'Client B', phoneNumber: '987-654-3210', industryName: 'Finance', companyName: 'Company B', companyEmail: 'clientb@example.com' },
+    ],
+  },
+  {
+    id: 'studentList',
+    title: 'Student List',
+    columns: [
+      { id: 'studentName', title: 'Student Name' },
+      { id: 'username', title: 'Username' },
+      { id: 'dateTime', title: 'Date and Time' },
+      { id: 'text', title: 'Text' },
+    ],
+    data: [
+      { studentName: 'John Doe', username: 'johndoe123', dateTime: '2024-04-01 10:00 AM', text: 'Lorem ipsum dolor sit amet' },
+      { studentName: 'Jane Doe', username: 'janedoe456', dateTime: '2024-04-02 11:30 AM', text: 'Consectetur adipiscing elit' },
+    ],
+  },
+  {
+    id: 'companyActions',
+    title: 'Company Actions',
+    columns: [
+      { id: 'sno', title: 'S.No' },
+      { id: 'companyName', title: 'Company Name' },
+      { id: 'actions', title: 'Actions' },
+    ],
+    data: [
+      { sno: 1, companyName: 'Company X', actions: 'Edit, Delete' },
+      { sno: 2, companyName: 'Company Y', actions: 'Edit, Delete' },
+    ],
+  },
+  // {
+  //   id: 'clientList2',
+  //   title: 'Client List',
+  //   columns: [
+  //     { id: 'sno', title: 'S.No' },
+  //     { id: 'clientName', title: 'Client Name' },
+  //     { id: 'phoneNumber', title: 'Phone Number' },
+  //     { id: 'industryName', title: 'Industry Name' },
+  //     { id: 'companyName', title: 'Company Name' },
+  //     { id: 'companyEmail', title: 'Company Email' },
+  //   ],
+  //   data: [
+  //     { sno: 1, clientName: 'Client A', phoneNumber: '123-456-7890', industryName: 'Tech', companyName: 'Company A', companyEmail: 'clienta@example.com' },
+  //     { sno: 2, clientName: 'Client B', phoneNumber: '987-654-3210', industryName: 'Finance', companyName: 'Company B', companyEmail: 'clientb@example.com' },
+  //   ],
+  // },
+];
 
-const Tablee = () => {
+const Tables = () => {
+  const [tables, setTables] = useState(initialTables);
+
+  const onDragEnd = (result) => {
+    if (!result.destination) return; // Dragged outside the droppable area
+
+    const updatedTables = Array.from(tables);
+    const [removed] = updatedTables.splice(result.source.index, 1);
+    updatedTables.splice(result.destination.index, 0, removed);
+
+    setTables(updatedTables);
+  };
+
   return (
-    <div className="table">
-      <Draggable>
-        <div className="table-container">
-          <h2>Client List</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Client Name</th>
-                <th>Phone Number</th>
-                <th>Industry Name</th>
-                <th>Company Name</th>
-                <th>Company Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Random data */}
-              <tr>
-                <td>1</td>
-                <td>Client A</td>
-                <td>123-456-7890</td>
-                <td>Tech</td>
-                <td>ABC Corp</td>
-                <td>clienta@abccorp.com</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Client B</td>
-                <td>123-456-7890</td>
-                <td>Tech</td>
-                <td>ABC Corp</td>
-                <td>clienta@abccorp.com</td>
-              </tr>
-              {/* Add more rows as needed */}
-            </tbody>
-          </table>
-        </div>
-      </Draggable>
-
-      <Draggable>
-        <div className="table-container">
-          <h2>Student List</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Student Name</th>
-                <th>Username</th>
-                <th>Date and Time</th>
-                <th>Text</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Random data */}
-              <tr>
-                <td>John Doe</td>
-                <td>johndoe123</td>
-                <td>2024-03-26 10:00 AM</td>
-                <td>Lorem ipsum dolor sit amet</td>
-              </tr>
-              <tr>
-                <td>Vinay Kumar</td>
-                <td>vinay123</td>
-                <td>2024-03-26 10:00 AM</td>
-                <td>Lorem ipsum dolor sit amet</td>
-              </tr>
-              {/* Add more rows as needed */}
-            </tbody>
-          </table>
-        </div>
-      </Draggable>
-
-      <Draggable>
-        <div className="table-container">
-          <h2>Action List</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Company Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Random data */}
-              <tr>
-                <td>1</td>
-                <td>XYZ Corp</td>
-                <td>Edit | Delete</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>XYZ Corp</td>
-                <td>Edit | Delete</td>
-              </tr>
-              {/* Add more rows as needed */}
-            </tbody>
-          </table>
-        </div>
-      </Draggable>
-    </div>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="tables" direction="both">
+        {(provided) => (
+          <div {...provided.droppableProps} ref={provided.innerRef}>
+            {tables.map((table, index) => (
+              <Draggable key={table.id} draggableId={table.id} index={index}>
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    style={{
+                      ...provided.draggableProps.style,
+                      margin: 10,
+                      display: 'inline-block',
+                    }}
+                  >
+                    <h3 style={{textAlign:"center"}}>{table.title}</h3>
+                    <table border="1">
+                      <thead {...provided.dragHandleProps} style={{backgroundColor:"#15ABFFF"}}>
+                        <tr>
+                          {table.columns.map((column) => (
+                            <th key={column.id}>{column.title}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {table.data.map((row, rowIndex) => (
+                          <tr key={rowIndex}>
+                            {table.columns.map((column) => (
+                              <td key={column.id}>{row[column.id]}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </Draggable>
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 };
 
 
-// import Draggable from 'react-draggable';
 
-
-export default Tablee;
-
+export default Tables;
