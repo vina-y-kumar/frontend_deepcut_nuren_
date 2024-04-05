@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import "./meetings.css";
 import axios from 'axios';
 import { Sidebar } from "../../components/Sidebar";
+import "./meetings.css";
 
 const Met = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [meetings, setMeetings] = useState([
-    
-  ]);
+  const [meetings, setMeetings] = useState([]);
+  const [formData, setFormData] = useState({
+    title: '',
+    location: '',
+    from_time: '',
+    to_time: '',
+    related_to: '',
+    createdBy: '',
+    // host: '', 
+    // contactName: '', 
+  });
+
   useEffect(() => {
     axios
       .get("https://backendcrmnurenai.azurewebsites.net/meetings/", {
@@ -42,29 +51,35 @@ const Met = () => {
     };
   }, []);
 
-  const createLead = () => {
-    const leadData = {
-      title: "h3",
-      location: "delhoo",
-      from_time: "2024-01-01T22:01",
-      to_time: "2024-01-01T22:10",
-      related_to: "sale",
-      createdBy: "2",
-    };
-
-    axios.post('https://backendcrmnurenai.azurewebsites.net/meetings/', leadData)
-      .then(response => {
-        console.log('Lead created successfully:', response.data);
-    
-      })
-      .catch(error => {
-        console.error('Error creating lead:', error);
-      });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleCreateMeeting = () => {
-    createLead();
-    console.log("Create Meeting clicked");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('https://backendcrmnurenai.azurewebsites.net/meetings/', formData, {
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("token"),
+        },
+      });
+      console.log('Meeting created successfully:', response.data);
+      setMeetings([...meetings, response.data]);
+      setModalOpen(false);
+      setFormData({
+        title: '',
+        location: '',
+        from_time: '',
+        to_time: '',
+        related_to: '',
+        createdBy: '',
+        // host: '', 
+        // contactName: '', 
+      });
+    } catch (error) {
+      console.error('Error creating meeting:', error);
+    }
   };
 
   const handlePlusClick = () => {
@@ -73,7 +88,10 @@ const Met = () => {
 
   const handleRecords = () => {
     console.log("Contain records");
-  
+  };
+
+  const handleAction = () => {
+    console.log("Action happened");
   };
 
   return (
@@ -88,66 +106,43 @@ const Met = () => {
             <option value="1">Log in</option>
             <option value="2">Log out</option>
           </select>
+         
           <div className="create">
             <button id="openModal">Client Meetings</button>
             <dialog id="modal" open={modalOpen}>
               <div className="meeting-form-container">
-                <form action="#" method="post" id="meeting-form">
+                <form onSubmit={handleSubmit}>
                   <fieldset className="form-fieldset">
                     <legend className="form-legend">Meeting Information</legend>
-               
-
-                    <label className="form-label" htmlFor="location">
-        Location:
-      </label>
-      <input type="text" name="location" id="location" className="form-input" required />
-      <label className="form-label" htmlFor="participants">
-        Participants:
-      </label>
-      <input type="text" name="participants" id="participants" className="form-input" required />
-      <label className="form-label" htmlFor="related-to" >
-        Related To:
-      </label>
-      <input type="text" name="related-to" id="related-to" className="form-input"  required />
-      <label className="form-label" htmlFor="repeat">
-        Repeat:
-      </label>
-      <input type="text" name="repeat" id="repeat" className="form-input" required />
-      <label className="form-label" htmlFor="participants-reminder">
-        Participants Reminder:
-      </label>
-      <input type="text" name="participants-reminder" id="participants-reminder" className="form-input" value="None" />
-      <label className="form-label" htmlFor="description">
-        Description:
-      </label>
-      <textarea type="text" name="description" id="description" className="form-input" required/>
-      <label className="form-label" htmlFor="reminder-time">
-        Reminder Time:
-      </label>
-      <select name="reminder" id="reminder">
-      <option value="none">select</option>
-      <option value="5minutes">5 minutes before</option>
-      <option value="15minutes">15 minutes before</option>
-      <option value="30minutes">30 minutes before</option>
-      <option value="1hour">1 hour before</option>
-    </select>
+                    <label className="form-label" htmlFor="title">Title:</label>
+                    <input type="text" name="title" id="title" className="form-input" required value={formData.title} onChange={handleChange} />
+                    <label className="form-label" htmlFor="location">Location:</label>
+                    <input type="text" name="location" id="location" className="form-input" required value={formData.location} onChange={handleChange} />
+                    <label className="form-label" htmlFor="from_time">From:</label>
+                    <input type="datetime-local" name="from_time" id="from_time" className="form-input" required value={formData.from_time} onChange={handleChange} />
+                    <label className="form-label" htmlFor="to_time">To:</label>
+                    <input type="datetime-local" name="to_time" id="to_time" className="form-input" required value={formData.to_time} onChange={handleChange} />
+                    <label className="form-label" htmlFor="related_to">Related To:</label>
+                    <input type="text" name="related_to" id="related_to" className="form-input" required value={formData.related_to} onChange={handleChange} />
+                    {/* <label className="form-label" htmlFor="contactName">Contact Name:</label>
+                    <input type="text" name="contactName" id="contactName" className="form-input" required value={formData.contactName} onChange={handleChange} />
+                     */}
+                     {/* <label className="form-label" htmlFor="host">Host</label> 
+                    <input type="text" name="host" id="host" className="form-input" required value={formData.host} onChange={handleChange} /> 
+                  */}
                   </fieldset>
                   <div className="form-button-container">
-                    <button type="button" className="form-button cancel-button" id="closeModal">
-                      Close
-                    </button>
-                    <button type="submit" className="form-button save-button" onClick={handleCreateMeeting}>
-                      Save
-                    </button>
+                    <button type="button" className="form-button cancel-button" id="closeModal" onClick={() => setModalOpen(false)}>Close</button>
+                    <button type="submit" className="form-button save-button">Save</button>
                   </div>
                 </form>
               </div>
             </dialog>
           </div>
-          <select onChange={handleCreateMeeting}>
+          <select onChange={handleAction}>
             <option value="">Action</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
+            <option value="1">first</option>
+            <option value="2">last</option>
           </select>
         </div>
         <div className="records">
@@ -158,30 +153,30 @@ const Met = () => {
           </select>
         </div>
         <div className="table1">
-          <table1>
-            <thead1>
-              <tr>
-                <th>Title</th>
+          <table>
+            <thead>
+              <tr className='host'>
+                <th >Title</th>
                 <th>From</th>
                 <th>To</th>
                 <th>Related To</th>
-                <th>Contact</th>
+                <th>Contact Name</th>
                 <th>Host</th>
               </tr>
-            </thead1>
-            <tbody1>
+            </thead>
+            <tbody>
               {meetings.map(meeting => (
                 <tr key={meeting.id}>
-                  <td>{meeting.Title}</td>
-                  <td>{meeting.From}</td>
-                  <td>{meeting.To}</td>
-                  <td>{meeting.RelatedTo}</td>
-                  <td>{meeting.ContactName}</td>
-                  <td>{meeting.Host}</td>
+                  <td>{meeting.title}</td>
+                  <td>{meeting.from_time}</td>
+                  <td>{meeting.to_time}</td>
+                  <td>{meeting.related_to}</td>
+                  <td>{meeting.contactName}</td>
+                  <td>{meeting.host}</td>
                 </tr>
               ))}
-            </tbody1>
-          </table1>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
