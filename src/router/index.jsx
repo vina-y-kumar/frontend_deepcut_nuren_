@@ -19,7 +19,7 @@ import Lead from "../pages/Lead/AddLead/Lead";
 import Met from "../pages/Meetings/met";
 import CallPage from "../pages/CallPage/callpage";
 import MassEmail from "../pages/MassEmail/Email";
-import AccountsPage from "../pages/AccountsPage/Header";
+import AccountsPage from "../pages/AccountsPage/AccountPage";
 
 
 export const RouteWrapper = () => {
