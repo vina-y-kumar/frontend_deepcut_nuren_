@@ -41,6 +41,18 @@ const Dashboard = () => {
   const toggleVisibility = () => {
     setIsExpanded((prevState) => !prevState);
   };
+  const getDetailsById = async (evt) => {
+    try {
+      const response = await fetch(`https://backendcrmnurenai.azurewebsites.net/contacts/${evt}`);
+      const data = await response.json();
+      console.log(data);
+      // Assuming setContacts is a function to update state
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    }
+  };
+  console.log(getDetailsById)
   return (
     <div className="attendance">
      
@@ -53,7 +65,7 @@ const Dashboard = () => {
             <div className="atenndance_right_box_inner">
              
               <Tables/>
-              
+              <h1>{getDetailsById}</h1>
             </div>
           </div>
         </div>
