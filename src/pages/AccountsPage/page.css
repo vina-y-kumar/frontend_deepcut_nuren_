@@ -1,0 +1,152 @@
+/* .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header img {
+    max-width: 100px;
+    margin-right: 20px;
+  }
+  
+  .header-content {
+    flex: 1;
+  }
+   */
+   .container_ {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    /* background-color: ghostwhite; */
+
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .header img {
+    max-width: 150px;
+  }
+  
+  .header h1 {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 600;
+  }
+  
+  .header a {
+    /* display: block; */
+    margin-top: 10px;
+    color: blue;
+  }
+  .email{
+  
+  }
+  .logo{
+    float: left;
+    height: 70px;
+    border-radius: 50px;
+  }
+  .overview, .account-info, .address-info, .attachment-section{
+    margin-bottom: 30px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid slategray;
+  }
+  
+
+  
+  .list-group-item {
+    padding: 10px;
+  }
+  h2{
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+/*   
+  .attachment-section input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  .attachment-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .attachment-section li {
+    margin-bottom: 5px;
+  }
+  
+  .attachment-section button {
+    margin-left: 10px;
+  }
+  
+  .list-group-item {
+    padding: 10px;
+  } */
+  /* .attachment-section {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+  } */
+  
+  .attachment-section h2 {
+    margin-bottom: 10px;
+  }
+  
+  .attachment-section input[type="file"] {
+    margin-bottom: 10px;
+    
+  }
+  
+  .attachment-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .files {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+  }
+  .filebtn{
+    background-color: rgb(0, 130, 223);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .dltbtn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .attachment-list li button:hover {
+    background-color: #c82333;
+  }
+  
+  .attachment-list li span {
+    flex-grow: 1;
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  

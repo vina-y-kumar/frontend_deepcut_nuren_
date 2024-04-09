@@ -24,6 +24,7 @@ import Form2 from "../pages/ContactsTable/Form2";
 import ContactInfo from "../pages/ContactsTable/ContactInfo";
 
 import MassEmail from "../pages/MassEmail/Email";
+import AccountsPage from "../pages/AccountsPage/Header";
 
 
 
@@ -56,6 +57,7 @@ export const RouteWrapper = () => {
       <Route path="/meetings" element={<Met/>}  />
       <Route path="/callpage" element={<CallPage/>}/>
       <Route path="*" element={<NotFound />} />
+      <Route path="/accounts/:id" element={<AccountsPage />} />
       
       <Route path="/email" element={<MassEmail/>} />
 
