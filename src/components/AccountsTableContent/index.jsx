@@ -1,6 +1,6 @@
-import './accountsTableContent.css';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import "./accountsTableContent.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const EditableRow = ({ rowData, rowIndex, columns, onChange, isEditing }) => {
   return (
@@ -23,7 +23,7 @@ const EditableCell = ({ value, onChange, isEditing }) => {
 
   const handleClick = () => {
     if (isEditing) {
-      setInputValue(value); 
+      setInputValue(value);
     }
   };
 
@@ -38,7 +38,7 @@ const EditableCell = ({ value, onChange, isEditing }) => {
   };
 
   return (
-    <td onClick={handleClick} style={{ position: 'relative', color: '#000' }}>
+    <td onClick={handleClick} style={{ position: "relative", color: "#000" }}>
       {isEditing ? (
         <input
           type="text"
@@ -46,11 +46,11 @@ const EditableCell = ({ value, onChange, isEditing }) => {
           onChange={handleChange}
           onBlur={handleBlur}
           style={{
-            border: 'none',
-            outline: 'none',
-            width: 'calc(100% - 2px)',
-            backgroundColor: '#fff',
-            color: '#000',
+            border: "none",
+            outline: "none",
+            width: "calc(100% - 2px)",
+            backgroundColor: "#fff",
+            color: "#000",
           }}
         />
       ) : (
@@ -76,32 +76,36 @@ export const AccountTableContent = () => {
         setStudentData(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching student data:', error);
+        console.error("Error fetching student data:", error);
       });
   }, []);
 
-  const columnsToDisplay = ['Name', 'phone', 'industry','company','email']; 
+  const columnsToDisplay = ["Name", "phone", "industry", "company", "email"];
 
   const handleCellChange = (rowIndex, key, value) => {
     const newData = [...studentData];
     newData[rowIndex][key] = value;
     setStudentData(newData);
-    
   };
 
   const handleSubmit = (updatedData) => {
-    axios.put(`https://backendcrmnurenai.azurewebsites.net/accounts/${updatedData.id}/`, updatedData, {
-      headers: {
-        "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
-      },
-    })
-    .then((response) => {
-      console.log('Data updated successfully:', response.data);
-    })
-    .catch((error) => {
-      console.error('Error updating data:', error);
-    });
+    axios
+      .put(
+        `https://backendcrmnurenai.azurewebsites.net/accounts/${updatedData.id}/`,
+        updatedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            token: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Data updated successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error updating data:", error);
+      });
   };
 
   const toggleEditMode = () => {
@@ -113,10 +117,10 @@ export const AccountTableContent = () => {
 
   return (
     <div className="excel-like-table">
-      <button onClick={toggleEditMode} style={{ marginBottom: '10px' }}>
-        {isEditing ? 'Disable Edit Mode' : 'Enable Edit Mode'}
+      <button onClick={toggleEditMode} style={{ marginBottom: "10px" }}>
+        {isEditing ? "Disable Edit Mode" : "Enable Edit Mode"}
       </button>
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+      <table style={{ borderCollapse: "collapse", width: "100%" }}>
         <thead>
           <tr>
             <th>S.No.</th>
@@ -127,29 +131,29 @@ export const AccountTableContent = () => {
             <th>Company Email</th>
           </tr>
         </thead>
-      
+
         <tbody>
-        {studentData.map((row, rowIndex) => (
-  <tr key={rowIndex}>
-    <EditableRow
-      rowData={row}
-      rowIndex={rowIndex}
-      columns={columnsToDisplay}
-      onChange={(rowIndex, key, value) =>
-        handleCellChange(rowIndex, key, value)
-      }
-      isEditing={isEditing}
-    />
-    <td>
-      {isEditing && (
-        <button onClick={() => handleSubmitRow(row)}>Save</button>
-      )}
-    </td>
-  </tr>
-))}
+          {studentData.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              <EditableRow
+                rowData={row}
+                rowIndex={rowIndex}
+                columns={columnsToDisplay}
+                onChange={(rowIndex, key, value) =>
+                  handleCellChange(rowIndex, key, value)
+                }
+                isEditing={isEditing}
+              />
+              <td>
+                {isEditing && (
+                  <button onClick={() => handleSubmitRow(row)}>Save</button>
+                )}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <button onClick={handleSubmit} style={{ marginTop: '10px' }}>
+      <button onClick={handleSubmit} style={{ marginTop: "10px" }}>
         Submit Changes
       </button>
     </div>
