@@ -18,9 +18,13 @@ import Lead from "../pages/Lead/AddLead/Lead";
 
 import Met from "../pages/Meetings/met";
 import CallPage from "../pages/CallPage/callpage";
+
 import Form1 from "../pages/AccountsTable/Form1";
 import Form2 from "../pages/ContactsTable/Form2";
 import ContactInfo from "../pages/ContactsTable/ContactInfo";
+
+import MassEmail from "../pages/MassEmail/Email";
+
 
 
 export const RouteWrapper = () => {
@@ -53,7 +57,7 @@ export const RouteWrapper = () => {
       <Route path="/callpage" element={<CallPage/>}/>
       <Route path="*" element={<NotFound />} />
       
-      {/* <Route path="/k1" element={<Kanban1/>} /> */}
+      <Route path="/email" element={<MassEmail/>} />
 
     </Routes>
   );
