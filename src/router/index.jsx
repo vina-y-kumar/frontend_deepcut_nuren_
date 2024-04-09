@@ -20,6 +20,7 @@ import Met from "../pages/Meetings/met";
 import CallPage from "../pages/CallPage/callpage";
 import Form1 from "../pages/AccountsTable/Form1";
 import Form2 from "../pages/ContactsTable/Form2";
+import ContactInfo from "../pages/ContactsTable/ContactInfo";
 
 
 export const RouteWrapper = () => {
@@ -45,6 +46,7 @@ export const RouteWrapper = () => {
       <Route path="/addlead" element={<Lead/>} />
       <Route path="/addform" element={<Form1/>} />
       <Route path="/addform1" element={<Form2/>}/>
+      <Route path="/contactinfo/:id" element={<ContactInfo/>}/>
 
 
       <Route path="/meetings" element={<Met/>}  />

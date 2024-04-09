@@ -86,14 +86,14 @@ export const AccountsTable = () => {
         </select>
              </div>
              <div className="bugs">
-             <div class="filter-container">
+             <div className="filter-container">
   <h2>Filter Accounts by</h2>
-  <div class="search-bar">
+  <div className="search-bar">
     <input type="text" placeholder="Search..." />
   </div>
-  <div class="dropdown-container">
-    <button class="dropdown-button">System Defined Filters</button>
-    <div class="dropdown-content">
+  <div className="dropdown-container">
+    <button className="dropdown-button">System Defined Filters</button>
+    <div className="dropdown-content">
       <a href="#">  Contacts</a>
       <a href="#">Deals</a>
       <a href="#">Deal Amount</a>
@@ -102,8 +102,8 @@ export const AccountsTable = () => {
       <a href="#">Deal Closing Date</a>
       <a href="#">Locked</a>
     </div>
-    <button class="dropdown-button">Filter By Fields</button>
-    <div class="dropdown-content">
+    <button className="dropdown-button">Filter By Fields</button>
+    <div className="dropdown-content">
       <a href="#">Account Name</a>
       <a href="#">Account Number</a>
     </div>
