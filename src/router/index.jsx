@@ -19,6 +19,7 @@ import Lead from "../pages/Lead/AddLead/Lead";
 import Met from "../pages/Meetings/met";
 import CallPage from "../pages/CallPage/callpage";
 import MassEmail from "../pages/MassEmail/Email";
+import AccountsPage from "../pages/AccountsPage/Header";
 
 
 export const RouteWrapper = () => {
@@ -46,6 +47,7 @@ export const RouteWrapper = () => {
       <Route path="/meetings" element={<Met/>}  />
       <Route path="/callpage" element={<CallPage/>}/>
       <Route path="*" element={<NotFound />} />
+      <Route path="/accounts/:id" element={<AccountsPage />} />
       
       <Route path="/email" element={<MassEmail/>} />
 

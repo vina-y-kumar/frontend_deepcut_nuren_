@@ -4,24 +4,39 @@ import './Addlead.css';
 
 function Form() {
   const [formData, setFormData] = useState({
+    address: '',
+    assigned_to: [''], 
+    createdBy: '',
+    description: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+    
+    phone: '',
+    
     title: '',
-    product: '',
-    noOfLicenses: '',
-    client: '',
-    paymentMethod: '',
-    currency: '',
-    budget: '',
-    estRevenue: '',
-    estCloseDate: '',
-    pic: '',
-    supervisor: '',
+    website: '',
+    
+    
+    
+    
   });
 
   const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
+    const { name, value } = event.target;
+    if (name === 'assigned_to') {
+      // Split the input value by commas to create an array of assigned_to values
+      const assignedToArray = value.split(',').map((item) => item.trim());
+      setFormData({
+        ...formData,
+        [name]: assignedToArray,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -31,20 +46,19 @@ function Form() {
     try {
       const response = await axios.post('https://backendcrmnurenai.azurewebsites.net/leads/', formData);
       console.log('Form submitted successfully:', response.data);
-      // console.log(formData);
+      alert("Lead Created Successfully");
       // Reset form data after successful submission if needed
       setFormData({
         title: '',
-        product: '',
-        noOfLicenses: '',
-        client: '',
-        paymentMethod: '',
-        currency: '',
-        budget: '',
-        estRevenue: '',
-        estCloseDate: '',
-        pic: '',
-        supervisor: '',
+        first_name: '',
+        last_name: '',
+        email: '',
+        phone: '',
+        website: '',
+        address: '',
+        description: '',
+        createdBy: '',
+        assigned_to: [''],
       });
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -67,132 +81,133 @@ function Form() {
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="product">Product</label>
+          <label htmlFor="product">First Name</label>
           <input
             type="text"
             className="form-control"
-            id="product"
-            name="product"
-            value={formData.product}
+            id="first_name"
+            name="first_name"
+            value={formData.first_name}
             onChange={handleChange}
-            placeholder="Enter product"
+            placeholder="Enter first name"
           />
         </div>
       </div>
       <div className="form-row">
         <div className="form-group col-md-6">
-          <label htmlFor="noOfLicenses">No. of Licenses</label>
+          <label htmlFor="noOfLicenses">Last Name</label>
           <input
             type="text"
             className="form-control"
-            id="noOfLicenses"
-            name="noOfLicenses"
-            value={formData.noOfLicenses}
+            id="last_name"
+            name="last_name"
+            value={formData.last_name}
             onChange={handleChange}
-            placeholder="Enter number of licenses"
+            placeholder="Enter last name"
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="client">Client</label>
+          <label htmlFor="client">E-mail</label>
           <input
-            type="text"
+            type="email"
             className="form-control"
-            id="client"
-            name="client"
-            value={formData.client}
+            id="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
-            placeholder="Enter client"
+            placeholder="Enter email"
           />
         </div>
       </div>
       <div className="form-row">
         <div className="form-group col-md-6">
-          <label htmlFor="paymentMethod">Payment Method</label>
+          <label htmlFor="paymentMethod">Phone No.</label>
           <input
             type="text"
             className="form-control"
-            id="paymentMethod"
-            name="paymentMethod"
+            id="phone"
+            name="phone"
             value={formData.paymentMethod}
             onChange={handleChange}
-            placeholder="Enter payment method"
+            placeholder="Enter Phone No."
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="currency">Currency</label>
+          <label htmlFor="currency">Address</label>
           <input
             type="text"
             className="form-control"
-            id="currency"
-            name="currency"
-            value={formData.currency}
+            id="address"
+            name="address"
+            value={formData.address}
             onChange={handleChange}
-            placeholder="Enter currency"
+            placeholder="Enter Address"
           />
         </div>
       </div>
       <div className="form-row">
         <div className="form-group col-md-6">
-          <label htmlFor="budget">Budget</label>
+          <label htmlFor="budget">Website</label>
           <input
             type="text"
             className="form-control"
-            id="budget"
-            name="budget"
-            value={formData.budget}
+            id="website"
+            name="website"
+            value={formData.website}
             onChange={handleChange}
-            placeholder="Enter budget"
+            placeholder="Enter website"
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="estRevenue">Estimated Revenue</label>
+          <label htmlFor="estRevenue">Status</label>
           <input
             type="text"
             className="form-control"
-            id="estRevenue"
-            name="estRevenue"
-            value={formData.estRevenue}
+            id="status"
+            name="status"
+            value={formData.status}
             onChange={handleChange}
-            placeholder="Enter estimated revenue"
-          />
-        </div>
-      </div>
-      <div className="form-row">
-        <div className="form-group col-md-6">
-          <label htmlFor="estCloseDate">Estimated Close Date</label>
-          <input
-            type="date"
-            className="form-control"
-            id="estCloseDate"
-            name="estCloseDate"
-            value={formData.estCloseDate}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group col-md-6">
-          <label htmlFor="pic">PIC</label>
-          <input
-            type="text"
-            className="form-control"
-            id="pic"
-            name="pic"
-            value={formData.pic}
-            onChange={handleChange}
-            placeholder="Enter PIC"
+            placeholder="Enter Status"
           />
         </div>
       </div>
       <div className="form-row">
         <div className="form-group col-md-6">
-          <label htmlFor="supervisor">Supervisor</label>
+          <label htmlFor="estCloseDate">Description</label>
           <input
             type="text"
             className="form-control"
-            id="supervisor"
-            name="supervisor"
-            value={formData.supervisor}
+            id="description"
+            name="description"
+            value={formData.description}
             onChange={handleChange}
-            placeholder="Enter supervisor"
+            placeholder='Enter Description'
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <label htmlFor="pic">Created By</label>
+          <input
+            type="text"
+            className="form-control"
+            id="createdBy"
+            name="createdBy"
+            value={formData.createdBy}
+            onChange={handleChange}
+            placeholder="Enter created by"
+          />
+        </div>
+      </div>
+      <div className="form-row">
+        <div className="form-group col-md-6">
+          <label htmlFor="assigned_to">Assigned To</label>
+          <input
+            type="text"
+            className="form-control"
+            id="assigned_to"
+            name="assigned_to"
+            value={formData.assigned_to}
+            onChange={handleChange}
+            placeholder="Enter Assigned To"
           />
         </div>
       </div>
