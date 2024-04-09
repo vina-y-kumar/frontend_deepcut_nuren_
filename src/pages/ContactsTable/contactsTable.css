@@ -1,66 +1,79 @@
 /* .all_teachers {} */
 
-.all_teachers_inner {
+/* .all_teachers_inner {
   display: flex;
-}
+} */
 
 /* .all_teachers_left_box {} */
 
-.all_teachers_right_box {
+/* .all_teachers_right_box {
   width: 80vw;
   padding-left: 0px;
   padding-top: 0px;
   overflow-y: scroll;
   height: 100vh;
-}
+} */
 
-.all_teachers_right_box_inner {
+/* .all_teachers_right_box_inner {
   padding-left: 20px;
   display: flex;
   flex-direction: column;
-}
+} */
 
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) { */
   /* .all_teachers {} */
 
-  .all_teachers_inner {
+  /* .all_teachers_inner {
     display: flex;
-  }
+  } */
 
   /* .all_teachers_left_box {} */
-
+/* 
   .all_teachers_right_box {
     width: 100vw;
     padding-left: 0px;
     padding-top: 0px;
-  }
+  } */
 
-  .all_teachers_right_box_inner {
+  /* .all_teachers_right_box_inner {
     width: 100%;
     padding-left: 0px;
     display: flex;
-  }
+  } */
 
-}
-@media (max-width: 520px) {
+/* } */
+/* @media (max-width: 520px) { */
   /* .all_teachers {} */
 
-  .all_teachers_inner {
+  /* .all_teachers_inner {
     display: flex;
-  }
+  } */
 
   /* .all_teachers_left_box {} */
 
-  .all_teachers_right_box {
+  /* .all_teachers_right_box {
     width: 100vw;
     padding-left: 0px;
     padding-top: 0px;
-  }
+  } */
 
-  .all_teachers_right_box_inner {
+  /* .all_teachers_right_box_inner {
     width: 100%;
     padding-left: 0px;
     display: flex;
-  }
+  } */
+
+/* } */
+.changes{
+  border-radius: 7px;
+   background-color: lightgray;
+}
+.info{
+  font-size: 28px;
+  font-weight: bold;
 
 }
+.form-row{
+  margin-top: 20px;
+}
+
