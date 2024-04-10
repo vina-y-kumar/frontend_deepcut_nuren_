@@ -3,29 +3,43 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./style.css";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+
 function Kanban() {
+
   const [columns, setColumns] = useState({
     new: {
       title: "New",
       cards: [],
-      bg:"#15ABFFFF"
+      bg: "#15ABFFFF"
     },
     proposals: {
       title: "Proposals",
       cards: [],
-      
+
     },
     negotiations: {
       title: "Negotiations",
       cards: [],
-      
+
     },
     contractsSent: {
       title: "Contracts Sent",
       cards: [],
-      bg:"#FFD317FF"
+      bg: "#FFD317FF"
     },
   });
+  const [leads, setLeads] = useState([]);
+  useEffect(() => {
+    async function fetchLeads() {
+      try {
+        const response = await axios.get('https://backendcrmnurenai.azurewebsites.net/leads');
+        setLeads(response.data);
+      } catch (error) {
+        console.error('Error fetching leads:', error);
+      }
+    }
+    fetchLeads();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,9 +59,9 @@ function Kanban() {
         }));
         setColumns({
           new: { title: "New", cards: newCards },
-          proposals: { title: "Proposals",bg:"#15ABFFFF", cards: [] },
-          negotiations: { title: "Negotiations",bg:"#FF56A5FF", cards: [] },
-          contractsSent: { title: "Contracts Sent",bg:"#FFD317FF", cards: [] },
+          proposals: { title: "Proposals", bg: "#15ABFFFF", cards: [] },
+          negotiations: { title: "Negotiations", bg: "#FF56A5FF", cards: [] },
+          contractsSent: { title: "Contracts Sent", bg: "#FFD317FF", cards: [] },
         });
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -59,13 +73,13 @@ function Kanban() {
 
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
-    if (!destination) return; // Card dropped outside a droppable area
+    if (!destination) return; 
 
     const startColumn = columns[source.droppableId];
     const endColumn = columns[destination.droppableId];
 
     if (startColumn === endColumn) {
-      // Reorder cards within the same column
+    
       const newCards = Array.from(startColumn.cards);
       newCards.splice(source.index, 1);
       newCards.splice(destination.index, 0, startColumn.cards[source.index]);
@@ -75,7 +89,7 @@ function Kanban() {
       };
       setColumns({ ...columns, [source.droppableId]: newColumn });
     } else {
-      // Move card between columns
+    
       const startCards = Array.from(startColumn.cards);
       const endCards = Array.from(endColumn.cards);
       const [movedCard] = startCards.splice(source.index, 1);
@@ -99,8 +113,8 @@ function Kanban() {
       <NavLink to="/lead" id="btn">
         + New
       </NavLink> */}
-    
-     <br/> 
+
+      <br />
       <div className="Kanban">
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="kanban-board">
@@ -121,12 +135,14 @@ function Kanban() {
                         {...provided.droppableProps}
                         className="card-list"
                       >
+
                         {column.cards.map((card, index) => (
                           <Draggable
                             key={card.id}
                             draggableId={card.id}
                             index={index}
                           >
+
                             {(provided) => (
                               <div
                                 ref={provided.innerRef}
@@ -134,6 +150,7 @@ function Kanban() {
                                 {...provided.dragHandleProps}
                                 className="card_"
                               >
+
                                 {/* {card.content} */}
                                 <div className="license">
                                   50 licenses
@@ -141,7 +158,11 @@ function Kanban() {
                                 </div>
                                 {/* <div className="content_"></div> */}
                                 <div className="content_">
-                                  <div className="c1">{card.name}</div>
+                                  {columnId === 'new' && (
+                                    <NavLink to={`/createlead/${card.id}`}>
+                                      <div className="c1">{card.name}</div>
+                                    </NavLink>
+                                  )}
                                   <div className="c2">
                                     {card.address}
                                     <div className="r1">$1,000</div>

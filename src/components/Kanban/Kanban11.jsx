@@ -6,9 +6,11 @@ const Kanban1 = () => {
   return (
     <>
     <div className="kanban-board">
+
       <div className="column">
         <div className="title">
           <div className="htext1">New</div>
+          
           <div className="htext2">5 deals-$5,000</div>
         </div>
         {/* Card_s for leads in the "New" column */}

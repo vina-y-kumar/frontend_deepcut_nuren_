@@ -37,8 +37,14 @@ export const LeadPage = () => {
           
               <h3 >Total Leads: 25</h3>
 
-            <NavLink to="/addlead" id="btn">+ New</NavLink>
+<div className="navlinks">
+<NavLink to="/addlead" id="btn">+ New</NavLink>
             <br/>
+           
+</div>
+                      
+        
+            {/* <NavLink to="/createLead" id="btn">Create Lead</NavLink> */}
               {/* <AddPayment/> */}
               {/* <KanbanBoard/> */}
               <br/>

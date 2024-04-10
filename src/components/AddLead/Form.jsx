@@ -21,6 +21,9 @@ function Form() {
     
     
   });
+ 
+
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -91,6 +94,7 @@ function Form() {
             onChange={handleChange}
             placeholder="Enter first name"
           />
+         
         </div>
       </div>
       <div className="form-row">
