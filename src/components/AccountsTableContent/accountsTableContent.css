@@ -33,3 +33,50 @@
 .excel-like-table td:hover {
   background-color: #e2e2e2; /* Adjust hover color as needed */
 }
+
+/* Dropdown */
+.view-mode-select{
+  float: right;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid gray;
+  background-color: aliceblue;
+  text-align: center;
+  margin-left: 10px;
+}
+
+/* .view-mode-select:hover {
+  background-color: #f0f0f0;
+} */
+
+.view-mode-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+/* tiles view */
+.accounts-tiles-container {
+  display: grid;
+  grid-template-columns: repeat(2, calc(50% - 10px)); /* Two cards in a row */
+  gap: 20px;
+}
+
+.account-tile {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 17px;
+}
+/* list view */
+.accounts-list-container {
+  width: 80%;
+  margin: 0 auto;
+  
+}
+
+.accounts-list-item {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: aliceblue;
+}

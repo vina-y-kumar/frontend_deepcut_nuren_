@@ -8,7 +8,7 @@ import { LeadPage } from "../pages/Lead";
 import { NotFound } from "../pages/NotFound";
 
 
-import { AccountsTable } from "../pages/AccountsTable";
+import { AccountsTable } from "../pages/AccountsSection";
 import { ContactsTable } from "../pages/ContactsTable";
 import { Opportunities } from "../pages/opportunities";
 import Dashboard from "../pages/dashboard";
@@ -19,13 +19,17 @@ import Lead from "../pages/Lead/AddLead/Lead";
 import Met from "../pages/Meetings/met";
 import CallPage from "../pages/CallPage/callpage";
 
-import Form1 from "../pages/AccountsTable/Form1";
+
 import Form2 from "../pages/ContactsTable/Form2";
 import ContactInfo from "../pages/ContactsTable/ContactInfo";
 
 import MassEmail from "../pages/MassEmail/Email";
+
 import AccountsPage from "../pages/AccountsPage/Header";
 import CreateLead from "../pages/Lead/CreateLead";
+
+import AccountForm from "../pages/AccountsSection/AccountForm";
+
 
 
 
@@ -50,10 +54,14 @@ export const RouteWrapper = () => {
        <Route path="/dashboard" element={<Dashboard />} />
        <Route path="/kanban" element={<KanbanBoard />} />
       <Route path="/addlead" element={<Lead/>} />
-      <Route path="/addform" element={<Form1/>} />
-      <Route path="/addform1" element={<Form2/>}/>
+      {/*<Route path="/addform" element={<Form1/>} />*/}
+      
       <Route path="/contactinfo/:id" element={<ContactInfo/>}/>
+
       <Route path="/createlead/:id" element={<CreateLead/>}/>
+      <Route path="/addaccount" element={<AccountForm/>} />
+      <Route path="/addcontact" element={<Form2/>}/>
+
 
 
       <Route path="/meetings" element={<Met/>}  />

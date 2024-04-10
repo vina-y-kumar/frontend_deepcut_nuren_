@@ -15,7 +15,7 @@
   transition-duration: 0.3s;
   display: flex;
   align-items: center;
-  transform: scale(1.19);
+  transform: scale(1);
   box-shadow: 2px 6px 22px 0px rgba(0, 0, 0, 0.36);
 
 }
@@ -89,6 +89,7 @@ label #cancel {
 .sidebar_link {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .sidebar_link_img {
