@@ -57,7 +57,7 @@
   flex-direction: row;
   gap:20px;
   justify-content: flex-end;
-  width:86%;
+  
 }
 
 .main-part{
@@ -183,6 +183,6 @@ td a {
 td:last-child {
   text-align: right;
 }
-.form-gruop{
+.form-group{
   margin-top: 20px  !important;
 }

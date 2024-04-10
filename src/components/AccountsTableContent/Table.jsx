@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-// import 'bootstrap/dist/css/bootstrap.css';
-import './accountsTableContent.css';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./accountsTableContent.css";
+import axios from "axios";
+import { Card,ListGroup } from "react-bootstrap";
 
 const AccountsTable1 = () => {
   const [accounts, setAccounts] = useState([]);
-  const [viewMode, setViewMode] = useState('table'); // Default view mode is table
+  const [viewMode, setViewMode] = useState("table"); // Default view mode is table
 
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const response = await axios.get('https://backendcrmnurenai.azurewebsites.net/accounts/');
+        const response = await axios.get(
+          "https://backendcrmnurenai.azurewebsites.net/accounts/"
+        );
         setAccounts(response.data);
       } catch (error) {
-        console.error('Error fetching accounts:', error);
+        console.error("Error fetching accounts:", error);
       }
     };
 
@@ -27,32 +29,64 @@ const AccountsTable1 = () => {
 
   return (
     <div>
-      <div>
-        <button onClick={() => handleViewModeChange('table')}>Table View</button>
-        <button onClick={() => handleViewModeChange('kanban')}>Kanban View</button>
-        <button onClick={() => handleViewModeChange('list')}>List View</button>
-      </div>
-      <div className="dropdown">
-          <button className="btn btn-secondary dropdown-toggle" type="button" id="viewModeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            View Mode
-          </button>
-          <div className="dropdown-menu" aria-labelledby="viewModeDropdown">
-            <button className="dropdown-item" onClick={() => handleViewModeChange('table')}>Table View</button>
-            <button className="dropdown-item" onClick={() => handleViewModeChange('kanban')}>Kanban View</button>
-            <button className="dropdown-item" onClick={() => handleViewModeChange('list')}>List View</button>
+      <div className="records2"style={{width:"100%"}}>
+            <select className="view-mode-select" style={{float:"left"}} >
+              <option value="">50 Records per page</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+            <select
+        value={viewMode}
+        onChange={handleViewModeChange}
+        className="view-mode-select"
+      >
+        <option value="">View!</option>
+        <option onClick={() => handleViewModeChange("table")} value="">
+          Table View
+        </option>
+        <option onClick={() => handleViewModeChange("tile")}>
+          Kanban View
+        </option>
+        <option onClick={() => handleViewModeChange("list")}>List View</option>
+      </select>
           </div>
+      
+        <br/>
+      {/* <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">
+            Action
+          </a>
+          <a class="dropdown-item" href="#">
+            Another action
+          </a>
+          <a class="dropdown-item" href="#">
+            Something else here
+          </a>
         </div>
-      {viewMode === 'table' && (
+      </div> */}
+      {/* table view */}
+      {viewMode === "table" && (
         <div>
           <h2>Accounts Table</h2>
           <table>
             <thead>
               <tr>
                 <th>S.No</th>
-                <th>Client Name</th>
+                <th>Account Name</th>
                 <th>Phone Number</th>
                 <th>Industry</th>
-                <th>Company Name</th>
+                <th>Account Owner</th>
                 <th>Email</th>
               </tr>
             </thead>
@@ -60,10 +94,14 @@ const AccountsTable1 = () => {
               {accounts.map((account, index) => (
                 <tr key={account.id}>
                   <td>{index + 1}</td>
-                  <td><Link to={`/accounts/${account.id}`}>{account.Name}</Link></td>
+                  <td>
+                    <Link to={`/accounts/${account.id}`}>
+                      {account.company}
+                    </Link>
+                  </td>
                   <td>{account.phone}</td>
                   <td>{account.industry}</td>
-                  <td>{account.company}</td>
+                  <td>{account.Name}</td>
                   <td>{account.email}</td>
                 </tr>
               ))}
@@ -71,17 +109,44 @@ const AccountsTable1 = () => {
           </table>
         </div>
       )}
-      {viewMode === 'kanban' && (
+      {/* Tile View */}
+      {viewMode === "tile" && (
         <div>
-          <h2>Kanban View</h2>
+          <h2>Tiles View</h2>
           {/* Implement your Kanban view here */}
+          <div className="accounts-tiles-container">
+            {accounts.map((account, index) => (
+              <Card key={account.id} className="account-tile">
+                <Card.Body>
+                  <Card.Title>
+                    <Link to={`/accounts/${account.id}`}>{account.company}</Link>
+                  </Card.Title>
+                  <Card.Text>Phone Number: {account.phone}</Card.Text>
+                  <Card.Text>Industry: {account.industry}</Card.Text>
+                  <Card.Text>Account Owner: {account.Name}</Card.Text>
+                  <Card.Text>Email: {account.email}</Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
+          </div>
         </div>
       )}
-      {viewMode === 'list' && (
+      {viewMode === "list" && (
         <div>
           <h2>List View</h2>
-          {/* Implement your list view here */}
-        </div>
+          <div className="accounts-list-container">
+          <ListGroup>
+      {accounts.map((account, index) => (
+        <ListGroup.Item key={account.id} className="accounts-list-item">
+          <Link to={`/accounts/${account.id}`}>{account.Name}</Link>
+          <p>Phone Number: {account.phone}</p>
+          <p>Industry: {account.industry}</p>
+          <p>Company Name: {account.company}</p>
+          <p>Email: {account.email}</p>
+        </ListGroup.Item>
+      ))}
+    </ListGroup>
+        </div></div>
       )}
     </div>
   );
