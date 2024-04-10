@@ -1,11 +1,74 @@
 import "./contactsTable.css";
 // import { Header } from "../../components/Header";
-import { Sidebar } from "../../components/Sidebar";
-import React, { useState, useEffect } from "react";
-import "./Form2.jsx";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Sidebar } from "../../components/Sidebar";
+import "./Form2.jsx";
 
 export const ContactsTable = () => {
+  const [contacts, setContacts] = useState([]);
+  const [newContact, setNewContact] = useState({
+    first_name: "",
+    account: "",
+    email: "",
+    phone: "",
+    createdBy: "",
+  });
+
+  useEffect(() => {
+    fetchContacts();
+  }, []);
+
+  const fetchContacts = async () => {
+    try {
+      const response = await fetch(
+        "https://backendcrmnurenai.azurewebsites.net/contacts/"
+      );
+      const data = await response.json();
+      console.log(response);
+      setContacts(data);
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
+    }
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewContact((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await post(
+        "https://backendcrmnurenai.azurewebsites.net/contacts/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newContact),
+        }
+      );
+      if (response.ok) {
+        fetchContacts();
+        setNewContact({
+          first_name: "",
+          account: "",
+          email: "",
+          phone: "",
+          createdBy: "",
+        });
+        console.log("New contact created successfully");
+      } else {
+        console.error("Failed to create new contact");
+      }
+    } catch (error) {
+      console.error("Error creating new contact:", error);
+    }
+  };
+
   const handleAllCalls1 = (event) => {
     console.log("Filter by: ", event.target.value);
   };
@@ -42,6 +105,7 @@ export const ContactsTable = () => {
             </select>
             <div className="create1">
               <NavLink to="/addform1" id="btn1">
+                {" "}
                 Create Contact
               </NavLink>
             </div>
@@ -61,14 +125,16 @@ export const ContactsTable = () => {
           </select>
         </div>
         <div className="bugs">
-          <div class="filter-container">
+          <div className="filter-container">
             <h2>Filter Contacts by</h2>
-            <div class="search-bar">
+            <div className="search-bar">
               <input type="text" placeholder="Search..." />
             </div>
-            <div class="dropdown-container">
-              <button class="dropdown-button">System Defined Filters</button>
-              <div class="dropdown-content">
+            <div className="dropdown-container">
+              <button className="dropdown-button">
+                System Defined Filters
+              </button>
+              <div className="dropdown-content">
                 <a href="#"> Contacts</a>
                 <a href="#">Deals</a>
                 <a href="#">Deal Amount</a>
@@ -80,8 +146,8 @@ export const ContactsTable = () => {
                 <a href="#">Activities</a>
                 <a href="#">Campaigns</a>
               </div>
-              <button class="dropdown-button">Filter By Fields</button>
-              <div class="dropdown-content">
+              <button className="dropdown-button">Filter By Fields</button>
+              <div className="dropdown-content">
                 <a href="#">Contact Name</a>
                 <a href="#">Contact Number</a>
               </div>
@@ -100,15 +166,22 @@ export const ContactsTable = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>NP Agro</td>
-                  <td> XYZ </td>
-                  <td>
-                    abc@gmail.com
-                  </td>
-                  <td>887938358</td>
-                  <td>Adarsh Sharma</td>
-                </tr>
+                {contacts?.map &&
+                  contacts.map((contact) => (
+                    <tr key={contact.id}>
+                      <td>
+                        <NavLink to={`/contactinfo/${contact.id}`}>
+                          {contact.first_name}
+                        </NavLink>
+                      </td>
+                      <td>{contact.account}</td>
+                      <td>
+                        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                      </td>
+                      <td>{contact.phone}</td>
+                      <td>{contact.createdBy}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

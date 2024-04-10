@@ -10,7 +10,7 @@ import task from '../../assets/task.png';
 import meet from '../../assets/meet.png';
 import call from '../../assets/call.jpg';
 import Payment from '../../assets/payment.png';
-import Togo from '../../assets/logo.svg';
+import Togo from '../../assets/logo1.png';
 import './sidebar.css';
 
 

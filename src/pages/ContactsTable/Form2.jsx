@@ -7,14 +7,16 @@ function Form2(){
     const [contactData, setContactData]= useState({
      
         ContactOwner:'',
-        FirstName:'',
+        first_name:'',
+        last_name:'',
         AccountName:'',
-        Email:'',
-        Phone:'',
+        email:'',
+        phone:'',
         OtherPhone:'',
         Mobile:'',
         Assistant:'',
         Currency1:'',
+        address:'',
         MailingStreet:'',
         MailingCity:'',
         MailingState:'',
@@ -27,6 +29,9 @@ function Form2(){
         SecondaryEmail:'',
         Twitter:'',
         ReportingTo:'',
+        createdBy:'',
+        description:'',
+        account:'',
     
     });
 
@@ -43,12 +48,14 @@ function Form2(){
             console.log('Form submitted successfully:', response.data);   
             setContactData({
                 ContactOwner:'',
-                FirstName:'',
+                first_name:'',
+                last_name:'',
                 AccountName:'',
-                Email:'',
-                Phone:'',
+                email:'',
+                phone:'',
                 OtherPhone:'',
                 Mobile:'',
+                address:'',
                 Assistant:'',
                 Currency1:'',
                 MailingStreet:'',
@@ -63,6 +70,11 @@ function Form2(){
                 SecondaryEmail:'',
                 Twitter:'',
                 ReportingTo:'',
+                createdBy:'',
+                description:'',
+                account:'',
+
+
             }) ;
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -87,15 +99,27 @@ function Form2(){
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="FirstName">First Name</label>
+          <label htmlFor="first_name">First Name</label>
           <input
             type="text"
             className="form-control"
-            id="FirstName"
-            name="FirstName"
-            value={contactData.FirstName}
+            id="first_name"
+            name="first_name"
+            value={contactData.first_name}
             onChange={handleChange}
             placeholder="Enter First Name"
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <label htmlFor="last_name">Last Name</label>
+          <input
+            type="text"
+            className="form-control"
+            id="last_name"
+            name="last_name"
+            value={contactData.last_name}
+            onChange={handleChange}
+            placeholder="Enter last Name"
           />
         </div>
         <div className="form-group col-md-6">
@@ -111,27 +135,39 @@ function Form2(){
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="Email">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="text"
             className="form-control"
-            id="Email"
-            name="Email"
-            value={contactData.Email}
+            id="email"
+            name="email"
+            value={contactData.email}
             onChange={handleChange}
-            placeholder="Enter Email"
+            placeholder="Enter email"
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="Phone">Phone</label>
+          <label htmlFor="account">account</label>
           <input
             type="text"
             className="form-control"
-            id="Phone"
-            name="Phone"
-            value={contactData.Phone}
+            id="account"
+            name="account"
+            value={contactData.account}
             onChange={handleChange}
-            placeholder="Enter Phone"
+            placeholder="Enter account"
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <label htmlFor="phone">Phone</label>
+          <input
+            type="text"
+            className="form-control"
+            id="phone"
+            name="phone"
+            value={contactData.phone}
+            onChange={handleChange}
+            placeholder="Enter phone"
           />
         </div>
         <div className="form-group col-md-6">
@@ -156,6 +192,30 @@ function Form2(){
             value={contactData.Mobile}
             onChange={handleChange}
             placeholder="Enter Mobile "
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <label htmlFor="address">Address</label>
+          <input
+            type="text"
+            className="form-control"
+            id="address"
+            name="address"
+            value={contactData.address}
+            onChange={handleChange}
+            placeholder="Enter address"
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <label htmlFor="description">description</label>
+          <input
+            type="text"
+            className="form-control"
+            id="description"
+            name="description"
+            value={contactData.description}
+            onChange={handleChange}
+            placeholder="Enter description"
           />
         </div>
         <div className="form-group col-md-6">
@@ -255,6 +315,18 @@ function Form2(){
           />
         </div> 
         <div className="form-group col-md-6">
+          <label htmlFor="createdBy"> Created By</label>
+          <input
+            type="text"
+            className="form-control"
+            id="createdBy"
+            name="createdBy"
+            value={contactData.createdBy}
+            onChange={handleChange}
+            placeholder="Enter Created By "
+          />
+        </div> 
+        <div className="form-group col-md-6">
           <label htmlFor="ReportingTo"> Reporting To</label>
           <input
             type="text"
@@ -339,7 +411,6 @@ function Form2(){
  
          <div className='submit' >
          <button type="submit" className="btn btn-primary">Save</button>
-        <button type="cancel" className="btn btn-primary1">Cancel</button>
          </div>
         
 

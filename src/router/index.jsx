@@ -21,10 +21,15 @@ import CallPage from "../pages/CallPage/callpage";
 
 
 import Form2 from "../pages/ContactsTable/Form2";
+import ContactInfo from "../pages/ContactsTable/ContactInfo";
 
 import MassEmail from "../pages/MassEmail/Email";
+
 import AccountsPage from "../pages/AccountsPage/AccountPage";
+import CreateLead from "../pages/Lead/CreateLead";
+
 import AccountForm from "../pages/AccountsSection/AccountForm";
+
 
 
 
@@ -49,8 +54,14 @@ export const RouteWrapper = () => {
        <Route path="/dashboard" element={<Dashboard />} />
        <Route path="/kanban" element={<KanbanBoard />} />
       <Route path="/addlead" element={<Lead/>} />
+      {/*<Route path="/addform" element={<Form1/>} />*/}
+      
+      <Route path="/contactinfo/:id" element={<ContactInfo/>}/>
+
+      <Route path="/createlead/:id" element={<CreateLead/>}/>
       <Route path="/addaccount" element={<AccountForm/>} />
       <Route path="/addcontact" element={<Form2/>}/>
+
 
 
       <Route path="/meetings" element={<Met/>}  />

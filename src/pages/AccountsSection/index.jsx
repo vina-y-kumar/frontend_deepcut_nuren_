@@ -26,19 +26,6 @@ export const AccountsTable = () => {
 
   return (
     <div className="all_students">
-      {/* <div className="container">
-        <div className="all_students_inner">
-          <div className="all_students_left_box">
-            <Sidebar />
-          </div>
-          <div className="all_students_right_box">
-            <Header name="Accounts"/>
-            <div className="all_students_right_box_inner">
-              <AccountsTable1 />
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className='calls1'>
         <div className="home_left_box1">
           <Sidebar />
@@ -101,26 +88,7 @@ export const AccountsTable = () => {
               </div>
             </div>
             <div className="table1">
-              
-              <table>
-                <thead>
-                  <tr>
-                    <th>Account Name</th>
-                    <th>Phone</th>
-                    <th>Website</th>
-                    <th>Account Owner</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Creative Business Systems</td>
-                    <td>555-555-5555</td>
-                    <td><a href="#">www.bentonjohnbjr.com</a></td>
-                    <td>Adarsh+Sharma</td>
-                  </tr>
-                  
-                </tbody>
-              </table>
+            <AccountsTable1 />
             </div>
           </div> */}
           <AccountsTable1/>

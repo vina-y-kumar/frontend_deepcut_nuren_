@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./callpage.css";
 import { Sidebar } from "../../components/Sidebar";
+import axios from 'axios';
 
 const CallPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,11 +24,28 @@ const CallPage = () => {
     console.log("Filter by: ", event.target.value);
   };
 
-  const handleCreateMeeting = (event) => {
+  const handleCreateMeeting = async (event) => {
     event.preventDefault();
-    console.log("Meeting created");
+  
+    
+  
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/calls/', formData, {
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("token"),
+        },
+      });
+      console.log('Meeting created successfully:', response.data);
+      // Assuming setMeetings is a state setter function
+      setMeetings([...meetings, response.data]);
+      setModalOpen(false);
+     
+    } catch (error) {
+      console.error('Error creating meeting:', error);
+    }
   };
-
+  
   const handlePlusClick = () => {
     console.log("Plus clicked");
   };
@@ -93,7 +111,7 @@ const CallPage = () => {
                       <button type="submit" className="form-button save-button1">
                         Save
                       </button>
-                    </div>
+                    </div> 
                   </form>
                 </div>
               </dialog>

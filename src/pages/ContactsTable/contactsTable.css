@@ -6,9 +6,388 @@
 .info{
   font-size: 28px;
   font-weight: bold;
+  background-color: #ffffff;
+  margin: 20px;
+  border-radius: 50px;
+  width: 350vh;
+ 
 
 }
+.info1{
+  display: flex;
+  flex-direction: row;
+  gap: 800px;
+  margin-top: 24px;
+}
+.attach{
+  background-color:#40a9eb;
+  font-weight: lighter;
+  color:#83C4ED;
+  border-radius: 30px;
+  position: relative;
+  top: -50px;
+  left: 140px;
+}
+.cadence{
+  position: relative;
+  top: -30px;
+  left: -20px;
+}
+.notes{
+  position: relative;
+  top: -30px;
+  left: -20px;
+}
+
+
+
+
 .form-row{
   margin-top: 20px;
 }
+
+.info {
+  max-width: 1300px;
+  margin-top: 39px;
+  text-align: left;
+  font-size: 20px;
+  padding: 4rem;
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
+}
+.hidedetail{
+  position: relative
+  ;
+  margin-top: -24px;
+  left: -20px;
+}
+.addinfo{
+  position: relative
+  ;
+  margin-top: -24px;
+  left: -20px;
+}
+
+.owner {
+  margin-top: -23px;
+  position: relative;
+  left: -24px;
+}
+
+
+.para {
+  margin-bottom: 0.5rem;
+}
+.para1{
+  padding: 20px;
+  font-size: 19px;
+  font-weight: lighter;
+}
+
+
+.related-list {
+  max-width: 190px;
+  margin: 0 ;
+  text-align: left;
+  padding: 3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.related-list h3 {
+  margin-top: 0;
+}
+
+.related-list-items {
+  list-style: none;
+  padding: 11px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.related-list-item {
+  margin: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  /* background-color: #f5f5f5; */
+  cursor: pointer;
+}
+
+.related-list-item:hover {
+  background-color: #e5e5e5;
+}
+
+.blank-page {
+  /* max-width: 600px; */
+  width:87%;
+  margin: 0 auto;
+  /* background-color: #faf9f6; */
+  text-align: left;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blank-page h1 {
+  margin-top: 0;
+}
+
+.button-group {
+  margin-top: 2rem;
+  border-radius: 9px;
+
+}
+
+.button-timeline,
+.button-overview {
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  /* border-radius: 9px; */
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.button-timeline:hover,
+.button-overview:hover {
+  background-color: #e5e5e5;
+  border-radius: 4px;
+}
+
+.pages{
+  display: flex;
+  flex-direction: row;
+  margin-top: 150px;
+}
+.showdetails{
+  display: flex;
+  flex-direction: row;
+  gap: 35%;
+  padding: 20px;
+  font-size: 19px;
+  font-weight: lighter;
+}
+.add{
+  display: flex;
+  flex-direction: row;
+  gap: 35%;
+  padding: 20px;
+  font-size: 19px;
+  font-weight: lighter;
+}
+.locate-map-button-container {
+  margin-top: 1rem;
+  position: relative;
+  left: 140vh;
+}
+
+.locate-map-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 2.5rem;
+  border-radius: 4px;
+  background-color: lightgray;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+}
+
+.locate-map-button:hover {
+  background-color: #e5e5e5;
+}
+
+
+.locate-map-button-text {
+  font-size: 1.21rem;
+  text-transform: uppercase;
+}
+
+.notes-container {
+  margin-top: 30px;
+}
+
+.notes-textarea {
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  resize: vertical;
+}
+
+.add-note-button {
+  background-color: grey;
+  color:black;
+  padding: 4px 3px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: lighter;
+}
+
+.recent-notes {
+  margin-top: 20px;
+}
+
+.recent-notes h3 {
+  margin-bottom: 10px;
+}
+
+.recent-notes ul {
+  padding-left: 20px;
+}
+
+.recent-notes li {
+  margin-bottom: 5px;
+}
+.recent{
+  display: flex;
+  gap:800px;
+  position: relative;
+  top: -30px;
+  /* left: 20px; */
+ 
+}
+.recent-notes-button{
+  background-color: #F3FFFF;
+  border-radius: 7px;
+  font-weight: lighter;
+  width: 130px;
+  height: 35px;
+  color: #83C4ED;
+  position:relative;
+  top: -25px;
+  left: 170px;
+
+}
+.buttonss{
+  display: flex ;
+  flex-direction: row;
+  gap: 20px;
+  /* padding: 80px; */
+  position: relative;
+  left: 70%;
+  top:140px;
+ 
+
+}
+.mail-icon-button{
+  background-color: #40a9eb;
+  border-radius: 8px;
+  width: 88px;
+  height: 28px;
+  color: #F3FFFF;
+  text-align: center;
+}
+.edit-button{
+  background-color: lightgrey;
+  border-radius: 8px;
+  width: 88px;
+  height: 28px;
+  color: #000000;
+  text-align: center;
+  font-size: 18px;
+}
+.dot-button{
+  background-color: lightgrey;
+  border-radius: 8px;
+  width: 70px;
+  height: 28px;
+  color: #000000;
+  text-align: center;
+  font-size: 18px;
+}
+.deal{
+  font-weight: lighter;
+  font-size: 17px;
+  background-color: #40a9eb;
+  width: 89px;
+  color: #ffffff;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 20px;
+}
+.actvities{
+
+display: flex;
+flex-direction: row;
+gap: 800px;
+  
+}
+.added{
+  background-color:#40a9eb;
+  font-weight: lighter;
+  color: #83C4ED;
+  font-size: 19px;
+}
+ .products{
+  font-weight: lighter;
+  font-size: 17px;
+  background-color: #40a9eb;
+  width: 113px;
+  color: #ffffff;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 20px;
+ }
+ .Assignnew{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-left: 30px;
+  font-weight: lighter;
+  margin-top: 20px;
+
+
+ }
+ .assign1{
+ background-color:#83C4ED;
+ width: 75px;
+ text-align: center;
+ color: #F3FFFF;
+ border-radius: 4px;
+ border: #40a9eb;
+ }
+ .assign2{
+  background-color: #83C4ED;
+  width: 75px;
+  text-align: center;
+  color: #F3FFFF;
+  border-radius: 4px;
+  border: #40a9eb;
+  }
+  .addCompaigns{
+    background-color: #83C4ED;
+    width: 157px;
+    text-align: center;
+    color: #F3FFFF;
+    border-radius: 4px;
+    border: #40a9eb;
+    margin-top: 20px;
+
+  }
+  .neww{
+    background-color: #83C4ED;
+  width: 75px;
+  text-align: center;
+  color: #F3FFFF;
+  border-radius: 4px;
+  border: #40a9eb;
+  margin-left: 130px;
+  }
+ .heads{
+  position: relative;
+  top: -50px;
+  left: -20px;
+ }
+  
 

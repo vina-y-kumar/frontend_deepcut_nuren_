@@ -10,7 +10,7 @@ export const Register = () => {
   const [password, setPassword] = useState("");
 
   const authRegister = () => {
-    fetch(`http://localhost:4001/register`, {
+    fetch(`https://backendcrmnurenai.azurewebsites.net/register/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
