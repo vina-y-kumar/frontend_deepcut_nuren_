@@ -4,13 +4,20 @@
    background-color: lightgray;
 }
 .info{
-  font-size: 28px;
+  /* font-size: 28px; */
   font-weight: bold;
   background-color: #ffffff;
   margin: 20px;
   border-radius: 50px;
-  width: 350vh;
- 
+  /* width: 350vh; */
+  /* max-width: 1300px; */
+  /* margin-top: 39px; */
+  text-align: left;
+  font-size: 20px;
+  padding: 4rem;
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 }
 .info1{
@@ -26,7 +33,7 @@
   border-radius: 30px;
   position: relative;
   top: -50px;
-  left: 140px;
+  left:-250px ;
 }
 .cadence{
   position: relative;
@@ -46,17 +53,7 @@
   margin-top: 20px;
 }
 
-.info {
-  max-width: 1300px;
-  margin-top: 39px;
-  text-align: left;
-  font-size: 20px;
-  padding: 4rem;
-  /* border: 1px solid #ccc; */
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
- 
-}
+
 .hidedetail{
   position: relative
   ;
@@ -82,7 +79,7 @@
 }
 .para1{
   padding: 20px;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: lighter;
 }
 
@@ -125,7 +122,7 @@
 
 .blank-page {
   /* max-width: 600px; */
-  width:87%;
+  width:85%;
   margin: 0 auto;
   /* background-color: #faf9f6; */
   text-align: left;
@@ -133,6 +130,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
 }
 
 .blank-page h1 {
@@ -170,7 +168,7 @@
   flex-direction: row;
   gap: 35%;
   padding: 20px;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: lighter;
 }
 .add{
@@ -178,7 +176,7 @@
   flex-direction: row;
   gap: 35%;
   padding: 20px;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: lighter;
 }
 .locate-map-button-container {
@@ -251,7 +249,7 @@
 }
 .recent{
   display: flex;
-  gap:800px;
+  gap:350px;
   position: relative;
   top: -30px;
   /* left: 20px; */
@@ -271,13 +269,14 @@
 }
 .buttonss{
   display: flex ;
-  flex-direction: row;
+  flex-direction:row;
   gap: 20px;
-  /* padding: 80px; */
+  /* padding: 40px; */
   position: relative;
-  left: 70%;
+  /* float: right; */
   top:140px;
- 
+  /* width: 100%; */
+  /* left: 700px; */
 
 }
 .mail-icon-button{
@@ -327,6 +326,8 @@ gap: 800px;
   background-color:#40a9eb;
   font-weight: lighter;
   color: #83C4ED;
+  position: relative;
+  left: -200px;
   font-size: 19px;
 }
  .products{
@@ -389,5 +390,10 @@ gap: 800px;
   top: -50px;
   left: -20px;
  }
-  
+.submit{
+  background-color: white;
+}
 
+form{
+  background-color: white;
+}
