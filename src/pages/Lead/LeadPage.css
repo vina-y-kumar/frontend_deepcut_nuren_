@@ -105,3 +105,15 @@ display: inline-block;
 }
 
 
+.createlead{
+background-color:darkmagenta;
+border-radius: 4px;
+width: 80px;
+color: #FFFFFFFF;
+text-align: center;
+}
+.navlinks{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
