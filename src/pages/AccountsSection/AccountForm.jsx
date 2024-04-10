@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import "./accountsTable.css";
+import "./accountsSection.css";
 import { Header } from '../../components/Header';
 
 
-function Form1() {
+function AccountForm() {
   const [accountData, setAccountData] = useState({
     AccountOwner: '',
     AccountName: '',
@@ -434,4 +434,4 @@ function Form1() {
   );
 }
 
-export default Form1;
+export default AccountForm;

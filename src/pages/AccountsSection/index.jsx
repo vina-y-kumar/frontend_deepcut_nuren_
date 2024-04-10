@@ -1,10 +1,10 @@
-import "./accountsTable.css";
-import { Header } from "../../components/Header";
-import { Sidebar } from "../../components/Sidebar";
-import AccountsTable1 from "../../components/AccountsTableContent/Table";
-import { AccountTableContent } from "../../components/AccountsTableContent";
+import "./accountsSection.css";
+import { Header } from "../../components/Header/index.jsx";
+import { Sidebar } from "../../components/Sidebar/index.jsx";
+import AccountsTable1 from "../../components/AccountsTableContent/Table.jsx";
+import { AccountTableContent } from "../../components/AccountsTableContent/index.jsx";
 import React, { useState, useEffect } from 'react';
-import './Form1.jsx';
+import './AccountForm.jsx';
 import { NavLink } from 'react-router-dom';
 
 export const AccountsTable = () => {
@@ -30,39 +30,40 @@ export const AccountsTable = () => {
         <div className="home_left_box1">
           <Sidebar />
         </div>
-        <div className="contain1">
-          <div className="meet1">
+        <div className="contain1" style={{width:"100%"}}>
+          <div className="meet1" >
             <div className="Addcalls1">
-              <select className="changes" onChange={handleAllCalls1}>
+              <select className="view-mode-select" onChange={handleAllCalls1}>
                 <option value="">All Accounts</option>
                 <option value="1">Log in</option>
                 <option value="2">Log out</option>
               </select>  
             </div>
-            <div className="handle1">
-              <select onChange={handlePlusClick1}>
+            <div className="handle1 ">
+              <select onChange={handlePlusClick1} className="view-mode-select">
                 <option value="">!!!</option>
                 <option value="1">Log in</option>
                 <option value="2">Log out</option>
               </select>
-              <div className="create1">
-                <NavLink to="/addform" id="btn1"> CreateAccount</NavLink>
-              </div>
-              <select className="changes" onChange={handleAction}>
+              
+              <select className="view-mode-select" onChange={handleAction}>
                 <option value="">Action</option>
                 <option value="1">Log in</option>
                 <option value="2">Log out</option>
               </select> 
+              <div className="create1">
+                <NavLink to="/addaccount" id="btn1"> Create Account</NavLink>
+              </div>
             </div>
           </div>
-          <div className="records2">
+          {/* <div className="records2"style={{width:"100%"}}>
             <select className="pages1" onChange={handleRecords1}>
               <option value="">50 Records per page</option>
               <option value="1">Option 1</option>
               <option value="2">Option 2</option>
             </select>
-          </div>
-          <div className="bugs">
+          </div> */}
+          {/* <div className="bugs">
             <div className="filter-container">
               <h2>Filter Accounts by</h2>
               <div className="search-bar">
@@ -89,7 +90,8 @@ export const AccountsTable = () => {
             <div className="table1">
             <AccountsTable1 />
             </div>
-          </div>
+          </div> */}
+          <AccountsTable1/>
         </div>
       </div>
     </div>
