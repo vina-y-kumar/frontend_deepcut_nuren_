@@ -33,6 +33,9 @@ const Met = () => {
       });
   }, []);
 
+
+
+  
   useEffect(() => {
     const modal = document.querySelector("#modal");
     const openModal = document.querySelector("#openModal");

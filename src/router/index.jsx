@@ -19,8 +19,15 @@ import MassEmail from "../pages/MassEmail/Email";
 import AccountsPage from "../pages/AccountsPage/AccountPage";
 import CreateLead from "../pages/Lead/CreateLead";
 import AccountForm from "../pages/AccountsSection/AccountForm";
+
+import ConvertLead from "../pages/Lead/ConvertLead";
+
+
+
+
 import { useAuth } from "../authContext";
 import { useState } from "react";
+
 
 export const RouteWrapper = () => {
   const gettingToken = localStorage.getItem("token");
@@ -30,6 +37,7 @@ export const RouteWrapper = () => {
     <Routes>
       <Route path="/" element={<Register />} />
       <Route path="/login" element={<Login />} />
+
       {authenticated && (
         <>
           <Route path="/home" element={<Home />} /> 
@@ -51,6 +59,7 @@ export const RouteWrapper = () => {
           <Route path="/email" element={<MassEmail/>} />
         </>
       )}
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

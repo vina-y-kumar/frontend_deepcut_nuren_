@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./LeadPage.css";
-import { useParams } from "react-router-dom";
+import { useParams,NavLink } from "react-router-dom";
 import RelatedList1 from "./RelatedList1.jsx";
+import ConvertLead from "./ConvertLead.jsx";
 
 
 
@@ -17,6 +18,7 @@ const CreateLead=() =>{
       phone:'',
       mobile:'',
       LeadStatus:'',
+      account_name:'',
       title:'',
       company:'',
       LeadName:'',
@@ -106,6 +108,7 @@ const CreateLead=() =>{
                 mobile:'',
                 LeadStatus:'',
                 title:'',
+                account_name:'',
                 company:'',
                 LeadName:'',
                 fax:'',
@@ -136,6 +139,11 @@ const CreateLead=() =>{
           const toggleAdditionalDetails = () => {
             setCreateLead(!createlead);
           };
+
+          const handleConvert = () => {
+            // Add logic here to handle conversion
+            console.log("Lead converted");
+        };
           return(
             <div>
         
@@ -143,6 +151,11 @@ const CreateLead=() =>{
              <div className="buttonss">
                <div className="mail-icon-button">
                         <button>Send Email</button>
+                    </div>
+                    <div>
+                    <NavLink to={`/convert/${id}`}>
+            <button onClick={handleConvert}>Convert</button>
+        </NavLink>
                     </div>
                     <div className="edit-button">
                         <button>Edit</button>
@@ -170,6 +183,7 @@ const CreateLead=() =>{
               <p className="para">Phone  -{createlead.phone}</p>
               <p className="para">mobile  -{createlead.mobile}</p>
               <p className="para">Created By  - {createlead.createdBy}</p>
+              <p className="para">Organization - {createlead.account_name}</p>
             </div>
           </div>
           <div className="info">
