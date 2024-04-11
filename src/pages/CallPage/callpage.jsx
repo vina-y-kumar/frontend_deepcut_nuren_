@@ -2,52 +2,101 @@ import React, { useState, useEffect } from 'react';
 import "./callpage.css";
 import { Sidebar } from "../../components/Sidebar";
 import axios from 'axios';
-import "./CallForm";
+
 
 const CallPage = () => {
 
   
   const [modalOpen, setModalOpen] = useState(false);
-  const [meetings, setMeetings] = useState([
-    {
+  const [meet, setMeet] = useState([]);
+  const [callData, setCallData] = useState({
+    
       id: 1,
-      Subject: "Follow up with Lead",
-      CallType: "Outbound",
-      CallStartTime: "2024-03-28 10:00",
-      CallDuration: "2024-03-28 11:00",
-      RelatedTo: "Creative Business Systems",
-      ContactName: "Chau Kitzman",
-      ContactOwner: "Adharsh Sharma",      
-    },
-  ]);
+      location: "",
+      call_type: "",
+      start_time: "",
+      to_time: "",
+      related_to: "",
+      createdBy: "",
+      outgoing_status: "",      
+    
+});
 
-  const closeModal = () => setModalOpen(false);
+useEffect(() => {
+  axios
+    .get("https://backendcrmnurenai.azurewebsites.net/calls/", {
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+    })
+    .then((response) => {
+      setMeet(response.data);
+    })
+    .catch((error) => {
+      console.error('Error fetching meet data:', error);
+    });
+}, []);
 
-  const handleAllCalls = (event) => {
+
+
+useEffect(() => {
+  const modal1 = document.querySelector("#modal1");
+  const openModal = document.querySelector("#openModal");
+  const closeModal = document.querySelector("#closeModal");
+
+  if (modal1 && openModal && closeModal) {
+    openModal.addEventListener("click", () => setModalOpen(true));
+    closeModal.addEventListener("click", () => setModalOpen(false));
+  }
+
+  return () => {
+    if (modal1 && openModal && closeModal) {
+      openModal.removeEventListener("click", () => setModalOpen(true));
+      closeModal.removeEventListener("click", () => setModalOpen(false));
+    }
+  };
+}, []);
+
+const handleChange = (e) => {
+  setCallData({ ...callData, [e.target.name]: e.target.value });
+};
+
+const handleCreateMeeting = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post('https://backendcrmnurenai.azurewebsites.net/calls/', callData, {
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+    });
+    console.log('Meeting created successfully:', response.data);
+    setMeet([...meet, response.data]);
+    setModalOpen(false);
+    setCallData({
+      id: 1,
+      location: "",
+      call_type: "",
+      start_time: "",
+      to_time: "",
+      related_to: "",
+      createdBy: "",
+      outgoing_status: "",      
+    
+    });
+  } catch (error) {
+    console.error('Error creating meeting:', error);
+  }
+};
+
+
+
+ const handleAllCalls = (event) => {
     console.log("Filter by: ", event.target.value);
   };
 
-  const handleCreateMeeting = async (event) => {
-    event.preventDefault();
-  
-    
-  
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/calls/', formData, {
-        headers: {
-          "Content-Type": "application/json",
-          token: localStorage.getItem("token"),
-        },
-      });
-      console.log('Meeting created successfully:', response.data);
-      // Assuming setMeetings is a state setter function
-      setMeetings([...meetings, response.data]);
-      setModalOpen(false);
-     
-    } catch (error) {
-      console.error('Error creating meeting:', error);
-    }
-  };
+ 
   
   const handlePlusClick = () => {
     console.log("Plus clicked");
@@ -78,42 +127,37 @@ const CallPage = () => {
               <option value="2">Log out</option>
             </select>
             <div className="create">
-              <button onClick={() => setModalOpen(true)}>Create  Call</button>
+              <button id="openModal">Create  Call</button>
               <dialog id="modal1" open={modalOpen}>
                 <div className="meeting-form-container">
                   <form onSubmit={handleCreateMeeting} id="meeting-form">
-                    <fieldset className="form-fieldset">
-                      <legend className="form-legend">Log a call</legend>
-                      <label className="form-label" htmlFor="location">
-                        Call To:
-                      </label>
-                      <input type="text" name="location" id="location" className="form-input" required />
-                      <label className="form-label" htmlFor="participants">
-                        Related To:
-                      </label>
-                      <input type="text" name="participants" id="participants" className="form-input" required />
-                      <label className="form-label" htmlFor="related-to" >
-                        Call Type:
-                      </label>
-                      <input type="text" name="related-to" id="related-to" className="form-input"  required />
-                      <label className="form-label" htmlFor="repeat">
-                        Outgoing Call Status:
-                      </label>
-                      <input type="text" name="repeat" id="repeat" className="form-input" required />
-                      <label htmlFor="appt">Select a time:</label>
-                      <input type="time" id="appt" className="form-input" required />
-                      <label className="form-label" htmlFor="description">
-                        Voice Recording
-                      </label>
-                      <textarea type="text" name="description" id="description" className="form-input" required/>
-                    </fieldset>
+                  <fieldset className="form-fieldset">
+                    <legend className="form-legend">Log a Call </legend>
+                    <label className="form-label" htmlFor="location">Location :</label>
+                    <input type="text" name="location" id="location" className="form-input" required value={callData.location} onChange={handleChange} />
+                    <label className="form-label" htmlFor="createdBy">Created By :</label>
+                    <input type="text" name="createdBy" id="createdBy" className="form-input" required value={callData.createdBy} onChange={handleChange} />
+                    <label className="form-label" htmlFor="outgoing_status">Contact Owner :</label>
+                    <input type="text" name="outgoing_status" id="Cooutgoing_status" className="form-input" required value={callData.outgoing_status} onChange={handleChange} /> 
+                    
+
+                    <label className="form-label" htmlFor="call_type ">Call To :</label>
+                    <input type="text" name="call_type" id="call_type" className="form-input" required value={callData.call_type} onChange={handleChange} />
+                    <label className="form-label" htmlFor="start_time">From:</label>
+                    <input type="datetime-local" name="start_time" id="start_time" className="form-input" required value={callData.start_time} onChange={handleChange} />
+                    <label className="form-label" htmlFor="to_time">To:</label>
+                    <input type="datetime-local" name="to_time" id="to_time" className="form-input" required value={callData.to_time} onChange={handleChange} />
+                    <label className="form-label" htmlFor="related_to">Related To:</label>
+                    <input type="text" name="related_to" id="related_to" className="form-input" required value={callData.related_to} onChange={handleChange} />
+                    
+                  </fieldset>
                     <div className="form-button-container">
-                      <button type="button" className="form-button cancel-button1" onClick={closeModal}>
-                        Close
-                      </button>
-                      <button type="submit" className="form-button save-button1">
-                        Save
-                      </button>
+                      <button type="button" className="form-button cancel-button1" id="closeModal" onClick={() => setModalOpen(false)}>Close</button>
+
+                       
+                     
+                      <button type="submit" className="form-button save-button1">Save</button>
+
                     </div> 
                   </form>
                 </div>
@@ -137,25 +181,26 @@ const CallPage = () => {
           <table>
             <thead>
               <tr>
-                <th>Subject</th>
-                <th>Call Type</th>
-                <th>Call Start Time</th>
-                <th>Call Duration</th>
+                <th>Location</th>
+                <th>Created By</th>
+                <th>outgoing_status</th>
+                <th>call type</th>
+                <th>Start Time</th>
+                <th>To Time</th>
                 <th>Related To</th>
-                <th>Contact Name</th>
-                <th>Contact Owner</th>
               </tr>
             </thead>
             <tbody>
-              {meetings.map(meeting => (
+              {meet.map(meeting => (
                 <tr key={meeting.id}>
-                  <td>{meeting.Subject}</td>
-                  <td>{meeting.CallType}</td>
-                  <td>{meeting.CallStartTime}</td>
-                  <td>{meeting.CallDuration}</td>
-                  <td>{meeting.RelatedTo}</td>
-                  <td>{meeting.ContactName}</td>
-                  <td>{meeting.ContactOwner}</td>
+                  <td>{meeting.location}</td>
+                  <td>{meeting.createdBy}</td>
+                  <td>{meeting.outgoing_status}</td>
+                  <td>{meeting.call_type}</td>
+                  <td>{meeting.start_time}</td>
+                  <td>{meeting.to_time}</td>
+                  <td>{meeting.related_to}</td>
+                  
                 </tr>
               ))}
             </tbody>
