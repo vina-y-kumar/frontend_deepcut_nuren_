@@ -11,12 +11,15 @@ function ConvertLead(props) {
   const [accountFormData, setAccountFormData] = useState({
       Name: "",
       phone: "",
-      email: ""
+      email: "",
+      createdBy:1
   });
   const [contactFormData, setContactFormData] = useState({
       first_name: "",
+      last_name:"",
       phone: "",
-      email: ""
+      email: "",
+      createdBy:1
   });
   const [error, setError] = useState(null);
   const [accountExists, setAccountExists] = useState(false);
@@ -57,11 +60,14 @@ function ConvertLead(props) {
         Name: response.data.name,
         phone: response.data.phone,
         email: response.data.email,
+        createdBy:1
       });
       setContactFormData({
         first_name: response.data.name,
+        last_name: "text",
         phone: response.data.phone,
         email: response.data.email,
+        createdBy:1
       });
     } catch (error) {
       setError(error.message)
@@ -94,7 +100,7 @@ function ConvertLead(props) {
         <div>
           <h2>Create Account </h2>
           <div>
-          <form onSubmit={handleAccountFormSubmit}  action="http://backendcrmnurenai.azurewebsites.net/accounts/">
+          <form onSubmit={handleAccountFormSubmit}>
   
   <label htmlFor="Name">Name:</label>
   <input

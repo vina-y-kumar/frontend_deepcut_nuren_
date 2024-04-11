@@ -51,6 +51,7 @@ export const RouteWrapper = () => {
           {/*<Route path="/addform" element={<Form1/>} />*/}
           <Route path="/contactinfo/:id" element={<ContactInfo/>}/>
           <Route path="/createlead/:id" element={<CreateLead/>}/>
+          <Route path="/convert/:id" element={<ConvertLead/>}/>
           <Route path="/addaccount" element={<AccountForm/>} />
           <Route path="/addcontact" element={<Form2/>}/>
           <Route path="/meetings" element={<Met/>}  />
