@@ -6,7 +6,8 @@ import { Header } from '../../components/Header';
 
 function AccountForm() {
   const [accountData, setAccountData] = useState({
-    AccountOwner: '',
+    Name: '',
+    email:'',
     AccountName: '',
     AccountSite: '',
     ParentAccount: '',
@@ -20,7 +21,7 @@ function AccountForm() {
     BillingCode: '',
     BillingCountry: '',
     Rating: '',
-    Phone: '',
+    phone: '',
     Fax: '',
     Website: '',
     TickerSymbol: '',
@@ -54,7 +55,9 @@ function AccountForm() {
       // console.log(formData);
       // Reset form data after successful submission if needed
       setAccountData({
-     AccountOwner: '',
+     Name: '',
+     email:'',
+
     AccountName: '',
     AccountSite: '',
     ParentAccount: '',
@@ -68,7 +71,7 @@ function AccountForm() {
     BillingCode: '',
     BillingCountry: '',
     Rating: '',
-    Phone: '',
+    phone: '',
     Fax: '',
     Website: '',
     TickerSymbol: '',
@@ -93,15 +96,27 @@ function AccountForm() {
      <form onSubmit={handleSubmit}>
 <div className="form-row">
         <div className="form-group ">
-          <label htmlFor="AccountOwner">Account Owner</label>
+          <label htmlFor="Name">Account Owner</label>
           <input
             type="text"
             className="form-control"
-            id="AccountOwner"
-            name="AccountOwner"
-            value={accountData.AccountOwner}
+            id="Name"
+            name="Name"
+            value={accountData.Name}
             onChange={handleChange}
             placeholder="Enter Account Owner"
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            className="form-control"
+            id="email"
+            name="email"
+            value={accountData.email}
+            onChange={handleChange}
+            placeholder="Enter email"
           />
         </div>
  <div className="form-group col-md-6">
@@ -209,9 +224,9 @@ function AccountForm() {
           <input
             type="text"
             className="form-control"
-            id="Phone"
-            name="Phone"
-            value={accountData.Phone}
+            id="phone"
+            name="phone"
+            value={accountData.phone}
             onChange={handleChange}
             placeholder="Enter Phone"
           />

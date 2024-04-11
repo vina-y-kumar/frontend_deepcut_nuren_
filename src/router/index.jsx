@@ -29,6 +29,7 @@ import AccountsPage from "../pages/AccountsPage/AccountPage";
 import CreateLead from "../pages/Lead/CreateLead";
 
 import AccountForm from "../pages/AccountsSection/AccountForm";
+import ConvertLead from "../pages/Lead/ConvertLead";
 
 
 
@@ -57,6 +58,7 @@ export const RouteWrapper = () => {
       {/*<Route path="/addform" element={<Form1/>} />*/}
       
       <Route path="/contactinfo/:id" element={<ContactInfo/>}/>
+      <Route path="/convert/:id" element={<ConvertLead/>}/>
 
       <Route path="/createlead/:id" element={<CreateLead/>}/>
       <Route path="/addaccount" element={<AccountForm/>} />

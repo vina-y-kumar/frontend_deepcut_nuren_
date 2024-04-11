@@ -104,7 +104,7 @@ export const ContactsTable = () => {
               <option value="2">Log out</option>
             </select>
             <div className="create1">
-              <NavLink to="/addform1" id="btn1">
+              <NavLink to="/addcontact" id="btn1">
                 {" "}
                 Create Contact
               </NavLink>
