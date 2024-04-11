@@ -2,10 +2,13 @@ import { NavLink } from "react-router-dom";
 import "./login.css";
 import Spline from "@splinetool/react-spline";
 import { useState } from "react";
+import { useAuth } from "../../authContext";
+
 
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { authenticated, setAuthenticated } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +37,7 @@ export const Login = () => {
         // Handle successful login response
         alert('Login successful');
         // Redirect to the home page
+        setAuthenticated(true);
         window.location.href = '/home';
     })
     .catch(error => {
@@ -42,7 +46,10 @@ export const Login = () => {
         alert('Login failed');
     });
 };
-
+if (authenticated) {
+  // Redirect to the home page if user is authenticated
+  window.location.href = '/home';
+}
 
   return (
     <div className="login">
