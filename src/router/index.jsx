@@ -13,7 +13,7 @@ import Lead from "../pages/Lead/AddLead/Lead";
 // import Kanban1 from "../components/Kanban/Kanban1";
 import Met from "../pages/Meetings/met";
 import CallPage from "../pages/CallPage/callpage";
-import Form2 from "../pages/ContactsTable/Form2";
+// import Form2 from "../pages/ContactsTable/Form2";
 import ContactInfo from "../pages/ContactsTable/ContactInfo";
 
 import MassEmail from "../pages/MassEmail/Email";
@@ -61,7 +61,7 @@ export const RouteWrapper = () => {
 
       <Route path="/createlead/:id" element={<CreateLead/>}/>
       <Route path="/addaccount" element={<AccountForm/>} />
-      <Route path="/addcontact" element={<Form2/>}/>
+      {/* <Route path="/addcontact" element={<Form2/>}/> */}
 
       {authenticated && (
         <>
@@ -78,7 +78,7 @@ export const RouteWrapper = () => {
           <Route path="/createlead/:id" element={<CreateLead/>}/>
           <Route path="/convert/:id" element={<ConvertLead/>}/>
           <Route path="/addaccount" element={<AccountForm/>} />
-          <Route path="/addcontact" element={<Form2/>}/>
+          {/* <Route path="/addcontact" element={<Form2/>}/> */}
           <Route path="/meetings" element={<Met/>}  />
           <Route path="/callpage" element={<CallPage/>}/>
           <Route path="/accounts/:id" element={<AccountsPage />} />
