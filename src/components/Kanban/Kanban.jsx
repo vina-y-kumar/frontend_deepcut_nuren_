@@ -158,6 +158,11 @@ function Kanban() {
                                 </div>
                                 {/* <div className="content_"></div> */}
                                 <div className="content_">
+                                  {columnId === 'new' && (
+                                    <NavLink to={`/createlead/${card.id}`}>
+                                      <div className="c1">{card.name}</div>
+                                    </NavLink>
+                                  )}
                                 {columnId !== '0' ? (
                                 <NavLink to={`/createlead/${card.id}`}>
                                   <div className="c1">{card.name}</div>
