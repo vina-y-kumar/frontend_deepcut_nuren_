@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Sidebar } from "../../components/Sidebar";
 import "./meetings.css";
+import { Card, ListGroup } from "react-bootstrap";
+import { NavLink,Link } from 'react-router-dom';
 
 const Met = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [meetings, setMeetings] = useState([]);
+  const [viewMode, setViewMode] = useState('table');
   const [formData, setFormData] = useState({
-    title: '',
-    location: '',
-    from_time: '',
-    to_time: '',
-    related_to: '',
-    createdBy: '',
-    // host: '', 
-    // contactName: '', 
+    title: "",
+    location: "",
+    from_time: "",
+    to_time: "",
+    related_to: "",
+    createdBy: "",
+    // host: '',
+    // contactName: '',
   });
 
   useEffect(() => {
@@ -29,10 +32,13 @@ const Met = () => {
         setMeetings(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching meetings data:', error);
+        console.error("Error fetching meetings data:", error);
       });
   }, []);
 
+  const handleViewModeChange = (mode) => {
+    setViewMode(mode);
+  };
   useEffect(() => {
     const modal = document.querySelector("#modal");
     const openModal = document.querySelector("#openModal");
@@ -58,27 +64,31 @@ const Met = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://backendcrmnurenai.azurewebsites.net/meetings/', formData, {
-        headers: {
-          "Content-Type": "application/json",
-          token: localStorage.getItem("token"),
-        },
-      });
-      console.log('Meeting created successfully:', response.data);
+      const response = await axios.post(
+        "https://backendcrmnurenai.azurewebsites.net/meetings/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log("Meeting created successfully:", response.data);
       setMeetings([...meetings, response.data]);
       setModalOpen(false);
       setFormData({
-        title: '',
-        location: '',
-        from_time: '',
-        to_time: '',
-        related_to: '',
-        createdBy: '',
-        // host: '', 
-        // contactName: '', 
+        title: "",
+        location: "",
+        from_time: "",
+        to_time: "",
+        related_to: "",
+        createdBy: "",
+        // host: '',
+        // contactName: '',
       });
     } catch (error) {
-      console.error('Error creating meeting:', error);
+      console.error("Error creating meeting:", error);
     }
   };
 
@@ -95,7 +105,7 @@ const Met = () => {
   };
 
   return (
-    <div className='calls'>
+    <div className="calls">
       <div className="home_left_box">
         <Sidebar />
       </div>
@@ -106,7 +116,7 @@ const Met = () => {
             <option value="1">Log in</option>
             <option value="2">Log out</option>
           </select>
-         
+
           <div className="create">
             <button id="openModal">Client Meetings</button>
             <dialog id="modal" open={modalOpen}>
@@ -114,26 +124,85 @@ const Met = () => {
                 <form onSubmit={handleSubmit}>
                   <fieldset className="form-fieldset">
                     <legend className="form-legend">Meeting Information</legend>
-                    <label className="form-label" htmlFor="title">Title:</label>
-                    <input type="text" name="title" id="title" className="form-input" required value={formData.title} onChange={handleChange} />
-                    <label className="form-label" htmlFor="location">Location:</label>
-                    <input type="text" name="location" id="location" className="form-input" required value={formData.location} onChange={handleChange} />
-                    <label className="form-label" htmlFor="from_time">From:</label>
-                    <input type="datetime-local" name="from_time" id="from_time" className="form-input" required value={formData.from_time} onChange={handleChange} />
-                    <label className="form-label" htmlFor="to_time">To:</label>
-                    <input type="datetime-local" name="to_time" id="to_time" className="form-input" required value={formData.to_time} onChange={handleChange} />
-                    <label className="form-label" htmlFor="related_to">Related To:</label>
-                    <input type="text" name="related_to" id="related_to" className="form-input" required value={formData.related_to} onChange={handleChange} />
+                    <label className="form-label" htmlFor="title">
+                      Title:
+                    </label>
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      className="form-input"
+                      required
+                      value={formData.title}
+                      onChange={handleChange}
+                    />
+                    <label className="form-label" htmlFor="location">
+                      Location:
+                    </label>
+                    <input
+                      type="text"
+                      name="location"
+                      id="location"
+                      className="form-input"
+                      required
+                      value={formData.location}
+                      onChange={handleChange}
+                    />
+                    <label className="form-label" htmlFor="from_time">
+                      From:
+                    </label>
+                    <input
+                      type="datetime-local"
+                      name="from_time"
+                      id="from_time"
+                      className="form-input"
+                      required
+                      value={formData.from_time}
+                      onChange={handleChange}
+                    />
+                    <label className="form-label" htmlFor="to_time">
+                      To:
+                    </label>
+                    <input
+                      type="datetime-local"
+                      name="to_time"
+                      id="to_time"
+                      className="form-input"
+                      required
+                      value={formData.to_time}
+                      onChange={handleChange}
+                    />
+                    <label className="form-label" htmlFor="related_to">
+                      Related To:
+                    </label>
+                    <input
+                      type="text"
+                      name="related_to"
+                      id="related_to"
+                      className="form-input"
+                      required
+                      value={formData.related_to}
+                      onChange={handleChange}
+                    />
                     {/* <label className="form-label" htmlFor="contactName">Contact Name:</label>
                     <input type="text" name="contactName" id="contactName" className="form-input" required value={formData.contactName} onChange={handleChange} />
                      */}
-                     {/* <label className="form-label" htmlFor="host">Host</label> 
+                    {/* <label className="form-label" htmlFor="host">Host</label> 
                     <input type="text" name="host" id="host" className="form-input" required value={formData.host} onChange={handleChange} /> 
                   */}
                   </fieldset>
                   <div className="form-button-container">
-                    <button type="button" className="form-button cancel-button" id="closeModal" onClick={() => setModalOpen(false)}>Close</button>
-                    <button type="submit" className="form-button save-button">Save</button>
+                    <button
+                      type="button"
+                      className="form-button cancel-button"
+                      id="closeModal"
+                      onClick={() => setModalOpen(false)}
+                    >
+                      Close
+                    </button>
+                    <button type="submit" className="form-button save-button">
+                      Save
+                    </button>
                   </div>
                 </form>
               </div>
@@ -151,12 +220,29 @@ const Met = () => {
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
           </select>
+          <select
+          value={viewMode}
+          onChange={handleViewModeChange}
+          className="view-mode-select"
+        >
+          <option value="">View!</option>
+          <option onClick={() => handleViewModeChange("table")} value="">
+            Table View
+          </option>
+          <option onClick={() => handleViewModeChange("tile")}>
+            Tile View
+          </option>
+          <option onClick={() => handleViewModeChange("list")}>
+            List View
+          </option>
+        </select>
         </div>
+        {viewMode==='table' &&(
         <div className="table1">
           <table>
             <thead>
-              <tr className='host'>
-                <th >Title</th>
+              <tr className="host">
+                <th>Title</th>
                 <th>From</th>
                 <th>To</th>
                 <th>Related To</th>
@@ -165,7 +251,7 @@ const Met = () => {
               </tr>
             </thead>
             <tbody>
-              {meetings.map(meeting => (
+              {meetings.map((meeting) => (
                 <tr key={meeting.id}>
                   <td>{meeting.title}</td>
                   <td>{meeting.from_time}</td>
@@ -178,6 +264,50 @@ const Met = () => {
             </tbody>
           </table>
         </div>
+        )}
+        {viewMode==='tile' &&(
+          <div>
+          <h2>Tiles View</h2>
+          {/* Implement your Kanban view here */}
+          <div className="accounts-tiles-container">
+            {meetings.map((meeting, index) => (
+              <Card key={meeting.id} className="account-tile">
+                <Card.Body>
+                  <Card.Title>
+                    <Link to={`/meetings/${meeting.id}`}>
+                      {meeting.title}
+                    </Link>
+                  </Card.Title>
+                  <Card.Text>From: {meeting.from_time}</Card.Text>
+                  <Card.Text>To: {meeting.to_time}</Card.Text>
+                  <Card.Text>Related To: {meeting.related_to}</Card.Text>
+                  <Card.Text>Host Name: {meeting.host}</Card.Text>
+                  <Card.Text>Contact Name: {meeting.contact_name}</Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
+          </div>
+        </div>
+        )}
+        {viewMode==='list' &&(
+          <div>
+          <h2>List View</h2>
+          <div className="accounts-list-container">
+            <ListGroup>
+              {meetings.map((meeting, index) => (
+                <ListGroup.Item key={meeting.id} className="accounts-list-item">
+                  <Link to={`/meetings/${meeting.id}`}>{meeting.title}</Link>
+                  <p>From: {meeting.from_time}</p>
+                  <p>To: {meeting.to_time}</p>
+                  <p>Related To: {meeting.related_to}</p>
+                  <p>Host Name: {meeting.host}</p>
+                  <p>Contact Name: {meeting.contact_name}</p>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </div>
+        </div>
+        )}
       </div>
     </div>
   );

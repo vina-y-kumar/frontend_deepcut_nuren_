@@ -29,6 +29,7 @@ import AccountsPage from "../pages/AccountsPage/AccountPage";
 import CreateLead from "../pages/Lead/CreateLead";
 
 import AccountForm from "../pages/AccountsSection/AccountForm";
+import TaskTable from "../pages/TasksSection/TaskTable";
 
 
 
@@ -68,7 +69,7 @@ export const RouteWrapper = () => {
       <Route path="/callpage" element={<CallPage/>}/>
       <Route path="*" element={<NotFound />} />
       <Route path="/accounts/:id" element={<AccountsPage />} />
-      
+      <Route path="/tasks" element={<TaskTable/>} />
       <Route path="/email" element={<MassEmail/>} />
 
     </Routes>

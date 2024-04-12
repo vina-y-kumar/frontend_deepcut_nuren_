@@ -1,22 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import "./callpage.css";
 import { Sidebar } from "../../components/Sidebar";
-import axios from 'axios';
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { Card, ListGroup } from "react-bootstrap";
 
 const CallPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [meetings, setMeetings] = useState([
-    {
-      id: 1,
-      Subject: "Follow up with Lead",
-      CallType: "Outbound",
-      CallStartTime: "2024-03-28 10:00",
-      CallDuration: "2024-03-28 11:00",
-      RelatedTo: "Creative Business Systems",
-      ContactName: "Chau Kitzman",
-      ContactOwner: "Adharsh Sharma",      
-    },
-  ]);
+  const [calls, setCalls] = useState([]);
+  const [viewMode, setViewMode] = useState("table");
+  useEffect(() => {
+    const fetchCalls = async () => {
+      try {
+        const response = await axios.get(
+          "https://backendcrmnurenai.azurewebsites.net/calls/"
+        );
+        setCalls(response.data);
+      } catch (error) {
+        console.error("Error fetching accounts:", error);
+      }
+    };
+    fetchCalls();
+  }, []);
+
+  const handleViewModeChange = (mode) => {
+    setViewMode(mode);
+  };
 
   const closeModal = () => setModalOpen(false);
 
@@ -26,26 +35,27 @@ const CallPage = () => {
 
   const handleCreateMeeting = async (event) => {
     event.preventDefault();
-  
-    
-  
+
     try {
-      const response = await axios.post('http://127.0.0.1:8000/calls/', formData, {
-        headers: {
-          "Content-Type": "application/json",
-          token: localStorage.getItem("token"),
-        },
-      });
-      console.log('Meeting created successfully:', response.data);
+      const response = await axios.post(
+        "http://127.0.0.1:8000/calls/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log("Meeting created successfully:", response.data);
       // Assuming setMeetings is a state setter function
       setMeetings([...meetings, response.data]);
       setModalOpen(false);
-     
     } catch (error) {
-      console.error('Error creating meeting:', error);
+      console.error("Error creating meeting:", error);
     }
   };
-  
+
   const handlePlusClick = () => {
     console.log("Plus clicked");
   };
@@ -55,7 +65,7 @@ const CallPage = () => {
   };
 
   return (
-    <div className='calls'>
+    <div className="calls">
       <div className="home_left_box">
         <Sidebar />
       </div>
@@ -66,7 +76,7 @@ const CallPage = () => {
               <option value="">All Calls</option>
               <option value="1">Log in</option>
               <option value="2">Log out</option>
-            </select>  
+            </select>
           </div>
           <div className="handle">
             <select onChange={handlePlusClick}>
@@ -75,7 +85,7 @@ const CallPage = () => {
               <option value="2">Log out</option>
             </select>
             <div className="create">
-              <button onClick={() => setModalOpen(true)}>Create  Call</button>
+              <button onClick={() => setModalOpen(true)}>Create Call</button>
               <dialog id="modal1" open={modalOpen}>
                 <div className="meeting-form-container">
                   <form onSubmit={handleCreateMeeting} id="meeting-form">
@@ -84,34 +94,76 @@ const CallPage = () => {
                       <label className="form-label" htmlFor="location">
                         Call To:
                       </label>
-                      <input type="text" name="location" id="location" className="form-input" required />
+                      <input
+                        type="text"
+                        name="location"
+                        id="location"
+                        className="form-input"
+                        required
+                      />
                       <label className="form-label" htmlFor="participants">
                         Related To:
                       </label>
-                      <input type="text" name="participants" id="participants" className="form-input" required />
-                      <label className="form-label" htmlFor="related-to" >
+                      <input
+                        type="text"
+                        name="participants"
+                        id="participants"
+                        className="form-input"
+                        required
+                      />
+                      <label className="form-label" htmlFor="related-to">
                         Call Type:
                       </label>
-                      <input type="text" name="related-to" id="related-to" className="form-input"  required />
+                      <input
+                        type="text"
+                        name="related-to"
+                        id="related-to"
+                        className="form-input"
+                        required
+                      />
                       <label className="form-label" htmlFor="repeat">
                         Outgoing Call Status:
                       </label>
-                      <input type="text" name="repeat" id="repeat" className="form-input" required />
+                      <input
+                        type="text"
+                        name="repeat"
+                        id="repeat"
+                        className="form-input"
+                        required
+                      />
                       <label htmlFor="appt">Select a time:</label>
-                      <input type="time" id="appt" className="form-input" required />
+                      <input
+                        type="time"
+                        id="appt"
+                        className="form-input"
+                        required
+                      />
                       <label className="form-label" htmlFor="description">
                         Voice Recording
                       </label>
-                      <textarea type="text" name="description" id="description" className="form-input" required/>
+                      <textarea
+                        type="text"
+                        name="description"
+                        id="description"
+                        className="form-input"
+                        required
+                      />
                     </fieldset>
                     <div className="form-button-container">
-                      <button type="button" className="form-button cancel-button1" onClick={closeModal}>
+                      <button
+                        type="button"
+                        className="form-button cancel-button1"
+                        onClick={closeModal}
+                      >
                         Close
                       </button>
-                      <button type="submit" className="form-button save-button1">
+                      <button
+                        type="submit"
+                        className="form-button save-button1"
+                      >
                         Save
                       </button>
-                    </div> 
+                    </div>
                   </form>
                 </div>
               </dialog>
@@ -123,41 +175,104 @@ const CallPage = () => {
             </select>
           </div>
         </div>
-        <div className="records">
-          <select className="page" onChange={handleRecords}>
+        <div className="records" style={{ width: "100%" }}>
+          <select className="view-mode-select" onChange={handleRecords}>
             <option value="">10 Records per page</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
           </select>
+          <select
+            value={viewMode}
+            onChange={handleViewModeChange}
+            className="view-mode-select"
+          >
+            <option value="">View!</option>
+            <option onClick={() => handleViewModeChange("table")} value="">
+              Table View
+            </option>
+            <option onClick={() => handleViewModeChange("tile")}>
+              Tile View
+            </option>
+            <option onClick={() => handleViewModeChange("list")}>
+              List View
+            </option>
+          </select>
         </div>
-        <div className="table1">
-          <table>
-            <thead>
-              <tr>
-                <th>Subject</th>
-                <th>Call Type</th>
-                <th>Call Start Time</th>
-                <th>Call Duration</th>
-                <th>Related To</th>
-                <th>Contact Name</th>
-                <th>Contact Owner</th>
-              </tr>
-            </thead>
-            <tbody>
-              {meetings.map(meeting => (
-                <tr key={meeting.id}>
-                  <td>{meeting.Subject}</td>
-                  <td>{meeting.CallType}</td>
-                  <td>{meeting.CallStartTime}</td>
-                  <td>{meeting.CallDuration}</td>
-                  <td>{meeting.RelatedTo}</td>
-                  <td>{meeting.ContactName}</td>
-                  <td>{meeting.ContactOwner}</td>
+
+        {/* table view */}
+        {viewMode === "table" && (
+          <div className="table1">
+            <table>
+              <thead>
+                <tr>
+                  <th>Contact Name</th>
+                  <th>Call Type</th>
+                  <th>Call Start Time</th>
+                  <th>Call Duration</th>
+                  <th>Related To</th>
+                  <th>Location</th>
+                  <th>Recording</th>
                 </tr>
+              </thead>
+              <tbody>
+                {calls.map((meeting) => (
+                  <tr key={meeting.id}>
+                    <td>{meeting.call_to}</td>
+                    <td>{meeting.call_type}</td>
+                    <td>{meeting.start_time}</td>
+                    <td>{meeting.call_duration}</td>
+                    <td>{meeting.related_to}</td>
+                    <td>{meeting.location}</td>
+                    <td>{meeting.voice_recording}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* Tile View */}
+        {viewMode === "tile" && (
+          <div>
+            <h2>Tiles View</h2>
+            {/* Implement your Kanban view here */}
+            <div className="accounts-tiles-container">
+              {calls.map((call, index) => (
+                <Card key={call.id} className="account-tile">
+                  <Card.Body>
+                    <Card.Title>
+                      <Link to={`/calls/${call.id}`}>{call.call_to}</Link>
+                    </Card.Title>
+                    <Card.Text>Call Type: {call.call_type}</Card.Text>
+                    <Card.Text>Start Time: {call.start_time}</Card.Text>
+                    <Card.Text>Call Duration: {call.call_duration}</Card.Text>
+                    <Card.Text>Related To: {call.related_to}</Card.Text>
+                    <Card.Text>Location: {call.location}</Card.Text>
+                  </Card.Body>
+                </Card>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </div>
+          </div>
+        )}
+        {viewMode === "list" && (
+          <div>
+            <h2>List View</h2>
+            <div className="accounts-list-container">
+              <ListGroup>
+                {calls.map((call, index) => (
+                  <ListGroup.Item key={call.id} className="accounts-list-item">
+                    <Link to={`/calls/${call.id}`}>{call.Name}</Link>
+                    <p>Call Type: {call.call_type}</p>
+                    <p>Start Time: {call.start_time}</p>
+                    <p>Call Duration: {call.call_duration}</p>
+                    <p>Related To: {call.related_to}</p>
+                    <p>Location: {call.location}</p>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
