@@ -4,37 +4,35 @@ import "./contactsTable.css";
 import { Header } from "../../components/Header";
 
 function Form2(){
-    const [contactData, setContactData]= useState({
-     
-        ContactOwner:'',
-        first_name:'',
-        last_name:'',
-        AccountName:'',
-        email:'',
-        phone:'',
-        OtherPhone:'',
-        Mobile:'',
-        Assistant:'',
-        Currency1:'',
-        address:'',
-        MailingStreet:'',
-        MailingCity:'',
-        MailingState:'',
-        MailingZip:'',
-        MailingCountry:'',
-        Fax:'',
-        DateOfBirth:'',
-        AsstPhone:'',
-        SkypeId:'',
-        SecondaryEmail:'',
-        Twitter:'',
-        ReportingTo:'',
-        createdBy:'',
-        description:'',
-        account:'',
-    
-    });
-  };
+  const [contactData, setContactData] = useState({
+    ContactOwner: "",
+    first_name: "",
+    last_name: "",
+    AccountName: "",
+    email: "",
+    phone: "",
+    OtherPhone: "",
+    Mobile: "",
+    address: "",
+    Assistant: "",
+    Currency1: "",
+    MailingStreet: "",
+    MailingCity: "",
+    MailingState: "",
+    MailingZip: "",
+    MailingCountry: "",
+    Fax: "",
+    DateOfBirth: "",
+    AsstPhone: "",
+    SkypeId: "",
+    SecondaryEmail: "",
+    Twitter: "",
+    ReportingTo: "",
+    createdBy: "",
+    description: "",
+    account: "",
+  });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -76,52 +74,12 @@ function Form2(){
     }
   };
 
-    const handleChange = (event) => {
-        setContactData({
-          ...contactData,
-          [event.target.name]: event.target.value,
-        });
-      };
-      const handleSubmit1 = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.post('https://backendcrmnurenai.azurewebsites.net/contacts/', contactData);
-            console.log('Form submitted successfully:', response.data);   
-            setContactData({
-                ContactOwner:'',
-                first_name:'',
-                last_name:'',
-                AccountName:'',
-                email:'',
-                phone:'',
-                OtherPhone:'',
-                Mobile:'',
-                address:'',
-                Assistant:'',
-                Currency1:'',
-                MailingStreet:'',
-                MailingCity:'',
-                MailingState:'',
-                MailingZip:'',
-                MailingCountry:'',
-                Fax:'',
-                DateOfBirth:'',
-                AsstPhone:'',
-                SkypeId:'',
-                SecondaryEmail:'',
-                Twitter:'',
-                ReportingTo:'',
-                createdBy:'',
-                description:'',
-                account:'',
-
-
-            }) ;
-        } catch (error) {
-            console.error('Error submitting form:', error);
-          }
-        };
-
+  const handleChange = (event) => {
+    setContactData({
+      ...contactData,
+      [event.target.name]: event.target.value,
+    });
+  };
         return(
             <div>
                 <Header name="Contact Information"/>
@@ -711,6 +669,7 @@ function Form2(){
       </form>
     </div>
   );
+};
 
 
 export default Form2;
