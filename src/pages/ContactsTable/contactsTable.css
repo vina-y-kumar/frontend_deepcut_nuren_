@@ -33,7 +33,7 @@
   border-radius: 30px;
   position: relative;
   top: -50px;
-  left:-250px ;
+  left: 140px;
 }
 .cadence{
   position: relative;
@@ -54,6 +54,17 @@
 }
 
 
+.info {
+  max-width: 1300px;
+  margin-top: 39px;
+  text-align: left;
+  font-size: 20px;
+  padding: 4rem;
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
+}
 .hidedetail{
   position: relative
   ;

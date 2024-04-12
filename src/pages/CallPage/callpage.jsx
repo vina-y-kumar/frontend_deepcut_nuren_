@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Card, ListGroup } from "react-bootstrap";
 
 const CallPage = () => {
+
+  
   const [modalOpen, setModalOpen] = useState(false);
   const [calls, setCalls] = useState([]);
   const [viewMode, setViewMode] = useState("table");
@@ -27,35 +29,82 @@ const CallPage = () => {
     setViewMode(mode);
   };
 
-  const closeModal = () => setModalOpen(false);
+useEffect(() => {
+  axios
+    .get("https://backendcrmnurenai.azurewebsites.net/calls/", {
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+    })
+    .then((response) => {
+      setMeet(response.data);
+    })
+    .catch((error) => {
+      console.error('Error fetching meet data:', error);
+    });
+}, []);
 
-  const handleAllCalls = (event) => {
+
+
+useEffect(() => {
+  const modal1 = document.querySelector("#modal1");
+  const openModal = document.querySelector("#openModal");
+  const closeModal = document.querySelector("#closeModal");
+
+  if (modal1 && openModal && closeModal) {
+    openModal.addEventListener("click", () => setModalOpen(true));
+    closeModal.addEventListener("click", () => setModalOpen(false));
+  }
+
+  return () => {
+    if (modal1 && openModal && closeModal) {
+      openModal.removeEventListener("click", () => setModalOpen(true));
+      closeModal.removeEventListener("click", () => setModalOpen(false));
+    }
+  };
+}, []);
+
+const handleChange = (e) => {
+  setCallData({ ...callData, [e.target.name]: e.target.value });
+};
+
+const handleCreateMeeting = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post('https://backendcrmnurenai.azurewebsites.net/calls/', callData, {
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+    });
+    console.log('Meeting created successfully:', response.data);
+    setMeet([...meet, response.data]);
+    setModalOpen(false);
+    setCallData({
+      id: 1,
+      location: "",
+      call_type: "",
+      start_time: "",
+      to_time: "",
+      related_to: "",
+      createdBy: "",
+      outgoing_status: "",      
+    
+    });
+  } catch (error) {
+    console.error('Error creating meeting:', error);
+  }
+};
+
+
+
+ const handleAllCalls = (event) => {
     console.log("Filter by: ", event.target.value);
   };
 
-  const handleCreateMeeting = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/calls/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            token: localStorage.getItem("token"),
-          },
-        }
-      );
-      console.log("Meeting created successfully:", response.data);
-      // Assuming setMeetings is a state setter function
-      setMeetings([...meetings, response.data]);
-      setModalOpen(false);
-    } catch (error) {
-      console.error("Error creating meeting:", error);
-    }
-  };
-
+ 
+  
   const handlePlusClick = () => {
     console.log("Plus clicked");
   };

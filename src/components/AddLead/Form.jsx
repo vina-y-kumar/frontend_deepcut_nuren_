@@ -11,6 +11,7 @@ function Form() {
     email: '',
     first_name: '',
     last_name: '',
+    account_name:'',
     
     phone: '',
     
@@ -56,6 +57,7 @@ function Form() {
         first_name: '',
         last_name: '',
         email: '',
+        account_name:'',
         phone: '',
         website: '',
         address: '',
@@ -120,6 +122,18 @@ function Form() {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter email"
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <label htmlFor="account_name">Organization</label>
+          <input
+            type="text"
+            className="form-control"
+            id="account_name"
+            name="account_name"
+            value={formData.account_name}
+            onChange={handleChange}
+            placeholder="Enter organization"
           />
         </div>
       </div>
