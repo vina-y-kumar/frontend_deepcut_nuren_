@@ -2,6 +2,8 @@ import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import "./contactsTable.css";
 import { Header } from '../../components/Header';
+import CreateNewAccountForm from './CreateNewAccountForm';
+
 
 function Form2(){
   
@@ -39,8 +41,11 @@ function Form2(){
     useEffect(() => {
       fetchAccountOptions();
   }, []);
-  
-  
+  const [showCreateNewAccountForm, setShowCreateNewAccountForm] = useState(false);
+
+  const handleCreateNewAccountClick = () => {
+    setShowCreateNewAccountForm(true);
+  };
 
   const fetchAccountOptions = async () => {
     try {
@@ -169,8 +174,10 @@ function Form2(){
                                 <option key={option.id} value={option.Name}>
                                     {option.Name}
                                 </option>
-                                
+
                             ))}
+                                <option value="create-new-account">Create New Account</option>
+
                         </select>
                     </div>
         <div className="form-group col-md-6">
