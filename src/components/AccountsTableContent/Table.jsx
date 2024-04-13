@@ -26,6 +26,9 @@ const AccountsTable1 = () => {
   const handleViewModeChange = (mode) => {
     setViewMode(mode);
   };
+  if (!accounts) {
+    return <div className="loader"></div>; // Show a loading message while fetching data
+  }
 
   return (
     <div>

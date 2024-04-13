@@ -35,7 +35,7 @@ const AccountsPage = () => {
   }, [id]);
 
   if (!account) {
-    return <h2 style={{ margin: " auto" }}>Loading...</h2>; // Show a loading message while fetching data
+    return <div className="loader"></div>; // Show a loading message while fetching data
   }
 
   const contactPersons = [

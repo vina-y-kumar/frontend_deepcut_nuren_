@@ -1,61 +1,73 @@
 import React, { useState } from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+// import { google } from 'googleapis'; // Import the Google API library
+import { Button, Form } from 'react-bootstrap';
 
-const ComposeEmail = ({ onClose }) => {
-  const [to, setTo] = useState('');
+const EmailComponent = () => {
   const [subject, setSubject] = useState('');
-  const [messageBody, setMessageBody] = useState('');
-  const [attachments, setAttachments] = useState([]);
+  const [recipient, setRecipient] = useState('');
+  const [body, setBody] = useState('');
 
-  const handleSend = () => {
-    // Validate email address and required fields
-    if (to && subject && messageBody) {
-      // Implement send email logic
-      // Reset form and close popup
-      setTo('');
-      setSubject('');
-      setMessageBody('');
-      setAttachments([]);
-      onClose();
-    } else {
-      alert('Please fill in all required fields.');
+  const sendEmail = async () => {
+    try {
+      const auth = new google.auth.GoogleAuth({
+        // Set up OAuth 2.0 authentication
+        clientId: 'YOUR_CLIENT_ID',
+        clientSecret: 'YOUR_CLIENT_SECRET',
+        redirectUri: 'YOUR_REDIRECT_URI',
+      });
+      const gmail = google.gmail({ version: 'v1', auth });
+
+      await gmail.users.messages.send({
+        userId: 'me',
+        requestBody: {
+          raw: btoa(
+            `From: YOUR_EMAIL_ADDRESS\r\nTo: ${recipient}\r\nSubject: ${subject}\r\n\r\n${body}`
+          ),
+        },
+      });
+
+      alert('Email sent successfully!');
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Error sending email. Please try again.');
     }
   };
 
-  const handleAttachFile = (e) => {
-    const file = e.target.files[0];
-    setAttachments([...attachments, file]);
-  };
-
   return (
-    <div className="popup">
-      <div className="popup-content">
-        <span className="close-btn" onClick={onClose}>&times;</span>
-        <h2>Compose Email</h2>
-        <div className="form-group">
-          <label htmlFor="to">To:</label>
-          <input type="email" id="to" className="form-control" value={to} onChange={(e) => setTo(e.target.value)} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="subject">Subject:</label>
-          <input type="text" id="subject" className="form-control" value={subject} onChange={(e) => setSubject(e.target.value)} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="messageBody">Message Body:</label>
-          <textarea id="messageBody" className="form-control" value={messageBody} onChange={(e) => setMessageBody(e.target.value)} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="attachments">Attachments:</label>
-          <input type="file" id="attachments" className="form-control-file" onChange={handleAttachFile} />
-        </div>
-        <div className="btn-group">
-          <button className="btn btn-primary" onClick={handleSend}>Send</button>
-          <button className="btn btn-secondary">Save as Draft</button>
-          <button className="btn btn-danger" onClick={onClose}>Discard</button>
-        </div>
-      </div>
-    </div>
+    <Form>
+      <Form.Group controlId="subject">
+        <Form.Label>Subject</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter email subject"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group controlId="recipient">
+        <Form.Label>Recipient</Form.Label>
+        <Form.Control
+          type="email"
+          placeholder="Enter recipient email"
+          value={recipient}
+          onChange={(e) => setRecipient(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group controlId="body">
+        <Form.Label>Email Body</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={3}
+          placeholder="Enter email body"
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+        />
+      </Form.Group>
+      <Button variant="primary" onClick={sendEmail}>
+        Send Email
+      </Button>
+    </Form>
   );
 };
 
-export default ComposeEmail;
+export default EmailComponent;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, DropdownButton, Dropdown, Popover, OverlayTrigger } from 'react-bootstrap';
 import './email.css'; // Import custom CSS for styling
-
+// import { google } from 'googleapis';
 const MassEmail = () => {
   const [to, setTo] = useState('');
   const [template, setTemplate] = useState('');
@@ -81,7 +81,31 @@ const MassEmail = () => {
     const scheduleDate=prompt('Enter The Rescheduling Date')
     console.log('Email scheduled for:', scheduleDate);
   };
+  const sendEmail = async () => {
+    try {
+      const auth = new google.auth.GoogleAuth({
+        // Set up OAuth 2.0 authentication
+        clientId: '67498046930-k40dltpstr9kpgacqg22tdvjvil0ffub.apps.googleusercontent.com',
+        clientSecret: 'AIzaSyAZ2ZHWOqtifFkeASsE6KRqTmRua263lGw',
+        // redirectUri: 'YOUR_REDIRECT_URI',
+      });
+      const gmail = google.gmail({ version: 'v1', auth });
 
+      await gmail.users.messages.send({
+        userId: 'me',
+        requestBody: {
+          raw: btoa(
+            `From: vinaykain2111@gmail.com\r\nTo: ${emailTo}\r\nSubject: ${emailSubject}\r\n\r\n${emailBody}`
+          ),
+        },
+      });
+
+      alert('Email sent successfully!');
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Error sending email. Please try again.');
+    }
+  };
   return (
     <div className="mass-email-container">
       <h2 className="mass-email-heading">Mass Email Component</h2>
@@ -188,7 +212,7 @@ const MassEmail = () => {
             )}
 
 <div className="button-container">
-  <Button variant="primary" className='btn1' onClick={handleSendEmail1}>Send Now</Button>
+  <Button variant="primary" className='btn1' onClick={handleSendEmail}>Send Mail</Button>
   <Button variant="primary" className='btn2'onClick={handleScheduleEmail1}>Send Later</Button>
 </div>
           </div>
