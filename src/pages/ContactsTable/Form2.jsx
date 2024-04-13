@@ -1,37 +1,106 @@
-import React, { useState } from "react";
-import axios from "axios";
+
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 import "./contactsTable.css";
-import { Header } from "../../components/Header";
+import { Header } from '../../components/Header';
+import CreateNewAccountForm from './CreateNewAccountForm';
+
 
 function Form2(){
-  const [contactData, setContactData] = useState({
-    ContactOwner: "",
-    first_name: "",
-    last_name: "",
-    AccountName: "",
-    email: "",
-    phone: "",
-    OtherPhone: "",
-    Mobile: "",
-    address: "",
-    Assistant: "",
-    Currency1: "",
-    MailingStreet: "",
-    MailingCity: "",
-    MailingState: "",
-    MailingZip: "",
-    MailingCountry: "",
-    Fax: "",
-    DateOfBirth: "",
-    AsstPhone: "",
-    SkypeId: "",
-    SecondaryEmail: "",
-    Twitter: "",
-    ReportingTo: "",
-    createdBy: "",
-    description: "",
-    account: "",
-  });
+  
+    const [contactData, setContactData]= useState({
+     
+        ContactOwner:'',
+        first_name:'',
+        last_name:'',
+      
+        email:'',
+        phone:'',
+        OtherPhone:'',
+        Mobile:'',
+        Assistant:'',
+        Currency1:'',
+        address:'',
+        MailingStreet:'',
+        MailingCity:'',
+        MailingState:'',
+        MailingZip:'',
+        MailingCountry:'',
+        Fax:'',
+        DateOfBirth:'',
+        AsstPhone:'',
+        SkypeId:'',
+        SecondaryEmail:'',
+        Twitter:'',
+        ReportingTo:'',
+        createdBy:'',
+        description:'',
+        //  name:'',
+    
+    });
+    const [accountOptions, setAccountOptions] = useState([]);
+    useEffect(() => {
+      fetchAccountOptions();
+  }, []);
+  const [showCreateNewAccountForm, setShowCreateNewAccountForm] = useState(false);
+
+  const handleCreateNewAccountClick = () => {
+    setShowCreateNewAccountForm(true);
+  };
+
+  const fetchAccountOptions = async () => {
+    try {
+        const response = await axios.get('https://backendcrmnurenai.azurewebsites.net/accounts/');
+                console.log('Account options response:', response.data);
+
+        setAccountOptions(response.data); 
+    } catch (error) {
+        console.error('Error fetching account options:', error);
+    }
+};
+    console.log('******',accountOptions)
+
+
+
+    const handleChange = (event) => {
+        setContactData({
+          ...contactData,
+          [event.target.name]: event.target.value,
+        });
+      };
+      const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post('https://backendcrmnurenai.azurewebsites.net/contacts/', contactData);
+            console.log('Form submitted successfully:', response.data);   
+            setContactData({
+                ContactOwner:'',
+                first_name:'',
+                last_name:'',
+                 email:'',
+                phone:'',
+                OtherPhone:'',
+                Mobile:'',
+                address:'',
+                Assistant:'',
+                Currency1:'',
+                MailingStreet:'',
+                MailingCity:'',
+                MailingState:'',
+                MailingZip:'',
+                MailingCountry:'',
+                Fax:'',
+                DateOfBirth:'',
+                AsstPhone:'',
+                SkypeId:'',
+                SecondaryEmail:'',
+                Twitter:'',
+                ReportingTo:'',
+                createdBy:'',
+                description:'',
+                //  name:'',
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -121,18 +190,7 @@ function Form2(){
             placeholder="Enter last Name"
           />
         </div>
-        <div className="form-group col-md-6">
-          <label htmlFor="AccountName">Account Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="AccountName"
-            name="AccountName"
-            value={contactData.AccountName}
-            onChange={handleChange}
-            placeholder="Enter Account Name"
-          />
-        </div>
+       
         <div className="form-group col-md-6">
           <label htmlFor="email">Email</label>
           <input
@@ -146,17 +204,25 @@ function Form2(){
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="account">account</label>
-          <input
-            type="text"
-            className="form-control"
-            id="account"
-            name="account"
-            value={contactData.account}
-            onChange={handleChange}
-            placeholder="Enter account"
-          />
-        </div>
+                        <label htmlFor="name">Account</label>
+                        <select
+                            id="name"
+                            name="name"
+                            value={contactData.name}
+                            onChange={handleChange}
+                            className="form-control"
+                        >
+                            <option value=""> option</option>
+                            {accountOptions.map((option) => (
+                                <option key={option.id} value={option.Name}>
+                                    {option.Name}
+                                </option>
+
+                            ))}
+                                <option value="create-new-account">Create New Account</option>
+
+                        </select>
+                    </div>
         <div className="form-group col-md-6">
           <label htmlFor="phone">Phone</label>
           <input
