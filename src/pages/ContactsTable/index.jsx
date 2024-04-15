@@ -1,5 +1,5 @@
-
 import "./contactsTable.css";
+// import { Header } from "../../components/Header";
 import React, { useEffect, useState } from "react";
 import { NavLink,Link } from "react-router-dom";
 import { Sidebar } from "../../components/Sidebar";
@@ -16,8 +16,6 @@ export const ContactsTable = () => {
     phone: "",
     createdBy: "",
   });
-  const [filteredContacts, setFilteredContacts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchContacts();
@@ -31,21 +29,17 @@ export const ContactsTable = () => {
       const data = await response.json();
       console.log(response);
       setContacts(data);
-      setFilteredContacts(data);
-
     } catch (error) {
       console.error("Error fetching contacts:", error);
     }
   };
-
   const handleInputChange = (event) => {
-    const { first_name, value } = event.target;
+    const { name, value } = event.target;
     setNewContact((prevState) => ({
       ...prevState,
-      [first_name]: value,
+      [name]: value,
     }));
   };
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -84,67 +78,21 @@ export const ContactsTable = () => {
   const handleAction = () => {
     console.log("Action required");
   };
-
   const handlePlusClick1 = () => {
     console.log("Plus clicked");
   };
-
   const handleRecords1 = (event) => {
     console.log("Records per page: ", event.target.value);
   };
-<<<<<<< HEAD
-
-  const handleFilterChange = (event) => {
-    const filterBy = event.target.value;
-    if (filterBy === "first_name") {
-      setFilteredContacts(
-        contacts.slice().sort((a, b) =>
-          a.first_name.toLowerCase() > b.first_name.toLowerCase() ? 1 : -1
-        )
-      );
-    } 
-    else if (filterBy === "createdBy") {
-      setFilteredContacts(
-        contacts.filter((contact) =>
-          contact.createdBy.toLowerCase().includes(event.target.value.toLowerCase())
-        )
-      );
-    } else {
-      setFilteredContacts(contacts);
-    }
-  };
-
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    if (searchTerm === "") {
-      setFilteredContacts(contacts);
-    } else {
-      setFilteredContacts(
-        contacts.filter((contact) =>
-          contact.first_name
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
-        )
-      );
-    }
-=======
   const handleViewModeChange = (mode) => {
     setViewMode(mode);
->>>>>>> 4f50e854805a381549214627748f35e1ee0a9d08
   };
   return (
     <div className="calls1">
       <div className="home_left_box1">
         <Sidebar />
       </div>
-<<<<<<< HEAD
-      <div >
-
-      </div>
-      <div className="contain1">
-=======
       <div className="contain1" style={{width:"100%"}}>
->>>>>>> 4f50e854805a381549214627748f35e1ee0a9d08
         <div className="meet1">
           <div className="Addcalls1">
             <select className="view-mode-select" onChange={handleAllCalls1}>
@@ -199,8 +147,7 @@ export const ContactsTable = () => {
           <div className="filter-container">
             <h2>Filter Contacts by</h2>
             <div className="search-bar">
-            <input type="text" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
-
+              <input type="text" placeholder="Search..." />
             </div>
             <div className="dropdown-container">
               <button className="dropdown-button">
@@ -220,12 +167,8 @@ export const ContactsTable = () => {
               </div>
               <button className="dropdown-button">Filter By Fields</button>
               <div className="dropdown-content">
-              <a href="#" onClick={() => handleFilterChange("first_name")}>
-                  Contact Name
-                </a>
-                <a href="#" onClick={() => handleFilterChange("createdBy")}>
-                  Created By 
-                </a>
+                <a href="#">Contact Name</a>
+                <a href="#">Contact Number</a>
               </div>
             </div>
           </div>
@@ -236,22 +179,16 @@ export const ContactsTable = () => {
             <table>
               <thead>
                 <tr>
-<<<<<<< HEAD
-                  <th>name</th>
-                  
-                  <th>Account Name</th>
-=======
                   <th>Contact Name</th>
                   <th>Description</th>
->>>>>>> 4f50e854805a381549214627748f35e1ee0a9d08
                   <th>Email</th>
                   <th>Phone</th>
                   <th>Address</th>
                 </tr>
               </thead>
               <tbody>
-                {filteredContacts?.map &&
-                  filteredContacts.map((contact) => (
+                {contacts?.map &&
+                  contacts.map((contact) => (
                     <tr key={contact.id}>
                       <td>
                         <NavLink to={`/contactinfo/${contact.id}`}>

@@ -1,61 +1,102 @@
-import React, { useState } from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ComposeEmailComponent from './ComposeEmail';
+import './email.css'
+import MassEmailComponent from './MassEmail';
 
-const ComposeEmail = ({ onClose }) => {
+const CLIENT_ID =  "667498046930-3df54a3fajc619jhqoumfn6go8cplpcj.apps.googleusercontent.com"; 
+const REDIRECT_URI = 'http://localhost:5173/compose'; // Update with your redirect URI
+const SCOPES = 'https://www.googleapis.com/auth/gmail.send'; // Scopes required for Gmail API access
+
+const ComposeEmail = () => {
+  const [accessToken, setAccessToken] = useState('');
   const [to, setTo] = useState('');
   const [subject, setSubject] = useState('');
-  const [messageBody, setMessageBody] = useState('');
-  const [attachments, setAttachments] = useState([]);
+  const [body, setBody] = useState('');
+  const [isComposeMode, setIsComposeMode] = useState(true);
+  useEffect(() => {
+    const parseAccessToken = () => {
+      const hash = window.location.hash.substr(1);
+      const queryParams = new URLSearchParams(hash);
+      const accessToken = queryParams.get('access_token');
+      if (accessToken) {
+        setAccessToken(accessToken);
+      }
+    };
 
-  const handleSend = () => {
-    // Validate email address and required fields
-    if (to && subject && messageBody) {
-      // Implement send email logic
-      // Reset form and close popup
-      setTo('');
-      setSubject('');
-      setMessageBody('');
-      setAttachments([]);
-      onClose();
-    } else {
-      alert('Please fill in all required fields.');
+    if (window.location.hash) {
+      parseAccessToken();
     }
+  }, []);
+
+  const handleAuthClick = () => {
+    const authUrl = `https://accounts.google.com/o/oauth2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${encodeURIComponent(
+      SCOPES
+    )}&response_type=token`;
+
+    window.location.href = authUrl;
   };
 
-  const handleAttachFile = (e) => {
-    const file = e.target.files[0];
-    setAttachments([...attachments, file]);
+  const handleSendEmail = async () => {
+    
+    try {
+      const response = await axios.post(
+        'https://www.googleapis.com/gmail/v1/users/me/messages/send',
+        {
+          raw: btoa(`To: ${to}\r\nSubject: ${subject}\r\n\r\n${body}`),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      console.log('Email sent:', response.data);
+      alert('Email sent successfully!');
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Error sending email. Please try again.');
+    }
+  };
+  const toggleMode = () => {
+    setIsComposeMode((prevMode) => !prevMode);
   };
 
   return (
-    <div className="popup">
-      <div className="popup-content">
-        <span className="close-btn" onClick={onClose}>&times;</span>
-        <h2>Compose Email</h2>
-        <div className="form-group">
-          <label htmlFor="to">To:</label>
-          <input type="email" id="to" className="form-control" value={to} onChange={(e) => setTo(e.target.value)} />
+    <div className='oauth-container'>
+      {!accessToken ? (
+        <button className='authorize-button' onClick={handleAuthClick}>Authorize</button>
+      ) : (
+        <div>
+          
+          <button className='mode-toggle' onClick={toggleMode}>{isComposeMode ? 'Switch to Mass Email' : 'Switch to Compose Email'}</button>
+          {isComposeMode ? (
+            <ComposeEmailComponent
+              accessToken={accessToken}
+              to={to}
+              setTo={setTo}
+              subject={subject}
+              setSubject={setSubject}
+              body={body}
+              setBody={setBody}
+              handleSendEmail={handleSendEmail}
+              
+            />
+          ) : (
+            <MassEmailComponent accessToken={accessToken} />
+          )}
         </div>
-        <div className="form-group">
-          <label htmlFor="subject">Subject:</label>
-          <input type="text" id="subject" className="form-control" value={subject} onChange={(e) => setSubject(e.target.value)} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="messageBody">Message Body:</label>
-          <textarea id="messageBody" className="form-control" value={messageBody} onChange={(e) => setMessageBody(e.target.value)} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="attachments">Attachments:</label>
-          <input type="file" id="attachments" className="form-control-file" onChange={handleAttachFile} />
-        </div>
-        <div className="btn-group">
-          <button className="btn btn-primary" onClick={handleSend}>Send</button>
-          <button className="btn btn-secondary">Save as Draft</button>
-          <button className="btn btn-danger" onClick={onClose}>Discard</button>
-        </div>
-      </div>
+        
+      )}
     </div>
   );
 };
 
+
+
 export default ComposeEmail;
+
+
+        

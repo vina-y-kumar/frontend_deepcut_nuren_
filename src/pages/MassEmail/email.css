@@ -1,4 +1,4 @@
-.mass-email-container {
+/* .mass-email-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -66,4 +66,134 @@
   }
   .btn2{
     float: right;
+  } */
+  .oauth-container {
+    margin: 20px;
   }
+  
+  .authorize-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .mode-toggle {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  
+  .mass-email-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .send-email-button,
+  .send-mass-email-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .send-email-button:hover,
+  .send-mass-email-button:hover {
+    background-color: #0056b3;
+  }
+  .compose-email-container {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.compose-email-container h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.compose-email-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.compose-email-container input[type='text'],
+.compose-email-container textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.compose-email-container textarea {
+  resize: vertical; /* Allow vertical resizing of textarea */
+}
+
+.compose-email-container .send-email-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.compose-email-container .send-email-button:hover {
+  background-color: #0056b3;
+}
+/* mass email */
+.mass-email-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type='text'],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type='radio'] {
+  margin-right: 5px;
+}
+
+.send-email-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.send-email-button:hover {
+  background-color: #0056b3;
+}

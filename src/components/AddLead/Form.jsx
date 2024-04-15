@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Addlead.css';
+import Swal from 'sweetalert2';
 
 function Form() {
   const [formData, setFormData] = useState({
@@ -29,6 +30,7 @@ function Form() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === 'assigned_to') {
+      // Split the input value by commas to create an array of assigned_to values
       const assignedToArray = value.split(',').map((item) => item.trim());
       setFormData({
         ...formData,
@@ -48,8 +50,20 @@ function Form() {
 
     try {
       const response = await axios.post('https://backendcrmnurenai.azurewebsites.net/leads/', formData);
-      console.log('Form submitted successfully:', response.data);
-      alert("Lead Created Successfully");
+      
+      Swal.fire({
+        title: "Good job!",
+        text: "Lead Created Successfully!",
+        icon: "success"
+      });
+      if(!response){
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
+      }
       // Reset form data after successful submission if needed
       setFormData({
         title: '',
@@ -68,6 +82,7 @@ function Form() {
       console.error('Error submitting form:', error);
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -228,7 +243,7 @@ function Form() {
           />
         </div>
       </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <button style={{marginLeft:"20%", marginTop:"5%" }} type="submit" className="btn btn-primary">Create Lead</button>
     </form>
   );
 }
