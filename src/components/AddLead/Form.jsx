@@ -29,7 +29,6 @@ function Form() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === 'assigned_to') {
-      // Split the input value by commas to create an array of assigned_to values
       const assignedToArray = value.split(',').map((item) => item.trim());
       setFormData({
         ...formData,

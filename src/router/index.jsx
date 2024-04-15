@@ -32,6 +32,7 @@ import ConvertLead from "../pages/Lead/ConvertLead";
 
 import { useAuth } from "../authContext";
 import { useState } from "react";
+import Form3 from "../pages/opportunities/Form3";
 
 
 export const RouteWrapper = () => {
@@ -80,6 +81,7 @@ export const RouteWrapper = () => {
           <Route path="/addaccount" element={<AccountForm/>} />
           <Route path="/addcontact" element={<Form2/>}/>
           <Route path="/meetings" element={<Met/>}  />
+          <Route path="/opportunity" element={<Form3/>} />
           <Route path="/callpage" element={<CallPage/>}/>
           <Route path="/accounts/:id" element={<AccountsPage />} />
           <Route path="/email" element={<MassEmail/>} />
