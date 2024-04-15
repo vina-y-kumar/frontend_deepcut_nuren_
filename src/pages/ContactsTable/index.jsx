@@ -1,12 +1,14 @@
 
 import "./contactsTable.css";
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 import { Sidebar } from "../../components/Sidebar";
 import "./Form2.jsx";
+import { Card, ListGroup } from "react-bootstrap";
 
 export const ContactsTable = () => {
   const [contacts, setContacts] = useState([]);
+  const [viewMode, setViewMode] = useState("table");
   const [newContact, setNewContact] = useState({
     first_name: "",
     account: "",
@@ -90,6 +92,7 @@ export const ContactsTable = () => {
   const handleRecords1 = (event) => {
     console.log("Records per page: ", event.target.value);
   };
+<<<<<<< HEAD
 
   const handleFilterChange = (event) => {
     const filterBy = event.target.value;
@@ -124,51 +127,72 @@ export const ContactsTable = () => {
         )
       );
     }
+=======
+  const handleViewModeChange = (mode) => {
+    setViewMode(mode);
+>>>>>>> 4f50e854805a381549214627748f35e1ee0a9d08
   };
   return (
     <div className="calls1">
       <div className="home_left_box1">
         <Sidebar />
       </div>
+<<<<<<< HEAD
       <div >
 
       </div>
       <div className="contain1">
+=======
+      <div className="contain1" style={{width:"100%"}}>
+>>>>>>> 4f50e854805a381549214627748f35e1ee0a9d08
         <div className="meet1">
           <div className="Addcalls1">
-            <select className="changes" onChange={handleAllCalls1}>
+            <select className="view-mode-select" onChange={handleAllCalls1}>
               <option value="">All Contacts</option>
               <option value="1">Log in</option>
               <option value="2">Log out</option>
             </select>
           </div>
           <div className="handle1">
-            <select onChange={handlePlusClick1}>
+            <select onChange={handlePlusClick1} className="view-mode-select">
               <option value="">!!!</option>
               <option value="1">Log in</option>
               <option value="2">Log out</option>
             </select>
             <div className="create1">
-
-              <NavLink to="/addContact" id="btn1">
-
-                {" "}
+              <NavLink to="/addcontact" id="btn1">
                 Create Contact
               </NavLink>
             </div>
 
-            <select className="changes" onChange={handleAction}>
+            <select className="view-mode-select" onChange={handleAction}>
               <option value="">Action</option>
               <option value="1">Log in</option>
               <option value="2">Log out</option>
             </select>
           </div>
         </div>
-        <div className="records2">
-          <select className="pages1" onChange={handleRecords1}>
+        <div className="records">
+          <select className="view-mode-select" onChange={handleRecords1}>
             <option value="">10 Records per page</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
+          </select>
+          <select
+            value={viewMode}
+            onChange={handleViewModeChange}
+            className="view-mode-select"
+          >
+            <option value="">View!</option>
+            <option onClick={() => handleViewModeChange("table")} value="">
+              Table View
+            </option>
+            <option onClick={() => handleViewModeChange("tile")}>
+              Tile View
+            </option>
+            <option onClick={() => handleViewModeChange("list")}>
+              List View
+            </option>
           </select>
         </div>
         <div className="bugs">
@@ -206,16 +230,23 @@ export const ContactsTable = () => {
             </div>
           </div>
 
+{/* Table View */}
+{viewMode==='table' &&(
           <div className="table1">
             <table>
               <thead>
                 <tr>
+<<<<<<< HEAD
                   <th>name</th>
                   
                   <th>Account Name</th>
+=======
+                  <th>Contact Name</th>
+                  <th>Description</th>
+>>>>>>> 4f50e854805a381549214627748f35e1ee0a9d08
                   <th>Email</th>
                   <th>Phone</th>
-                  <th>Contact Owner</th>
+                  <th>Address</th>
                 </tr>
               </thead>
               <tbody>
@@ -224,20 +255,65 @@ export const ContactsTable = () => {
                     <tr key={contact.id}>
                       <td>
                         <NavLink to={`/contactinfo/${contact.id}`}>
-                          {contact.first_name}
+                          {contact.first_name + " " + contact.last_name}
                         </NavLink>
                       </td>
-                      <td>{contact.account}</td>
+                      <td>{contact.description}</td>
                       <td>
                         <a href={`mailto:${contact.email}`}>{contact.email}</a>
                       </td>
                       <td>{contact.phone}</td>
-                      <td>{contact.createdBy}</td>
+                      <td>{contact.address}</td>
                     </tr>
                   ))}
               </tbody>
             </table>
           </div>
+          )}
+          {/* Tile View */}
+          {viewMode==='tile' &&(
+            
+            <div>
+          <h2>Tiles View</h2>
+          {/* Implement your Kanban view here */}
+          <div className="accounts-tiles-container">
+            {contacts.map((contact, index) => (
+              <Card key={contact.id} className="account-tile">
+                <Card.Body>
+                  <Card.Title>
+                    <Link to={`/contactinfo/${contact.id}`}>
+                      {contact.first_name+" "+contact.last_name}
+                    </Link>
+                  </Card.Title>
+                  <Card.Text>Phone Number: {contact.phone}</Card.Text>
+                  <Card.Text>Address: {contact.address}</Card.Text>
+                  <Card.Text>Description: {contact.description}</Card.Text>
+                  <Card.Text>Email: {contact.email}</Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
+          </div>
+        </div>
+          )}
+          {/* List View */}
+          {viewMode==='list' &&(
+            <div>
+            <h2>List View</h2>
+            <div className="accounts-list-container" style={{width:"180%"}}>
+              <ListGroup >
+                {contacts.map((contact, index) => (
+                  <ListGroup.Item key={contact.id} className="accounts-list-item" >
+                    <Link to={`/contactinfo/${contact.id}`}>{contact.first_name+" "+contact.last_name}</Link>
+                    <p>Phone Number: {contact.phone}</p>
+                    <p>Description: {contact.description}</p>
+                    <p>Address: {contact.address}</p>
+                    <p>Email: {contact.email}</p>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </div>
+          </div>
+          )}
         </div>
       </div>
     </div>

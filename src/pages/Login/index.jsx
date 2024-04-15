@@ -46,6 +46,7 @@ export const Login = () => {
         alert('Login failed');
     });
 };
+
 if (authenticated) {
   // Redirect to the home page if user is authenticated
   window.location.href = '/home';
