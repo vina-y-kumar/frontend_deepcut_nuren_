@@ -16,7 +16,7 @@ import CallPage from "../pages/CallPage/callpage";
 // import Form2 from "../pages/ContactsTable/Form2";
 import ContactInfo from "../pages/ContactsTable/ContactInfo";
 
-import MassEmail from "../pages/MassEmail/Email";
+
 
 import AccountsPage from "../pages/AccountsPage/AccountPage";
 import CreateLead from "../pages/Lead/CreateLead";
@@ -33,6 +33,8 @@ import ConvertLead from "../pages/Lead/ConvertLead";
 import { useAuth } from "../authContext";
 import { useState } from "react";
 import EmailComponent from "../pages/MassEmail/Compose";
+import ComposeEmail from "../pages/MassEmail/Compose1";
+import AddTaskForm from "../pages/TasksSection/AddTask";
 
 
 export const RouteWrapper = () => {
@@ -79,11 +81,13 @@ export const RouteWrapper = () => {
           <Route path="/createlead/:id" element={<CreateLead/>}/>
           <Route path="/convert/:id" element={<ConvertLead/>}/>
           <Route path="/addaccount" element={<AccountForm/>} />
-          {/* <Route path="/addcontact" element={<Form2/>}/> */}
+          <Route path="/addtask" element={<AddTaskForm/>}/>
           <Route path="/meetings" element={<Met/>}  />
           <Route path="/callpage" element={<CallPage/>}/>
           <Route path="/accounts/:id" element={<AccountsPage />} />
           <Route path="/email" element={<EmailComponent/>} />
+          <Route path="/compose" element={<EmailComponent/>} />
+
         </>
       )}
 
@@ -93,8 +97,8 @@ export const RouteWrapper = () => {
       <Route path="*" element={<NotFound />} />
       <Route path="/accounts/:id" element={<AccountsPage />} />
       <Route path="/tasks" element={<TaskTable/>} />
-      <Route path="/email" element={<MassEmail/>} />
-
+      
+      {/* <Route path="/compose" element={<ComposeEmail/>} /> */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

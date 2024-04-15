@@ -243,7 +243,7 @@ function Form() {
           />
         </div>
       </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <button style={{marginLeft:"20%", marginTop:"5%" }} type="submit" className="btn btn-primary">Create Lead</button>
     </form>
   );
 }
