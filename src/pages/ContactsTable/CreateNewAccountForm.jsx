@@ -4,8 +4,9 @@ import axios from 'axios';
 
 function CreateNewAccountForm() {
     const [accountData, setAccountData] = useState({
-      name: '',
+      Name: '',
       email: '',
+      phone:'',
       createdBy: '',
     });
     const handleChange = (event) => {
@@ -21,8 +22,9 @@ function CreateNewAccountForm() {
           const response = await axios.post('https://backendcrmnurenai.azurewebsites.net/accounts/', accountData);
           console.log('Form submitted successfully:', response.data);
           setAccountData({
-            name: '',
+            Name: '',
             email: '',
+            phone:'',
             createdBy: '',
           });
         } catch (error) {
@@ -37,13 +39,13 @@ function CreateNewAccountForm() {
 <h2>Create New Account</h2>
 <form onSubmit={handleSubmit}>
   <div className="form-group">
-    <label htmlFor="name">Name</label>
+    <label htmlFor="Name">Name</label>
     <input
       type="text"
       className="form-control"
-      id="name"
-      name="name"
-      value={accountData.name}
+      id="Name"
+      name="Name"
+      value={accountData.Name}
       onChange={handleChange}
       placeholder="Enter Name"
     />
@@ -54,10 +56,22 @@ function CreateNewAccountForm() {
       type="text"
       className="form-control"
       id="email"
-      name="Email"
+      name="email"
       value={accountData.email}
       onChange={handleChange}
       placeholder="Enter Email"
+    />
+  </div>
+  <div className="form-group">
+    <label htmlFor="phone">Phone</label>
+    <input
+      type="text"
+      className="form-control"
+      id="phone"
+      name="phone"
+      value={accountData.phone}
+      onChange={handleChange}
+      placeholder="Enter phone"
     />
   </div>
   <div className="form-group">
@@ -75,6 +89,7 @@ function CreateNewAccountForm() {
   <button type="submit" className="btn btn-primary">
     Create Account
   </button>
+  
 </form>
 </div>
         </div>
